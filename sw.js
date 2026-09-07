@@ -1,10 +1,11 @@
-const CACHE_NAME = 'goalie-timer-v4';
+const CACHE_NAME = 'goalie-timer-v5';
 
 const ASSETS = [
   './',
   './index.html',
   './manifest.webmanifest',
-  './icon.svg'
+  './icon.svg',
+  './icon-512.png'
 ];
 
 self.addEventListener('install', event => {
