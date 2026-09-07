@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
 
 <meta
@@ -8,7 +10,10 @@
   content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<meta name="theme-color" content="#000000">
+<meta
+  name="theme-color"
+  content="#0a0a0a"
+>
 
 <meta
   name="apple-mobile-web-app-capable"
@@ -26,11 +31,23 @@
 >
 
 <link
-  rel="manifest" href="manifest.webmanifest">
- <link rel="icon" href="icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icon-512.png">
+  rel="manifest"
+  href="manifest.webmanifest"
+>
+
+<link
+  rel="icon"
+  href="icon.svg"
+  type="image/svg+xml"
+>
+
+<link
+  rel="apple-touch-icon"
+  href="icon-512.png"
+>
 
 <title>Goalie Training</title>
+
 
 <style>
 
@@ -41,9 +58,12 @@
   --white:#ffffff;
   --muted:#8a8a8a;
   --line:#303030;
+
+  /* Kelly green */
   --green:#00c853;
   --green2:#00e65f;
   --greenDark:#003d1b;
+
   --danger:#ff4d4d;
 }
 
@@ -55,12 +75,12 @@ html{
   background:#0a0a0a;
 }
 
-
 body{
   margin:0;
   min-height:100%;
   background:#0a0a0a;
   color:var(--white);
+
   font-family:
     -apple-system,
     BlinkMacSystemFont,
@@ -85,6 +105,9 @@ button:disabled{
   cursor:not-allowed;
 }
 
+
+/* Hockey / CCM-inspired lettering */
+
 .hockey{
   font-family:
     Impact,
@@ -102,14 +125,19 @@ button:disabled{
   transform-origin:center;
 }
 
+
 .app{
   width:min(1100px,100%);
   margin:0 auto;
+
   padding:
     max(18px,env(safe-area-inset-top))
     14px
     max(24px,env(safe-area-inset-bottom));
 }
+
+
+/* HEADER */
 
 .topbar{
   display:flex;
@@ -123,17 +151,12 @@ button:disabled{
   min-width:0;
 }
 
-.brand-main{
-  font-size:34px;
-  line-height:.95;
-  font-weight:900;
-}
-
-.brand-sub{
-  margin-top:3px;
-  font-size:13px;
-  letter-spacing:.35em;
-  color:#c6c6c6;
+.brand-logo{
+  display:block;
+  width:190px;
+  max-width:46vw;
+  height:auto;
+  object-fit:contain;
 }
 
 .top-controls{
@@ -159,20 +182,26 @@ button:disabled{
   accent-color:var(--green);
 }
 
+
+/* WORKOUT CATEGORY TABS */
+
 .tabs{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:8px;
-  margin-bottom:14px;
 }
 
 .tab{
   min-height:52px;
+
   border:1px solid var(--line);
   border-radius:7px;
+
   background:#050505;
   color:#b9b9b9;
+
   padding:8px;
+
   font-weight:900;
   font-style:italic;
   text-transform:uppercase;
@@ -183,6 +212,40 @@ button:disabled{
   border-color:var(--green);
   color:#001a0a;
 }
+
+
+/* Coordination sits by itself */
+
+.coordination-wrap{
+  margin-top:8px;
+  margin-bottom:14px;
+}
+
+.coordination-tab{
+  width:100%;
+  min-height:62px;
+
+  border:1px solid var(--line);
+  border-radius:7px;
+
+  background:#050505;
+  color:#b9b9b9;
+
+  font-weight:900;
+  font-style:italic;
+  text-transform:uppercase;
+
+  font-size:20px;
+}
+
+.coordination-tab.active{
+  background:var(--green);
+  border-color:var(--green);
+  color:#001a0a;
+}
+
+
+/* MAIN PLAYER */
 
 .main-grid{
   display:grid;
@@ -215,24 +278,31 @@ button:disabled{
 .phase{
   border:1px solid var(--green);
   color:var(--green2);
+
   border-radius:6px;
   padding:7px 12px;
+
   font-size:13px;
 }
 
 .big-timer{
   margin-top:12px;
+
   text-align:center;
+
   font-size:clamp(72px,15vw,138px);
   font-weight:900;
   line-height:.9;
+
   font-style:italic;
   letter-spacing:-.04em;
 }
 
 .exercise-name{
   margin-top:18px;
+
   text-align:center;
+
   font-size:clamp(25px,6vw,44px);
   font-weight:900;
 }
@@ -240,46 +310,92 @@ button:disabled{
 .side-label{
   min-height:29px;
   margin-top:5px;
+
   text-align:center;
+
   font-size:22px;
   color:var(--green2);
 }
 
 .exercise-cue{
   width:min(620px,100%);
+
   margin:24px auto 0;
+
   text-align:center;
+
   color:#a6a8aa;
+
   font-size:17px;
   line-height:1.5;
 }
 
+.empty-message{
+  margin:20px auto 0;
+
+  width:min(620px,100%);
+
+  border:1px solid var(--greenDark);
+  border-radius:8px;
+
+  background:#07130b;
+
+  padding:18px;
+
+  text-align:center;
+  color:#a8aaa9;
+}
+
+.empty-message strong{
+  display:block;
+  margin-bottom:6px;
+
+  color:var(--green2);
+
+  font-size:19px;
+}
+
+
+/* NEXT CARD */
+
 .next-card{
   margin:20px auto 0;
+
   border:1px solid var(--greenDark);
+
   background:#00170a;
+
   border-radius:8px;
+
   padding:13px 15px;
+
   width:min(620px,100%);
 }
 
-.next-card.hidden{
-  display:none;
+.hidden{
+  display:none !important;
 }
 
 .next-small{
   color:#7b8d82;
+
   font-size:12px;
+
   text-transform:uppercase;
   letter-spacing:.1em;
 }
 
 .next-name{
   margin-top:4px;
+
   color:var(--green2);
+
   font-size:20px;
   font-weight:900;
 }
+
+
+/* PROGRESS */
 
 .progress-wrap{
   margin-top:26px;
@@ -287,15 +403,20 @@ button:disabled{
 
 .progress-track{
   height:10px;
+
   overflow:hidden;
+
   border-radius:999px;
+
   background:#252727;
 }
 
 .progress-fill{
   height:100%;
   width:0;
+
   background:var(--green);
+
   transition:width .25s linear;
 }
 
@@ -303,25 +424,37 @@ button:disabled{
   display:flex;
   justify-content:space-between;
   gap:10px;
+
   margin-top:7px;
+
   color:#7f8285;
+
   font-size:12px;
 }
+
+
+/* BUTTONS */
 
 .player-buttons{
   display:grid;
   grid-template-columns:1fr 1.4fr 1fr;
+
   gap:10px;
+
   margin-top:22px;
 }
 
 .btn{
   min-height:56px;
+
   border:1px solid #444;
+  border-radius:7px;
+
   background:#080808;
   color:#fff;
-  border-radius:7px;
+
   padding:10px 12px;
+
   font-weight:900;
   font-style:italic;
   text-transform:uppercase;
@@ -330,6 +463,7 @@ button:disabled{
 .btn-primary{
   background:var(--green);
   border-color:var(--green);
+
   color:#001207;
 }
 
@@ -337,6 +471,9 @@ button:disabled{
   border-color:#562828;
   color:#ff8c8c;
 }
+
+
+/* SIDEBAR */
 
 .sidebar{
   display:flex;
@@ -360,24 +497,30 @@ button:disabled{
 
 .next-side{
   color:var(--green2);
+
   margin-top:6px;
+
   font-size:15px;
 }
 
 .rest-block{
   margin-top:18px;
   padding-top:18px;
+
   border-top:1px solid var(--line);
 }
 
 .rest-number{
   margin-top:7px;
+
   font-size:31px;
+
   color:#c7c7c7;
 }
 
 .session-progress{
   font-size:34px;
+
   margin-top:8px;
 }
 
@@ -389,29 +532,39 @@ button:disabled{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:8px;
+
   margin-top:15px;
 }
 
 .stat{
   border:1px solid var(--line);
+
   border-radius:7px;
+
   padding:12px;
 }
 
 .stat-label{
   color:#777;
+
   font-size:11px;
+
   text-transform:uppercase;
 }
 
 .stat-value{
   margin-top:5px;
+
   font-size:20px;
   font-weight:800;
 }
 
+
+/* ROUTINE */
+
 .routine-panel{
   margin-top:14px;
+
   padding:18px;
 }
 
@@ -428,11 +581,15 @@ button:disabled{
 
 .edit-btn{
   min-height:46px;
+
   border:1px solid var(--green);
+  border-radius:7px;
+
   background:#050505;
   color:var(--green2);
-  border-radius:7px;
+
   padding:9px 15px;
+
   font-weight:900;
   font-style:italic;
   text-transform:uppercase;
@@ -440,20 +597,35 @@ button:disabled{
 
 .routine-list{
   list-style:none;
+
   padding:0;
+
   margin:14px 0 0;
+
   border:1px solid var(--line);
   border-radius:8px;
+
   overflow:hidden;
 }
 
 .routine-row{
   display:grid;
-  grid-template-columns:38px minmax(0,1fr) 70px 70px 26px;
+
+  grid-template-columns:
+    38px
+    minmax(0,1fr)
+    70px
+    70px
+    26px;
+
   align-items:center;
+
   min-height:55px;
+
   gap:8px;
+
   padding:8px 12px;
+
   border-bottom:1px solid var(--line);
 }
 
@@ -463,6 +635,7 @@ button:disabled{
 
 .routine-row.active{
   background:#003719;
+
   outline:1px solid var(--green);
   outline-offset:-1px;
 }
@@ -473,68 +646,91 @@ button:disabled{
 
 .exercise-index{
   color:#bdbdbd;
+
   font-size:14px;
 }
 
 .row-name{
   min-width:0;
+
   font-weight:800;
 }
 
 .row-time,
 .row-sides{
   text-align:right;
+
   color:#9b9b9b;
+
   font-size:13px;
 }
 
 .status-dot{
   width:20px;
   height:20px;
+
   border-radius:50%;
+
   border:2px solid #555;
+
   justify-self:end;
 }
 
 .status-dot.current{
   border-color:var(--green);
+
   background:var(--green);
 }
 
 .status-dot.done{
   border-color:var(--green);
+
   position:relative;
 }
 
 .status-dot.done::after{
   content:"✓";
+
   position:absolute;
+
   color:var(--green2);
+
   top:-7px;
   left:1px;
+
   font-size:22px;
   font-weight:900;
 }
+
+
+/* SETTINGS */
 
 .settings-row{
   display:flex;
   flex-wrap:wrap;
   align-items:end;
+
   gap:16px;
+
   margin-top:14px;
   padding-top:14px;
+
   border-top:1px solid var(--line);
 }
 
 .control-group{
   min-width:130px;
+
   flex:1;
 }
 
 .control-label{
   color:#85888a;
+
   font-size:12px;
+
   text-transform:uppercase;
+
   margin-bottom:6px;
 }
 
@@ -543,17 +739,23 @@ input[type="text"],
 input[type="number"],
 textarea{
   width:100%;
+
   min-height:45px;
+
   border:1px solid #36393a;
   border-radius:7px;
+
   background:#050505;
   color:#fff;
+
   padding:9px 11px;
+
   font-size:16px;
 }
 
 textarea{
   min-height:78px;
+
   resize:vertical;
 }
 
@@ -564,6 +766,9 @@ input[type="checkbox"]{
 input[type="range"]{
   accent-color:var(--green);
 }
+
+
+/* EDITOR */
 
 .editor{
   display:none;
@@ -582,6 +787,7 @@ input[type="range"]{
   justify-content:space-between;
   gap:12px;
   align-items:center;
+
   margin-bottom:14px;
 }
 
@@ -597,19 +803,24 @@ input[type="range"]{
 .editor-list{
   display:flex;
   flex-direction:column;
+
   gap:11px;
 }
 
 .edit-card{
   border:1px solid var(--line);
   border-radius:8px;
+
   background:#080808;
+
   padding:14px;
 }
 
 .edit-grid{
   display:grid;
+
   grid-template-columns:minmax(0,1fr) 105px;
+
   gap:10px;
 }
 
@@ -617,15 +828,20 @@ input[type="range"]{
   display:flex;
   flex-wrap:wrap;
   align-items:center;
+
   gap:10px;
+
   margin-top:10px;
 }
 
 .side-check{
   display:flex;
   align-items:center;
+
   gap:8px;
+
   min-height:44px;
+
   color:#ccc;
 }
 
@@ -636,32 +852,43 @@ input[type="range"]{
 
 .editor-actions{
   display:flex;
+
   gap:7px;
+
   margin-left:auto;
 }
 
 .small-btn{
   min-width:44px;
   min-height:44px;
+
   border:1px solid #414141;
   border-radius:7px;
+
   color:#fff;
+
   background:#080808;
 }
 
 .delete-btn{
   color:#ff7676;
+
   border-color:#5c2525;
 }
 
 .add-btn{
   width:100%;
+
   margin-top:14px;
+
   min-height:52px;
+
   border:1px dashed var(--green);
+  border-radius:8px;
+
   background:#001208;
   color:var(--green2);
-  border-radius:8px;
+
   font-weight:900;
   font-style:italic;
   text-transform:uppercase;
@@ -669,45 +896,54 @@ input[type="range"]{
 
 .editor-footer{
   position:sticky;
+
   bottom:0;
+
   display:flex;
   justify-content:flex-end;
+
   gap:9px;
+
   margin-top:16px;
+
   padding:12px 0;
-  background:linear-gradient(
-    rgba(0,0,0,0),
-    rgba(0,0,0,.96) 25%
-  );
+
+  background:
+    linear-gradient(
+      rgba(0,0,0,0),
+      rgba(0,0,0,.96) 25%
+    );
 }
 
 .toast{
   min-height:20px;
+
   margin-top:8px;
+
   color:var(--green2);
+
   text-align:right;
+
   font-size:13px;
 }
 
 .footer-note{
   margin-top:14px;
+
   color:#676a6c;
+
   font-size:12px;
+
   text-align:center;
 }
+
+
+/* TABLET */
 
 @media(max-width:800px){
 
   .topbar{
     align-items:flex-start;
-  }
-
-  .brand-main{
-    font-size:27px;
-  }
-
-  .brand-sub{
-    font-size:10px;
   }
 
   .volume-mini{
@@ -728,13 +964,21 @@ input[type="range"]{
   }
 
   .routine-row{
-    grid-template-columns:30px minmax(0,1fr) 55px 26px;
+    grid-template-columns:
+      30px
+      minmax(0,1fr)
+      55px
+      26px;
   }
 
   .row-sides{
     display:none;
   }
+
 }
+
+
+/* PHONE */
 
 @media(max-width:540px){
 
@@ -768,11 +1012,15 @@ input[type="range"]{
   }
 
   .player-buttons{
-    grid-template-columns:1fr 1.3fr 1fr;
+    grid-template-columns:
+      1fr
+      1.3fr
+      1fr;
   }
 
   .btn{
     padding:8px 5px;
+
     font-size:14px;
   }
 
@@ -803,39 +1051,51 @@ input[type="range"]{
 
   .editor-actions{
     width:100%;
+
     margin-left:0;
   }
+
+  .coordination-tab{
+    min-height:58px;
+
+    font-size:19px;
+  }
+
 }
-.brand-logo{
-  display:block;
-  width:190px;
-  max-width:46vw;
-  height:auto;
-  object-fit:contain;
-}
+
 </style>
+
 </head>
 
 
 <body>
 
+
 <div class="app">
+
+
+  <!-- HEADER -->
 
   <header class="topbar">
 
-<div class="brand">
-  <img
-    src="icon-512.png"
-    alt="Goalie Training"
-    class="brand-logo"
-  >
-</div>
-      
+    <div class="brand">
+
+      <img
+        src="icon-512.png"
+        alt="Goalie Training"
+        class="brand-logo"
+      >
+
+    </div>
+
+
     <div class="top-controls">
 
       <label class="sound-switch">
 
-        <span aria-hidden="true">🔊</span>
+        <span aria-hidden="true">
+          🔊
+        </span>
 
         <input
           id="soundToggle"
@@ -844,9 +1104,12 @@ input[type="range"]{
           aria-label="Sound cues"
         >
 
-        <span class="sound-word">Sound</span>
+        <span class="sound-word">
+          Sound
+        </span>
 
       </label>
+
 
       <input
         id="topVolume"
@@ -858,6 +1121,7 @@ input[type="range"]{
         aria-label="Volume"
       >
 
+
       <span id="topVolumeText">
         70%
       </span>
@@ -867,10 +1131,16 @@ input[type="range"]{
   </header>
 
 
+
+  <!-- PLAYER VIEW -->
+
   <div
     id="playerArea"
     class="player-area"
   >
+
+
+    <!-- FOUR MAIN CATEGORIES -->
 
     <nav
       class="tabs"
@@ -885,6 +1155,7 @@ input[type="range"]{
         Mobility
       </button>
 
+
       <button
         class="tab hockey"
         data-routine="strength"
@@ -893,6 +1164,7 @@ input[type="range"]{
         Strength
       </button>
 
+
       <button
         class="tab hockey"
         data-routine="explosive"
@@ -900,6 +1172,7 @@ input[type="range"]{
       >
         Explosiveness
       </button>
+
 
       <button
         class="tab hockey"
@@ -912,9 +1185,29 @@ input[type="range"]{
     </nav>
 
 
+    <!-- COORDINATION -->
+
+    <div class="coordination-wrap">
+
+      <button
+        class="coordination-tab hockey"
+        data-routine="coordination"
+        type="button"
+      >
+        Coordination
+      </button>
+
+    </div>
+
+
+
     <div class="main-grid">
 
+
+      <!-- TIMER PLAYER -->
+
       <section class="panel player">
+
 
         <div class="player-top">
 
@@ -924,6 +1217,7 @@ input[type="range"]{
           >
             Exercise 1
           </div>
+
 
           <div
             id="phaseBadge"
@@ -935,6 +1229,7 @@ input[type="range"]{
         </div>
 
 
+
         <div
           id="timer"
           class="big-timer hockey"
@@ -942,6 +1237,7 @@ input[type="range"]{
         >
           00:40
         </div>
+
 
 
         <div
@@ -952,16 +1248,34 @@ input[type="range"]{
         </div>
 
 
+
         <div
           id="sideLabel"
           class="side-label hockey"
         ></div>
 
 
+
         <div
           id="exerciseCue"
           class="exercise-cue"
         ></div>
+
+
+
+        <div
+          id="emptyMessage"
+          class="empty-message hidden"
+        >
+
+          <strong class="hockey">
+            No Exercises Yet
+          </strong>
+
+          Tap Edit Workout below to add your Coordination exercises.
+
+        </div>
+
 
 
         <div
@@ -981,6 +1295,7 @@ input[type="range"]{
         </div>
 
 
+
         <div class="progress-wrap">
 
           <div class="progress-track">
@@ -991,6 +1306,7 @@ input[type="range"]{
             ></div>
 
           </div>
+
 
           <div class="progress-meta">
 
@@ -1007,6 +1323,7 @@ input[type="range"]{
         </div>
 
 
+
         <div class="player-buttons">
 
           <button
@@ -1017,6 +1334,7 @@ input[type="range"]{
             Prev
           </button>
 
+
           <button
             id="startBtn"
             class="btn btn-primary hockey"
@@ -1024,6 +1342,7 @@ input[type="range"]{
           >
             Start
           </button>
+
 
           <button
             id="skipBtn"
@@ -1038,13 +1357,18 @@ input[type="range"]{
       </section>
 
 
+
+      <!-- SIDEBAR -->
+
       <aside class="sidebar">
+
 
         <section class="panel side-panel">
 
           <div class="side-heading hockey">
             Next up
           </div>
+
 
           <div
             id="sidebarNext"
@@ -1053,10 +1377,12 @@ input[type="range"]{
             —
           </div>
 
+
           <div
             id="sidebarNextSide"
             class="next-side hockey"
           ></div>
+
 
 
           <div class="rest-block">
@@ -1077,11 +1403,13 @@ input[type="range"]{
         </section>
 
 
+
         <section class="panel side-panel">
 
           <div class="side-heading hockey">
             Session progress
           </div>
+
 
           <div
             id="sessionProgress"
@@ -1089,6 +1417,7 @@ input[type="range"]{
           >
             0 / 0
           </div>
+
 
           <div class="side-progress progress-track">
 
@@ -1099,7 +1428,10 @@ input[type="range"]{
 
           </div>
 
+
+
           <div class="stat-grid">
+
 
             <div class="stat">
 
@@ -1116,6 +1448,8 @@ input[type="range"]{
 
             </div>
 
+
+
             <div class="stat">
 
               <div class="stat-label">
@@ -1131,16 +1465,23 @@ input[type="range"]{
 
             </div>
 
+
           </div>
 
         </section>
 
+
       </aside>
+
 
     </div>
 
 
+
+    <!-- ROUTINE LIST -->
+
     <section class="panel routine-panel">
+
 
       <div class="routine-header">
 
@@ -1150,6 +1491,7 @@ input[type="range"]{
         >
           Today's Routine
         </div>
+
 
         <button
           id="editWorkoutBtn"
@@ -1162,19 +1504,23 @@ input[type="range"]{
       </div>
 
 
+
       <ol
         id="routineList"
         class="routine-list"
       ></ol>
 
 
+
       <div class="settings-row">
+
 
         <div class="control-group">
 
           <div class="control-label hockey">
             Rest / transition
           </div>
+
 
           <select id="restSelect">
 
@@ -1206,6 +1552,7 @@ input[type="range"]{
         </div>
 
 
+
         <div class="control-group">
 
           <div class="control-label hockey">
@@ -1223,6 +1570,7 @@ input[type="range"]{
         </div>
 
 
+
         <button
           id="resetBtn"
           class="btn"
@@ -1231,28 +1579,33 @@ input[type="range"]{
           Reset Session
         </button>
 
+
       </div>
 
     </section>
 
+
   </div>
 
 
+
+  <!-- EDIT WORKOUT VIEW -->
 
   <section
     id="editor"
     class="editor"
   >
 
+
     <section class="panel routine-panel">
+
 
       <div class="editor-head">
 
+
         <div>
 
-          <div
-            class="editor-title hockey"
-          >
+          <div class="editor-title hockey">
             Edit Workout
           </div>
 
@@ -1267,6 +1620,7 @@ input[type="range"]{
           </div>
 
         </div>
+
 
 
         <select
@@ -1286,15 +1640,22 @@ input[type="range"]{
             Explosiveness
           </option>
 
+          <option value="coordination">
+            Coordination
+          </option>
+
         </select>
 
+
       </div>
+
 
 
       <div
         id="editorList"
         class="editor-list"
       ></div>
+
 
 
       <button
@@ -1304,6 +1665,7 @@ input[type="range"]{
       >
         + Add Exercise
       </button>
+
 
 
       <div class="editor-footer">
@@ -1316,6 +1678,7 @@ input[type="range"]{
           Cancel
         </button>
 
+
         <button
           id="saveWorkoutBtn"
           class="btn btn-primary"
@@ -1327,15 +1690,19 @@ input[type="range"]{
       </div>
 
 
+
       <div
         id="saveMessage"
         class="toast"
         aria-live="polite"
       ></div>
 
+
     </section>
 
+
   </section>
+
 
 
   <div class="footer-note">
@@ -1343,6 +1710,7 @@ input[type="range"]{
     Stop any exercise that causes sharp pain.
 
   </div>
+
 
 </div>
 
@@ -1352,14 +1720,19 @@ input[type="range"]{
 
 (() => {
 
+
+/*
+  Keep the existing storage key so previously saved
+  Mobility / Strength / Explosiveness edits stay intact.
+*/
+
 const STORAGE_KEY =
   'goalie-workouts-v3';
 
-const SETTINGS_KEY =
-  'goalie-settings-v3';
 
 
 const DEFAULT_WORKOUTS = {
+
 
   mobility:[
 
@@ -1371,6 +1744,7 @@ const DEFAULT_WORKOUTS = {
         'Work gently into internal rotation. Keep the movement at the hip and do not twist the knee.'
     },
 
+
     {
       name:'90/90 Stretch',
       seconds:40,
@@ -1378,6 +1752,7 @@ const DEFAULT_WORKOUTS = {
       cue:
         'Sit tall with both legs bent about 90 degrees. Gently lean toward the front shin.'
     },
+
 
     {
       name:'90/90 Active Hip Flow / Hip Switches',
@@ -1387,6 +1762,7 @@ const DEFAULT_WORKOUTS = {
         'Rotate both knees smoothly side to side. Stay tall and avoid using momentum.'
     },
 
+
     {
       name:'Adductor Rock-Backs',
       seconds:45,
@@ -1394,6 +1770,7 @@ const DEFAULT_WORKOUTS = {
       cue:
         'Extend one leg sideways and rock the hips backward while keeping a neutral spine.'
     },
+
 
     {
       name:'Couch Stretch',
@@ -1403,6 +1780,7 @@ const DEFAULT_WORKOUTS = {
         'Keep the torso upright, squeeze the rear glute and feel the stretch through the front of the hip.'
     },
 
+
     {
       name:'Toes Elevated Ankle Stretch',
       seconds:30,
@@ -1410,6 +1788,7 @@ const DEFAULT_WORKOUTS = {
       cue:
         'Gently drive the knee forward while keeping the heel controlled.'
     },
+
 
     {
       name:'Cossack Squat',
@@ -1419,6 +1798,7 @@ const DEFAULT_WORKOUTS = {
         'Sit toward one leg from a wide stance while keeping the working heel planted.'
     },
 
+
     {
       name:'Deep Squat Hold',
       seconds:40,
@@ -1426,6 +1806,7 @@ const DEFAULT_WORKOUTS = {
       cue:
         'Sit into a comfortable deep squat with the heels planted and chest up.'
     },
+
 
     {
       name:'Banded Lat Stretch',
@@ -1435,6 +1816,7 @@ const DEFAULT_WORKOUTS = {
         'Sit the hips back and let the banded arm lengthen overhead.'
     },
 
+
     {
       name:'Lying Pec Stretch',
       seconds:40,
@@ -1442,6 +1824,7 @@ const DEFAULT_WORKOUTS = {
       cue:
         'Rotate gently away until you feel a comfortable stretch through the chest and front shoulder.'
     },
+
 
     {
       name:'T-Spine Rotations',
@@ -1454,6 +1837,7 @@ const DEFAULT_WORKOUTS = {
   ],
 
 
+
   strength:[
 
     {
@@ -1464,6 +1848,7 @@ const DEFAULT_WORKOUTS = {
         'Rear foot elevated. Lower under control and drive through the front foot.'
     },
 
+
     {
       name:'Lateral Lunge',
       seconds:50,
@@ -1471,6 +1856,7 @@ const DEFAULT_WORKOUTS = {
       cue:
         'Step wide, push the hips back over the working leg and drive back to center.'
     },
+
 
     {
       name:'Single-Leg RDL',
@@ -1480,6 +1866,7 @@ const DEFAULT_WORKOUTS = {
         'Hinge at the hip with a soft standing knee. Keep the hips square.'
     },
 
+
     {
       name:'Copenhagen Plank',
       seconds:25,
@@ -1488,6 +1875,7 @@ const DEFAULT_WORKOUTS = {
         'Keep the body straight and start with the upper knee supported.'
     },
 
+
     {
       name:'Single-Leg Glute Bridge',
       seconds:45,
@@ -1495,6 +1883,7 @@ const DEFAULT_WORKOUTS = {
       cue:
         'Drive through the planted foot and squeeze the glute to lift the hips.'
     },
+
 
     {
       name:'Dead Bug',
@@ -1507,6 +1896,7 @@ const DEFAULT_WORKOUTS = {
   ],
 
 
+
   explosive:[
 
     {
@@ -1517,6 +1907,7 @@ const DEFAULT_WORKOUTS = {
         'Explode sideways, land softly, stabilize briefly and push back.'
     },
 
+
     {
       name:'Lateral Line Hops',
       seconds:15,
@@ -1524,6 +1915,7 @@ const DEFAULT_WORKOUTS = {
       cue:
         'Hop quickly side to side with soft knees and light feet.'
     },
+
 
     {
       name:'Reverse Lunge → Knee Drive',
@@ -1533,9 +1925,18 @@ const DEFAULT_WORKOUTS = {
         'Step into a controlled reverse lunge, then drive through the front leg.'
     }
 
-  ]
+  ],
+
+
+  /*
+    Coordination intentionally starts empty.
+    Exercises can be added from Edit Workout.
+  */
+
+  coordination:[]
 
 };
+
 
 
 function clone(value){
@@ -1547,6 +1948,7 @@ function clone(value){
 }
 
 
+
 function loadWorkouts(){
 
   try{
@@ -1556,10 +1958,12 @@ function loadWorkouts(){
         STORAGE_KEY
       );
 
+
     if(saved){
 
       const parsed =
         JSON.parse(saved);
+
 
       if(
         parsed.mobility
@@ -1568,19 +1972,47 @@ function loadWorkouts(){
         &&
         parsed.explosive
       ){
+
+        /*
+          Migration:
+          Existing users will not have Coordination yet.
+          Add it without touching saved workouts.
+        */
+
+        if(
+          !Array.isArray(
+            parsed.coordination
+          )
+        ){
+
+          parsed.coordination =
+            [];
+
+        }
+
         return parsed;
+
       }
 
     }
 
   }
-  catch(error){}
+  catch(error){
+
+    console.log(
+      'Could not load saved workouts.',
+      error
+    );
+
+  }
+
 
   return clone(
     DEFAULT_WORKOUTS
   );
 
 }
+
 
 
 let workouts =
@@ -1591,30 +2023,49 @@ let currentRoutineKey =
   'mobility';
 
 
-let editorDraft = null;
+let editorDraft =
+  null;
 
 
-let index = 0;
+let index =
+  0;
 
-let side = 1;
+
+let side =
+  1;
+
 
 let phase =
   'ready';
 
-let remaining = 0;
 
-let phaseTotal = 0;
+let remaining =
+  0;
 
-let elapsed = 0;
 
-let completedSteps = 0;
+let phaseTotal =
+  0;
 
-let timerId = null;
 
-let paused = false;
+let elapsed =
+  0;
+
+
+let completedSteps =
+  0;
+
+
+let timerId =
+  null;
+
+
+let paused =
+  false;
+
 
 let transitionTarget =
   'next';
+
 
 let audioContext =
   null;
@@ -1638,6 +2089,9 @@ const sideLabelEl =
 
 const exerciseCueEl =
   $('exerciseCue');
+
+const emptyMessage =
+  $('emptyMessage');
 
 const phaseBadge =
   $('phaseBadge');
@@ -1740,6 +2194,11 @@ const topVolumeText =
 
 
 
+/*
+  IMPORTANT:
+  Full Session deliberately excludes Coordination.
+*/
+
 function currentRoutine(){
 
   if(
@@ -1759,9 +2218,11 @@ function currentRoutine(){
 
   }
 
+
   return (
     workouts[currentRoutineKey]
-    || []
+    ||
+    []
   );
 
 }
@@ -1779,8 +2240,10 @@ function totalSteps(
       +
       (
         exercise.sides === 2
-        ? 2
-        : 1
+        ?
+        2
+        :
+        1
       ),
 
     0
@@ -1796,7 +2259,20 @@ function currentStepNumber(){
   const routine =
     currentRoutine();
 
-  let step = 0;
+
+  if(
+    routine.length ===
+    0
+  ){
+
+    return 0;
+
+  }
+
+
+  let step =
+    0;
+
 
   for(
     let i = 0;
@@ -1806,15 +2282,21 @@ function currentStepNumber(){
 
     step +=
       routine[i].sides === 2
-      ? 2
-      : 1;
+      ?
+      2
+      :
+      1;
 
   }
 
+
   step +=
     side === 2
-    ? 2
-    : 1;
+    ?
+    2
+    :
+    1;
+
 
   return step;
 
@@ -1827,21 +2309,32 @@ function formatClock(seconds){
   seconds =
     Math.max(
       0,
-      Math.floor(seconds)
+      Math.floor(
+        Number(seconds)
+        ||
+        0
+      )
     );
+
 
   return (
     String(
       Math.floor(
         seconds / 60
       )
-    ).padStart(2,'0')
+    ).padStart(
+      2,
+      '0'
+    )
     +
     ':'
     +
     String(
       seconds % 60
-    ).padStart(2,'0')
+    ).padStart(
+      2,
+      '0'
+    )
   );
 
 }
@@ -1853,8 +2346,13 @@ function formatShort(seconds){
   seconds =
     Math.max(
       0,
-      Math.floor(seconds)
+      Math.floor(
+        Number(seconds)
+        ||
+        0
+      )
     );
+
 
   return (
     Math.floor(
@@ -1865,7 +2363,10 @@ function formatShort(seconds){
     +
     String(
       seconds % 60
-    ).padStart(2,'0')
+    ).padStart(
+      2,
+      '0'
+    )
   );
 
 }
@@ -1892,17 +2393,24 @@ function stopTimer(){
 function audio(){
 
   if(audioContext){
+
     return audioContext;
+
   }
+
 
   const AudioCtx =
     window.AudioContext
     ||
     window.webkitAudioContext;
 
+
   if(!AudioCtx){
+
     return null;
+
   }
+
 
   try{
 
@@ -1912,9 +2420,11 @@ function audio(){
   }
   catch(error){
 
-    return null;
+    audioContext =
+      null;
 
   }
+
 
   return audioContext;
 
@@ -1930,15 +2440,22 @@ function beep(
   if(
     !soundToggle.checked
   ){
+
     return;
+
   }
+
 
   const ctx =
     audio();
 
+
   if(!ctx){
+
     return;
+
   }
+
 
   if(
     ctx.state ===
@@ -1946,32 +2463,48 @@ function beep(
   ){
 
     ctx.resume()
-      .catch(() => {});
+      .catch(
+        () => {}
+      );
 
   }
+
 
   const volume =
     Number(
       volumeSlider.value
-    ) / 100;
+    )
+    /
+    100;
 
-  if(volume <= 0){
+
+  if(
+    volume <=
+    0
+  ){
+
     return;
+
   }
+
 
   const start =
     ctx.currentTime
     +
     delay;
 
+
   const oscillator =
     ctx.createOscillator();
+
 
   const gain =
     ctx.createGain();
 
+
   oscillator.type =
     'sine';
+
 
   oscillator.frequency
     .setValueAtTime(
@@ -1979,11 +2512,13 @@ function beep(
       start
     );
 
+
   gain.gain
     .setValueAtTime(
       .0001,
       start
     );
+
 
   gain.gain
     .exponentialRampToValueAtTime(
@@ -1994,21 +2529,28 @@ function beep(
       start + .01
     );
 
+
   gain.gain
     .exponentialRampToValueAtTime(
       .0001,
       start + .16
     );
 
-  oscillator.connect(gain);
+
+  oscillator.connect(
+    gain
+  );
+
 
   gain.connect(
     ctx.destination
   );
 
+
   oscillator.start(
     start
   );
+
 
   oscillator.stop(
     start + .2
@@ -2020,7 +2562,10 @@ function beep(
 
 function workCue(){
 
-  beep(760);
+  beep(
+    760
+  );
+
 
   beep(
     920,
@@ -2033,7 +2578,9 @@ function workCue(){
 
 function restCue(){
 
-  beep(520);
+  beep(
+    520
+  );
 
 }
 
@@ -2041,12 +2588,16 @@ function restCue(){
 
 function finishCue(){
 
-  beep(650);
+  beep(
+    650
+  );
+
 
   beep(
     820,
     .18
   );
+
 
   beep(
     1040,
@@ -2062,17 +2613,22 @@ function nextInfo(){
   const routine =
     currentRoutine();
 
+
   const exercise =
     routine[index];
+
 
   if(!exercise){
 
     return {
-      name:'Session Complete',
+
+      name:'—',
       side:''
+
     };
 
   }
+
 
   if(
     transitionTarget ===
@@ -2080,34 +2636,50 @@ function nextInfo(){
   ){
 
     return {
-      name:exercise.name,
-      side:'Side 2 of 2'
+
+      name:
+        exercise.name,
+
+      side:
+        'Side 2 of 2'
+
     };
 
   }
+
 
   const next =
     routine[
       index + 1
     ];
 
+
   if(!next){
 
     return {
-      name:'Session Complete',
-      side:''
+
+      name:
+        'Session Complete',
+
+      side:
+        ''
+
     };
 
   }
 
+
   return {
 
-    name:next.name,
+    name:
+      next.name,
 
     side:
       next.sides === 2
-      ? 'Side 1 of 2'
-      : ''
+      ?
+      'Side 1 of 2'
+      :
+      ''
 
   };
 
@@ -2119,21 +2691,23 @@ function updateTabs(){
 
   document
     .querySelectorAll(
-      '.tab'
+      '[data-routine]'
     )
-    .forEach(button => {
+    .forEach(
+      button => {
 
-      button.classList.toggle(
+        button.classList.toggle(
 
-        'active',
+          'active',
 
-        button.dataset.routine
-        ===
-        currentRoutineKey
+          button.dataset.routine
+          ===
+          currentRoutineKey
 
-      );
+        );
 
-    });
+      }
+    );
 
 }
 
@@ -2144,42 +2718,98 @@ function renderRoutineList(){
   const routine =
     currentRoutine();
 
+
   routineList.innerHTML =
     '';
+
+
+  if(
+    routine.length ===
+    0
+  ){
+
+    const row =
+      document.createElement(
+        'li'
+      );
+
+
+    row.style.padding =
+      '18px';
+
+
+    row.style.color =
+      '#8a8a8a';
+
+
+    row.style.textAlign =
+      'center';
+
+
+    row.textContent =
+      'No exercises yet. Tap Edit Workout to add one.';
+
+
+    routineList
+      .appendChild(
+        row
+      );
+
+
+    return;
+
+  }
+
 
   let visualStep =
     0;
 
+
   routine.forEach(
-    (exercise,exerciseIndex) => {
+    (
+      exercise,
+      exerciseIndex
+    ) => {
+
 
       const sides =
         exercise.sides === 2
-        ? [1,2]
-        : [1];
+        ?
+        [1,2]
+        :
+        [1];
+
 
       sides.forEach(
         sideNumber => {
 
+
           visualStep++;
+
 
           const row =
             document.createElement(
               'li'
             );
 
+
           row.className =
             'routine-row';
 
+
           const isCurrent =
-            exerciseIndex === index
+            exerciseIndex ===
+              index
             &&
-            sideNumber === side;
+            sideNumber ===
+              side;
+
 
           const isDone =
             visualStep
             <=
             completedSteps;
+
 
           if(isCurrent){
 
@@ -2189,6 +2819,7 @@ function renderRoutineList(){
 
           }
 
+
           if(isDone){
 
             row.classList.add(
@@ -2197,16 +2828,21 @@ function renderRoutineList(){
 
           }
 
+
+
           const number =
             document.createElement(
               'div'
             );
 
+
           number.className =
             'exercise-index';
 
+
           number.textContent =
             visualStep;
+
 
 
           const name =
@@ -2214,8 +2850,10 @@ function renderRoutineList(){
               'div'
             );
 
+
           name.className =
             'row-name hockey';
+
 
           name.textContent =
             exercise.name
@@ -2231,13 +2869,16 @@ function renderRoutineList(){
             );
 
 
+
           const time =
             document.createElement(
               'div'
             );
 
+
           time.className =
             'row-time';
+
 
           time.textContent =
             formatClock(
@@ -2245,13 +2886,16 @@ function renderRoutineList(){
             );
 
 
+
           const sideText =
             document.createElement(
               'div'
             );
 
+
           sideText.className =
             'row-sides';
+
 
           sideText.textContent =
             exercise.sides === 2
@@ -2261,13 +2905,16 @@ function renderRoutineList(){
             '1 side';
 
 
+
           const status =
             document.createElement(
               'div'
             );
 
+
           status.className =
             'status-dot';
+
 
           if(isCurrent){
 
@@ -2277,11 +2924,13 @@ function renderRoutineList(){
 
           }
 
+
           if(isDone){
 
             status.classList.remove(
               'current'
             );
+
 
             status.classList.add(
               'done'
@@ -2290,16 +2939,22 @@ function renderRoutineList(){
           }
 
 
+
           row.append(
+
             number,
             name,
             time,
             sideText,
             status
+
           );
 
+
           routineList
-            .appendChild(row);
+            .appendChild(
+              row
+            );
 
         }
       );
@@ -2311,20 +2966,154 @@ function renderRoutineList(){
 
 
 
+function renderEmptyRoutine(){
+
+  timerEl.textContent =
+    '00:00';
+
+
+  exerciseNameEl.textContent =
+    currentRoutineKey ===
+      'coordination'
+    ?
+    'Coordination'
+    :
+    'No Exercises';
+
+
+  sideLabelEl.textContent =
+    '';
+
+
+  exerciseCueEl.textContent =
+    '';
+
+
+  emptyMessage.classList.remove(
+    'hidden'
+  );
+
+
+  nextCard.classList.add(
+    'hidden'
+  );
+
+
+  phaseBadge.textContent =
+    'Ready';
+
+
+  exerciseCounter.textContent =
+    '0 Exercises';
+
+
+  exerciseProgress.style.width =
+    '0%';
+
+
+  stepProgress.textContent =
+    '0 of 0';
+
+
+  elapsedText.textContent =
+    '0:00 elapsed';
+
+
+  sessionProgress.textContent =
+    '0 / 0';
+
+
+  sessionProgressBar.style.width =
+    '0%';
+
+
+  elapsedStat.textContent =
+    '0:00';
+
+
+  completedStat.textContent =
+    '0';
+
+
+  sidebarNext.textContent =
+    '—';
+
+
+  sidebarNextSide.textContent =
+    '';
+
+
+  startBtn.textContent =
+    'Start';
+
+
+  startBtn.disabled =
+    true;
+
+
+  previousBtn.disabled =
+    true;
+
+
+  skipBtn.disabled =
+    true;
+
+
+  renderRoutineList();
+
+}
+
+
+
 function render(){
 
   const routine =
     currentRoutine();
 
+
+  const total =
+    totalSteps(
+      routine
+    );
+
+
+  if(
+    routine.length ===
+    0
+  ){
+
+    renderEmptyRoutine();
+
+    return;
+
+  }
+
+
+  startBtn.disabled =
+    false;
+
+
+  previousBtn.disabled =
+    false;
+
+
+  skipBtn.disabled =
+    false;
+
+
+  emptyMessage.classList.add(
+    'hidden'
+  );
+
+
   const exercise =
     routine[index];
 
-  const total =
-    totalSteps(routine);
 
   if(!exercise){
 
     return;
+
   }
 
 
@@ -2332,10 +3121,12 @@ function render(){
     currentStepNumber();
 
 
+
   timerEl.textContent =
     formatClock(
       remaining
     );
+
 
 
   if(
@@ -2346,18 +3137,23 @@ function render(){
     exerciseNameEl.textContent =
       'Rest';
 
+
     sideLabelEl.textContent =
       '';
 
+
     exerciseCueEl.textContent =
       'Get into position for the next movement.';
+
 
     nextCard.classList.remove(
       'hidden'
     );
 
+
     const next =
       nextInfo();
+
 
     nextName.textContent =
       next.name
@@ -2378,6 +3174,7 @@ function render(){
     exerciseNameEl.textContent =
       exercise.name;
 
+
     sideLabelEl.textContent =
       exercise.sides === 2
       ?
@@ -2389,16 +3186,19 @@ function render(){
       :
       '';
 
+
     exerciseCueEl.textContent =
       exercise.cue
       ||
       '';
+
 
     nextCard.classList.add(
       'hidden'
     );
 
   }
+
 
 
   phaseBadge.textContent =
@@ -2421,6 +3221,7 @@ function render(){
     'Ready';
 
 
+
   exerciseCounter.textContent =
     'Exercise '
     +
@@ -2429,6 +3230,7 @@ function render(){
     ' of '
     +
     total;
+
 
 
   const progressPercent =
@@ -2449,6 +3251,7 @@ function render(){
     0;
 
 
+
   exerciseProgress.style.width =
     Math.max(
       0,
@@ -2461,6 +3264,7 @@ function render(){
     '%';
 
 
+
   stepProgress.textContent =
     step
     +
@@ -2469,10 +3273,14 @@ function render(){
     total;
 
 
+
   elapsedText.textContent =
-    formatShort(elapsed)
+    formatShort(
+      elapsed
+    )
     +
     ' elapsed';
+
 
 
   sessionProgress.textContent =
@@ -2483,14 +3291,17 @@ function render(){
     total;
 
 
+
   completedStat.textContent =
     completedSteps;
+
 
 
   elapsedStat.textContent =
     formatShort(
       elapsed
     );
+
 
 
   sessionProgressBar.style.width =
@@ -2511,14 +3322,20 @@ function render(){
     '%';
 
 
+
   const upcoming =
     nextInfo();
+
+
 
   sidebarNext.textContent =
     upcoming.name;
 
+
+
   sidebarNextSide.textContent =
     upcoming.side;
+
 
 
   restPreview.textContent =
@@ -2531,16 +3348,19 @@ function render(){
     );
 
 
+
   startBtn.textContent =
     paused
     ?
     'Resume'
     :
-    phase === 'work'
-    ||
-    phase === 'transition'
-    ||
-    phase === 'countdown'
+    (
+      phase === 'work'
+      ||
+      phase === 'transition'
+      ||
+      phase === 'countdown'
+    )
     ?
     'Pause'
     :
@@ -2549,6 +3369,7 @@ function render(){
     'Restart'
     :
     'Start';
+
 
 
   renderRoutineList();
@@ -2561,35 +3382,54 @@ function resetSession(){
 
   stopTimer();
 
+
   index =
     0;
+
 
   side =
     1;
 
+
   phase =
     'ready';
 
-  remaining =
-    currentRoutine()[0]
-    ?.seconds
-    ||
-    0;
-
-  phaseTotal =
-    remaining;
 
   elapsed =
     0;
 
+
   completedSteps =
     0;
+
 
   paused =
     false;
 
+
   transitionTarget =
     'next';
+
+
+
+  const routine =
+    currentRoutine();
+
+
+
+  remaining =
+    routine.length
+    ?
+    routine[0].seconds
+    :
+    0;
+
+
+
+  phaseTotal =
+    remaining;
+
+
 
   render();
 
@@ -2599,21 +3439,41 @@ function resetSession(){
 
 function beginCountdown(){
 
+  const routine =
+    currentRoutine();
+
+
+  if(
+    routine.length ===
+    0
+  ){
+
+    return;
+
+  }
+
+
   audio();
+
 
   phase =
     'countdown';
 
+
   remaining =
     5;
+
 
   phaseTotal =
     5;
 
+
   paused =
     false;
 
+
   render();
+
 
   startClock();
 
@@ -2624,7 +3484,10 @@ function beginCountdown(){
 function beginWork(){
 
   const exercise =
-    currentRoutine()[index];
+    currentRoutine()[
+      index
+    ];
+
 
   if(!exercise){
 
@@ -2634,8 +3497,10 @@ function beginWork(){
 
   }
 
+
   phase =
     'work';
+
 
   remaining =
     Math.max(
@@ -2647,10 +3512,13 @@ function beginWork(){
       1
     );
 
+
   phaseTotal =
     remaining;
 
+
   workCue();
+
 
   render();
 
@@ -2661,9 +3529,22 @@ function beginWork(){
 function beginRest(){
 
   const exercise =
-    currentRoutine()[index];
+    currentRoutine()[
+      index
+    ];
+
+
+  if(!exercise){
+
+    finishWorkout();
+
+    return;
+
+  }
+
 
   completedSteps++;
+
 
 
   transitionTarget =
@@ -2676,8 +3557,10 @@ function beginRest(){
     'next';
 
 
+
   phase =
     'transition';
+
 
   remaining =
     Number(
@@ -2686,10 +3569,13 @@ function beginRest(){
     ||
     10;
 
+
   phaseTotal =
     remaining;
 
+
   restCue();
+
 
   render();
 
@@ -2707,17 +3593,22 @@ function completeRest(){
     side =
       2;
 
+
     beginWork();
+
 
     return;
 
   }
 
 
+
   side =
     1;
 
+
   index++;
+
 
 
   if(
@@ -2729,9 +3620,11 @@ function completeRest(){
 
     finishWorkout();
 
+
     return;
 
   }
+
 
 
   beginWork();
@@ -2744,28 +3637,37 @@ function finishWorkout(){
 
   stopTimer();
 
+
   phase =
     'done';
+
 
   remaining =
     0;
 
+
   phaseTotal =
     1;
 
+
   finishCue();
 
+
   render();
+
 
 
   exerciseNameEl.textContent =
     'Workout Complete';
 
+
   sideLabelEl.textContent =
     '';
 
+
   exerciseCueEl.textContent =
     'Nice work in the crease.';
+
 
   nextCard.classList.add(
     'hidden'
@@ -2778,12 +3680,17 @@ function finishWorkout(){
 function tick(){
 
   if(paused){
+
     return;
+
   }
+
 
   elapsed++;
 
+
   remaining--;
+
 
 
   if(
@@ -2793,6 +3700,8 @@ function tick(){
 
     remaining =
       0;
+
+
 
     if(
       phase ===
@@ -2833,8 +3742,11 @@ function tick(){
 function startClock(){
 
   if(timerId){
+
     return;
+
   }
+
 
   timerId =
     setInterval(
@@ -2848,7 +3760,19 @@ function startClock(){
 
 function startPause(){
 
+  if(
+    currentRoutine()
+      .length ===
+    0
+  ){
+
+    return;
+
+  }
+
+
   audio();
+
 
 
   if(
@@ -2858,11 +3782,14 @@ function startPause(){
 
     resetSession();
 
+
     beginCountdown();
+
 
     return;
 
   }
+
 
 
   if(
@@ -2872,13 +3799,16 @@ function startPause(){
 
     beginCountdown();
 
+
     return;
 
   }
 
 
+
   paused =
     !paused;
+
 
 
   if(paused){
@@ -2893,6 +3823,7 @@ function startPause(){
   }
 
 
+
   render();
 
 }
@@ -2901,14 +3832,27 @@ function startPause(){
 
 function skipForward(){
 
-  stopTimer();
-
-
   const routine =
     currentRoutine();
 
+
+  if(
+    routine.length ===
+    0
+  ){
+
+    return;
+
+  }
+
+
+  stopTimer();
+
+
+
   const exercise =
     routine[index];
+
 
 
   if(
@@ -2928,9 +3872,11 @@ function skipForward(){
     side =
       1;
 
+
     index++;
 
   }
+
 
 
   if(
@@ -2940,23 +3886,29 @@ function skipForward(){
 
     finishWorkout();
 
+
     return;
 
   }
 
 
+
   phase =
     'ready';
 
+
   paused =
     false;
+
 
   remaining =
     routine[index]
       .seconds;
 
+
   phaseTotal =
     remaining;
+
 
   render();
 
@@ -2966,11 +3918,22 @@ function skipForward(){
 
 function previousStep(){
 
-  stopTimer();
-
-
   const routine =
     currentRoutine();
+
+
+  if(
+    routine.length ===
+    0
+  ){
+
+    return;
+
+  }
+
+
+  stopTimer();
+
 
 
   if(
@@ -2990,6 +3953,7 @@ function previousStep(){
 
     index--;
 
+
     side =
       routine[index]
       .sides === 2
@@ -3001,18 +3965,23 @@ function previousStep(){
   }
 
 
+
   phase =
     'ready';
+
 
   paused =
     false;
 
+
   remaining =
     routine[index]
-    .seconds;
+      .seconds;
+
 
   phaseTotal =
     remaining;
+
 
   render();
 
@@ -3025,7 +3994,9 @@ function selectRoutine(key){
   currentRoutineKey =
     key;
 
+
   updateTabs();
+
 
   resetSession();
 
@@ -3037,29 +4008,45 @@ function openEditor(){
 
   stopTimer();
 
+
   editorDraft =
-    clone(workouts);
+    clone(
+      workouts
+    );
 
 
-  editRoutineSelect.value =
+
+  if(
     currentRoutineKey ===
     'full'
-    ?
-    'mobility'
-    :
-    currentRoutineKey;
+  ){
+
+    editRoutineSelect.value =
+      'mobility';
+
+  }
+  else{
+
+    editRoutineSelect.value =
+      currentRoutineKey;
+
+  }
+
 
 
   playerArea.classList.add(
     'hidden'
   );
 
+
   editor.classList.add(
     'visible'
   );
 
+
   saveMessage.textContent =
     '';
+
 
   renderEditor();
 
@@ -3073,9 +4060,11 @@ function closeEditor(){
     'visible'
   );
 
+
   playerArea.classList.remove(
     'hidden'
   );
+
 
   resetSession();
 
@@ -3088,124 +4077,180 @@ function renderEditor(){
   const key =
     editRoutineSelect.value;
 
+
   const list =
     editorDraft[key];
+
 
   editorList.innerHTML =
     '';
 
 
+
+  if(
+    list.length ===
+    0
+  ){
+
+    const empty =
+      document.createElement(
+        'div'
+      );
+
+
+    empty.className =
+      'empty-message';
+
+
+    empty.innerHTML =
+      `
+        <strong class="hockey">
+          No Exercises Yet
+        </strong>
+        Tap + Add Exercise to build this routine.
+      `;
+
+
+    editorList
+      .appendChild(
+        empty
+      );
+
+  }
+
+
+
   list.forEach(
-    (exercise,i) => {
+    (
+      exercise,
+      i
+    ) => {
+
 
       const card =
         document.createElement(
           'div'
         );
 
+
       card.className =
         'edit-card';
 
 
-      card.innerHTML = `
 
-        <div class="edit-grid">
+      card.innerHTML =
+        `
 
-          <div>
+          <div class="edit-grid">
 
-            <div class="control-label hockey">
-              Exercise
+            <div>
+
+              <div class="control-label hockey">
+                Exercise
+              </div>
+
+              <input
+                type="text"
+                data-name="${i}"
+                value=""
+              >
+
             </div>
 
-            <input
-              type="text"
-              data-name="${i}"
-              value=""
-            >
 
-          </div>
+            <div>
 
+              <div class="control-label hockey">
+                Seconds
+              </div>
 
-          <div>
+              <input
+                type="number"
+                min="5"
+                max="600"
+                data-seconds="${i}"
+                value="${exercise.seconds}"
+              >
 
-            <div class="control-label hockey">
-              Seconds
             </div>
 
-            <input
-              type="number"
-              min="5"
-              max="600"
-              data-seconds="${i}"
-              value="${exercise.seconds}"
-            >
+          </div>
+
+
+
+          <div style="margin-top:10px">
+
+            <div class="control-label hockey">
+              Instruction
+            </div>
+
+            <textarea
+              data-cue="${i}"
+            ></textarea>
 
           </div>
 
-        </div>
 
 
-        <div style="margin-top:10px">
+          <div class="editor-options">
 
-          <div class="control-label hockey">
-            Instruction
-          </div>
+            <label class="side-check">
 
-          <textarea
-            data-cue="${i}"
-          ></textarea>
+              <input
+                type="checkbox"
+                data-sides="${i}"
+                ${
+                  exercise.sides ===
+                  2
+                  ?
+                  'checked'
+                  :
+                  ''
+                }
+              >
 
-        </div>
+              Side 1 + Side 2
 
-
-        <div class="editor-options">
-
-          <label class="side-check">
-
-            <input
-              type="checkbox"
-              data-sides="${i}"
-              ${exercise.sides === 2 ? 'checked' : ''}
-            >
-
-            Side 1 + Side 2
-
-          </label>
+            </label>
 
 
-          <div class="editor-actions">
 
-            <button
-              type="button"
-              class="small-btn"
-              data-up="${i}"
-              aria-label="Move exercise up"
-            >
-              ↑
-            </button>
+            <div class="editor-actions">
 
-            <button
-              type="button"
-              class="small-btn"
-              data-down="${i}"
-              aria-label="Move exercise down"
-            >
-              ↓
-            </button>
+              <button
+                type="button"
+                class="small-btn"
+                data-up="${i}"
+                aria-label="Move exercise up"
+              >
+                ↑
+              </button>
 
-            <button
-              type="button"
-              class="small-btn delete-btn"
-              data-delete="${i}"
-            >
-              Delete
-            </button>
+
+              <button
+                type="button"
+                class="small-btn"
+                data-down="${i}"
+                aria-label="Move exercise down"
+              >
+                ↓
+              </button>
+
+
+              <button
+                type="button"
+                class="small-btn delete-btn"
+                data-delete="${i}"
+              >
+                Delete
+              </button>
+
+            </div>
 
           </div>
 
-        </div>
+        `;
 
-      `;
 
 
       const nameInput =
@@ -3213,14 +4258,18 @@ function renderEditor(){
           `[data-name="${i}"]`
         );
 
+
       const cueInput =
         card.querySelector(
           `[data-cue="${i}"]`
         );
 
 
+
       nameInput.value =
         exercise.name;
+
+
 
       cueInput.value =
         exercise.cue
@@ -3228,227 +4277,269 @@ function renderEditor(){
         '';
 
 
+
       editorList
-        .appendChild(card);
+        .appendChild(
+          card
+        );
 
     }
   );
+
 
 
   editorList
     .querySelectorAll(
       '[data-name]'
     )
-    .forEach(input => {
+    .forEach(
+      input => {
 
-      input.addEventListener(
-        'input',
-        () => {
+        input.addEventListener(
+          'input',
+          () => {
 
-          const i =
-            Number(
-              input.dataset.name
-            );
+            const i =
+              Number(
+                input.dataset.name
+              );
 
-          list[i].name =
-            input.value;
 
-        }
-      );
+            list[i].name =
+              input.value;
 
-    });
+          }
+        );
+
+      }
+    );
+
 
 
   editorList
     .querySelectorAll(
       '[data-seconds]'
     )
-    .forEach(input => {
+    .forEach(
+      input => {
 
-      input.addEventListener(
-        'input',
-        () => {
+        input.addEventListener(
+          'input',
+          () => {
 
-          const i =
-            Number(
-              input.dataset.seconds
-            );
+            const i =
+              Number(
+                input.dataset.seconds
+              );
 
-          list[i].seconds =
-            Math.max(
-              5,
-              Math.min(
-                600,
-                Number(
-                  input.value
+
+            list[i].seconds =
+              Math.max(
+                5,
+                Math.min(
+                  600,
+                  Number(
+                    input.value
+                  )
+                  ||
+                  5
                 )
-                ||
-                5
-              )
-            );
+              );
 
-        }
-      );
+          }
+        );
 
-    });
+      }
+    );
+
 
 
   editorList
     .querySelectorAll(
       '[data-cue]'
     )
-    .forEach(input => {
+    .forEach(
+      input => {
 
-      input.addEventListener(
-        'input',
-        () => {
+        input.addEventListener(
+          'input',
+          () => {
 
-          const i =
-            Number(
-              input.dataset.cue
-            );
+            const i =
+              Number(
+                input.dataset.cue
+              );
 
-          list[i].cue =
-            input.value;
 
-        }
-      );
+            list[i].cue =
+              input.value;
 
-    });
+          }
+        );
+
+      }
+    );
+
 
 
   editorList
     .querySelectorAll(
       '[data-sides]'
     )
-    .forEach(input => {
+    .forEach(
+      input => {
 
-      input.addEventListener(
-        'change',
-        () => {
+        input.addEventListener(
+          'change',
+          () => {
 
-          const i =
-            Number(
-              input.dataset.sides
-            );
+            const i =
+              Number(
+                input.dataset.sides
+              );
 
-          list[i].sides =
-            input.checked
-            ?
-            2
-            :
-            1;
 
-        }
-      );
+            list[i].sides =
+              input.checked
+              ?
+              2
+              :
+              1;
 
-    });
+          }
+        );
+
+      }
+    );
+
 
 
   editorList
     .querySelectorAll(
       '[data-delete]'
     )
-    .forEach(button => {
+    .forEach(
+      button => {
 
-      button.addEventListener(
-        'click',
-        () => {
+        button.addEventListener(
+          'click',
+          () => {
 
-          const i =
-            Number(
-              button.dataset.delete
+            const i =
+              Number(
+                button.dataset.delete
+              );
+
+
+            list.splice(
+              i,
+              1
             );
 
-          list.splice(
-            i,
-            1
-          );
 
-          renderEditor();
+            renderEditor();
 
-        }
-      );
+          }
+        );
 
-    });
+      }
+    );
+
 
 
   editorList
     .querySelectorAll(
       '[data-up]'
     )
-    .forEach(button => {
+    .forEach(
+      button => {
 
-      button.addEventListener(
-        'click',
-        () => {
+        button.addEventListener(
+          'click',
+          () => {
 
-          const i =
-            Number(
-              button.dataset.up
-            );
+            const i =
+              Number(
+                button.dataset.up
+              );
 
-          if(i <= 0){
-            return;
+
+            if(
+              i <=
+              0
+            ){
+
+              return;
+
+            }
+
+
+            [
+              list[i - 1],
+              list[i]
+            ]
+            =
+            [
+              list[i],
+              list[i - 1]
+            ];
+
+
+            renderEditor();
+
           }
+        );
 
-          [
-            list[i-1],
-            list[i]
-          ]
-          =
-          [
-            list[i],
-            list[i-1]
-          ];
+      }
+    );
 
-          renderEditor();
-
-        }
-      );
-
-    });
 
 
   editorList
     .querySelectorAll(
       '[data-down]'
     )
-    .forEach(button => {
+    .forEach(
+      button => {
 
-      button.addEventListener(
-        'click',
-        () => {
+        button.addEventListener(
+          'click',
+          () => {
 
-          const i =
-            Number(
-              button.dataset.down
-            );
+            const i =
+              Number(
+                button.dataset.down
+              );
 
-          if(
-            i
-            >=
-            list.length - 1
-          ){
-            return;
+
+            if(
+              i >=
+              list.length - 1
+            ){
+
+              return;
+
+            }
+
+
+            [
+              list[i + 1],
+              list[i]
+            ]
+            =
+            [
+              list[i],
+              list[i + 1]
+            ];
+
+
+            renderEditor();
+
           }
+        );
 
-          [
-            list[i+1],
-            list[i]
-          ]
-          =
-          [
-            list[i],
-            list[i+1]
-          ];
-
-          renderEditor();
-
-        }
-      );
-
-    });
+      }
+    );
 
 }
 
@@ -3459,60 +4550,66 @@ function saveWorkout(){
   Object.keys(
     editorDraft
   )
-  .forEach(key => {
+  .forEach(
+    key => {
 
-    editorDraft[key] =
-      editorDraft[key]
-      .filter(
-        exercise =>
-          exercise.name
-          .trim()
-          .length > 0
-      )
-      .map(
-        exercise => ({
 
-          name:
+      editorDraft[key] =
+        editorDraft[key]
+        .filter(
+          exercise =>
             exercise.name
-            .trim(),
+            .trim()
+            .length >
+            0
+        )
+        .map(
+          exercise => ({
 
-          seconds:
-            Math.max(
-              5,
-              Math.min(
-                600,
-                Number(
-                  exercise.seconds
+            name:
+              exercise.name
+              .trim(),
+
+            seconds:
+              Math.max(
+                5,
+                Math.min(
+                  600,
+                  Number(
+                    exercise.seconds
+                  )
+                  ||
+                  30
                 )
+              ),
+
+            sides:
+              exercise.sides === 2
+              ?
+              2
+              :
+              1,
+
+            cue:
+              (
+                exercise.cue
                 ||
-                30
-              )
-            ),
+                ''
+              ).trim()
 
-          sides:
-            exercise.sides === 2
-            ?
-            2
-            :
-            1,
+          })
+        );
 
-          cue:
-            (
-              exercise.cue
-              ||
-              ''
-            ).trim()
+    }
+  );
 
-        })
-      );
-
-  });
 
 
   workouts =
     clone(
       editorDraft
     );
+
 
 
   try{
@@ -3527,6 +4624,7 @@ function saveWorkout(){
 
     );
 
+
     saveMessage.textContent =
       'Workout saved on this iPhone.';
 
@@ -3539,18 +4637,22 @@ function saveWorkout(){
   }
 
 
+
   currentRoutineKey =
     editRoutineSelect.value;
+
+
 
   setTimeout(
     () => {
 
       updateTabs();
 
+
       closeEditor();
 
     },
-    500
+    450
   );
 
 }
@@ -3562,18 +4664,26 @@ function addExercise(){
   const key =
     editRoutineSelect.value;
 
+
+
   editorDraft[key]
     .push({
 
-      name:'New Exercise',
+      name:
+        'New Exercise',
 
-      seconds:30,
+      seconds:
+        30,
 
-      sides:1,
+      sides:
+        1,
 
-      cue:''
+      cue:
+        ''
 
     });
+
+
 
   renderEditor();
 
@@ -3594,11 +4704,14 @@ function syncVolume(value){
       )
     );
 
+
   volumeSlider.value =
     clean;
 
+
   topVolume.value =
     clean;
+
 
   topVolumeText.textContent =
     clean
@@ -3609,26 +4722,32 @@ function syncVolume(value){
 
 
 
+/* CATEGORY BUTTONS */
+
 document
   .querySelectorAll(
-    '.tab'
+    '[data-routine]'
   )
-  .forEach(button => {
+  .forEach(
+    button => {
 
-    button.addEventListener(
-      'click',
-      () => {
+      button.addEventListener(
+        'click',
+        () => {
 
-        selectRoutine(
-          button.dataset.routine
-        );
+          selectRoutine(
+            button.dataset.routine
+          );
 
-      }
-    );
+        }
+      );
 
-  });
+    }
+  );
 
 
+
+/* TIMER CONTROLS */
 
 startBtn.addEventListener(
   'click',
@@ -3654,6 +4773,9 @@ resetBtn.addEventListener(
 );
 
 
+
+/* WORKOUT EDITOR */
+
 editWorkoutBtn.addEventListener(
   'click',
   openEditor
@@ -3678,12 +4800,14 @@ addExerciseBtn.addEventListener(
 );
 
 
-editRoutineSelect
-  .addEventListener(
-    'change',
-    renderEditor
-  );
+editRoutineSelect.addEventListener(
+  'change',
+  renderEditor
+);
 
+
+
+/* REST TIME */
 
 restSelect.addEventListener(
   'change',
@@ -3700,48 +4824,54 @@ restSelect.addEventListener(
 );
 
 
-volumeSlider
-  .addEventListener(
-    'input',
-    () => {
 
-      syncVolume(
-        volumeSlider.value
-      );
+/* VOLUME */
+
+volumeSlider.addEventListener(
+  'input',
+  () => {
+
+    syncVolume(
+      volumeSlider.value
+    );
+
+  }
+);
+
+
+topVolume.addEventListener(
+  'input',
+  () => {
+
+    syncVolume(
+      topVolume.value
+    );
+
+  }
+);
+
+
+
+/* SOUND */
+
+soundToggle.addEventListener(
+  'change',
+  () => {
+
+    if(
+      soundToggle.checked
+    ){
+
+      audio();
 
     }
-  );
+
+  }
+);
 
 
-topVolume
-  .addEventListener(
-    'input',
-    () => {
 
-      syncVolume(
-        topVolume.value
-      );
-
-    }
-  );
-
-
-soundToggle
-  .addEventListener(
-    'change',
-    () => {
-
-      if(
-        soundToggle.checked
-      ){
-
-        audio();
-
-      }
-
-    }
-  );
-
+/* M KEY MUTES DESKTOP VERSION */
 
 document.addEventListener(
   'keydown',
@@ -3751,14 +4881,20 @@ document.addEventListener(
       event.target
       .tagName;
 
+
     if(
-      tag === 'INPUT'
+      tag ===
+      'INPUT'
       ||
-      tag === 'TEXTAREA'
+      tag ===
+      'TEXTAREA'
       ||
-      tag === 'SELECT'
+      tag ===
+      'SELECT'
     ){
+
       return;
+
     }
 
 
@@ -3778,12 +4914,20 @@ document.addEventListener(
 );
 
 
-syncVolume(70);
+
+syncVolume(
+  70
+);
+
 
 updateTabs();
 
+
 resetSession();
 
+
+
+/* OFFLINE PWA */
 
 if(
   'serviceWorker'
@@ -3809,8 +4953,12 @@ if(
 
 }
 
+
 })();
+
 </script>
 
+
 </body>
+
 </html>
