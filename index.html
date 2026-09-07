@@ -59,9 +59,6 @@ button{
   cursor:pointer;
 }
 
-
-/* CCM / HOCKEY STYLE FONT */
-
 .hockey{
   font-family:Impact,Haettenschweiler,"Arial Black","Arial Narrow Bold",sans-serif;
   font-weight:900;
@@ -71,9 +68,6 @@ button{
   transform:skewX(-6deg);
   transform-origin:center;
 }
-
-
-/* APP */
 
 .app{
   width:min(1080px,100%);
@@ -85,11 +79,6 @@ button{
     max(30px,env(safe-area-inset-bottom));
 }
 
-
-/* ==================================================
-   HEADER
-   ================================================== */
-
 .topbar{
   display:flex;
   align-items:center;
@@ -98,15 +87,6 @@ button{
 
   padding:8px 6px 20px;
 }
-
-
-/*
-  IMPORTANT:
-  icon-512.png is still being used here, but unlike
-  the previous version we are NOT zooming/cropping it.
-
-  This prevents GOALIE and TRAINING from being cut off.
-*/
 
 .logo-frame{
   width:350px;
@@ -118,36 +98,25 @@ button{
   justify-content:flex-start;
 
   overflow:hidden;
-
   background:#090909;
 }
 
 .logo-frame img{
   display:block;
-
   width:100%;
   height:100%;
-
   max-width:100%;
-
   object-fit:contain;
   object-position:left center;
-
   position:static;
-
   transform:none;
 }
-
-
-/* AUDIO */
 
 .audio-controls{
   display:flex;
   align-items:center;
   justify-content:flex-end;
-
   gap:9px;
-
   flex-wrap:wrap;
 }
 
@@ -160,46 +129,33 @@ button{
 .sound-toggle input{
   width:22px;
   height:22px;
-
   accent-color:var(--green);
 }
 
 .volume{
   width:125px;
-
   accent-color:var(--green);
 }
-
-
-/* ==================================================
-   CATEGORY BUTTONS
-   ================================================== */
 
 .category-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-
   gap:8px;
 }
 
 .category-btn{
   min-height:56px;
-
   border:1px solid var(--line);
   border-radius:8px;
-
   background:#050505;
   color:#aaa;
-
   padding:9px;
-
   font-size:17px;
 }
 
 .category-btn.active{
   background:var(--green);
   border-color:var(--green);
-
   color:#04150a;
 }
 
@@ -211,14 +167,8 @@ button{
 .coordination-btn{
   width:100%;
   min-height:62px;
-
   font-size:22px;
 }
-
-
-/* ==================================================
-   TIMER
-   ================================================== */
 
 .main-grid{
   display:grid;
@@ -233,7 +183,6 @@ button{
 .panel{
   border:1px solid var(--line);
   border-radius:10px;
-
   background:var(--panel);
 }
 
@@ -245,116 +194,80 @@ button{
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   gap:10px;
 }
 
 .exercise-count{
   color:#929292;
-
   font-size:17px;
 }
 
 .phase-badge{
   min-width:92px;
-
   text-align:center;
-
   border:1px solid var(--green);
   border-radius:7px;
-
   color:var(--green2);
-
   padding:8px 11px;
-
   font-size:15px;
 }
 
 .timer{
   margin-top:26px;
-
   text-align:center;
-
   color:white;
-
   font-size:clamp(82px,15vw,145px);
-
   line-height:.88;
-
   letter-spacing:-.045em;
 }
 
 .exercise-name{
   margin-top:28px;
-
   text-align:center;
-
   font-size:clamp(27px,5vw,44px);
-
   line-height:1.05;
 }
 
 .side-label{
   min-height:30px;
-
   margin-top:8px;
-
   text-align:center;
-
   color:var(--green2);
-
   font-size:21px;
 }
 
 .exercise-cue{
   width:min(650px,100%);
-
   margin:36px auto 0;
-
   text-align:center;
-
   color:#aaa;
-
   font-size:18px;
-
   line-height:1.5;
 }
 
-
-/* NEXT UP */
-
 .next-card{
   width:min(650px,100%);
-
   margin:24px auto 0;
-
   padding:15px 17px;
-
   border:1px solid var(--greenDark);
   border-radius:8px;
-
   background:#06130a;
 }
 
 .next-label{
   color:#787878;
-
   font-size:13px;
 }
 
 .next-name{
   margin-top:6px;
-
   color:white;
-
   font-size:22px;
 }
 
 .next-side{
   margin-top:5px;
-
   color:var(--green2);
-
   font-size:16px;
 }
 
@@ -362,93 +275,59 @@ button{
   display:none !important;
 }
 
-
-/* PROGRESS */
-
 .progress-section{
   margin-top:34px;
 }
 
 .track{
   height:10px;
-
   border-radius:999px;
-
   background:#282828;
-
   overflow:hidden;
 }
 
 .fill{
   width:0;
   height:100%;
-
   background:var(--green);
-
   transition:width .25s linear;
 }
 
 .progress-meta{
   display:flex;
   justify-content:space-between;
-
   gap:10px;
-
   margin-top:10px;
-
   color:#868686;
-
   font-size:13px;
 }
 
-
-/* TIMER BUTTONS */
-
 .player-controls{
   display:grid;
-
-  grid-template-columns:
-    1fr
-    1.35fr
-    1fr;
-
+  grid-template-columns:1fr 1.35fr 1fr;
   gap:12px;
-
   margin-top:28px;
 }
 
 .btn{
   min-height:62px;
-
   border:1px solid #454545;
   border-radius:9px;
-
   background:#070707;
-
   color:white;
-
   padding:10px;
-
   font-size:18px;
 }
 
 .btn-primary{
   background:var(--green);
-
   border-color:var(--green);
-
   color:#031309;
 }
-
-
-/* ==================================================
-   SIDEBAR
-   ================================================== */
 
 .sidebar{
   display:flex;
   flex-direction:column;
-
   gap:14px;
 }
 
@@ -458,40 +337,31 @@ button{
 
 .side-heading{
   color:#8b8b8b;
-
   font-size:15px;
 }
 
 .side-next-name{
   margin-top:10px;
-
   color:white;
-
   font-size:23px;
 }
 
 .side-next-side{
   margin-top:7px;
-
   color:var(--green2);
-
   font-size:16px;
 }
 
 .divider{
   height:1px;
-
   margin:18px 0;
-
   background:var(--line);
 }
 
 .rest-number,
 .session-number{
   margin-top:8px;
-
   color:white;
-
   font-size:35px;
 }
 
@@ -502,45 +372,31 @@ button{
 .stats{
   display:grid;
   grid-template-columns:1fr 1fr;
-
   gap:9px;
-
   margin-top:16px;
 }
 
 .stat{
   padding:12px;
-
   border:1px solid var(--line);
   border-radius:7px;
-
   background:#0b0b0b;
 }
 
 .stat-label{
   color:#777;
-
   font-size:11px;
-
   text-transform:uppercase;
 }
 
 .stat-value{
   margin-top:6px;
-
   color:white;
-
   font-size:20px;
 }
 
-
-/* ==================================================
-   ROUTINE LIST
-   ================================================== */
-
 .routine-panel{
   margin-top:15px;
-
   padding:20px;
 }
 
@@ -548,7 +404,6 @@ button{
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   gap:12px;
 }
 
@@ -558,32 +413,24 @@ button{
 
 .edit-workout{
   min-height:48px;
-
   padding:9px 15px;
-
   border:1px solid var(--green);
   border-radius:8px;
-
   background:#050505;
-
   color:var(--green2);
 }
 
 .routine-list{
   list-style:none;
-
   margin:15px 0 0;
   padding:0;
-
   border:1px solid var(--line);
   border-radius:8px;
-
   overflow:hidden;
 }
 
 .routine-row{
   min-height:56px;
-
   display:grid;
 
   grid-template-columns:
@@ -594,11 +441,8 @@ button{
     24px;
 
   align-items:center;
-
   gap:9px;
-
   padding:8px 12px;
-
   border-bottom:1px solid var(--line);
 }
 
@@ -608,9 +452,7 @@ button{
 
 .routine-row.active{
   background:#003b1b;
-
   outline:1px solid var(--green);
-
   outline-offset:-1px;
 }
 
@@ -620,93 +462,69 @@ button{
 
 .row-num{
   color:#aaa;
-
   font-size:14px;
 }
 
 .row-name{
   min-width:0;
-
   font-size:15px;
 }
 
 .row-time,
 .row-sides{
   text-align:right;
-
   color:#999;
-
   font-size:13px;
 }
 
 .status{
   width:20px;
   height:20px;
-
   justify-self:end;
-
   border:2px solid #555;
-
   border-radius:50%;
 }
 
 .status.current{
   border-color:var(--green);
-
   background:var(--green);
 }
 
 .status.done{
   position:relative;
-
   border-color:var(--green);
 }
 
 .status.done::after{
   content:"✓";
-
   position:absolute;
-
   left:1px;
   top:-8px;
-
   color:var(--green2);
-
   font-size:23px;
-
   font-weight:900;
 }
-
-
-/* SETTINGS */
 
 .routine-settings{
   display:flex;
   flex-wrap:wrap;
   align-items:end;
-
   gap:15px;
-
   margin-top:16px;
   padding-top:16px;
-
   border-top:1px solid var(--line);
 }
 
 .setting{
   flex:1;
-
   min-width:140px;
 }
 
 .setting-label,
 .control-label{
   margin-bottom:6px;
-
   color:#858585;
-
   font-size:12px;
-
   text-transform:uppercase;
 }
 
@@ -715,18 +533,12 @@ input[type="text"],
 input[type="number"],
 textarea{
   width:100%;
-
   min-height:46px;
-
   border:1px solid #393939;
   border-radius:8px;
-
   background:#050505;
-
   color:white;
-
   padding:9px 11px;
-
   font-size:16px;
 }
 
@@ -739,42 +551,23 @@ input[type="checkbox"]{
   accent-color:var(--green);
 }
 
-
-/* ==================================================
-   EMPTY COORDINATION
-   ================================================== */
-
 .empty-state{
   margin:24px auto;
-
   max-width:600px;
-
   padding:25px;
-
   text-align:center;
-
   border:1px solid var(--greenDark);
   border-radius:9px;
-
   background:#07120a;
-
   color:#aaa;
 }
 
 .empty-state strong{
   display:block;
-
   margin-bottom:8px;
-
   color:var(--green2);
-
   font-size:24px;
 }
-
-
-/* ==================================================
-   WORKOUT EDITOR
-   ================================================== */
 
 .editor{
   display:none;
@@ -796,9 +589,7 @@ input[type="checkbox"]{
   display:flex;
   align-items:center;
   justify-content:space-between;
-
   gap:12px;
-
   margin-bottom:16px;
 }
 
@@ -809,26 +600,19 @@ input[type="checkbox"]{
 .editor-list{
   display:flex;
   flex-direction:column;
-
   gap:12px;
 }
 
 .edit-card{
   padding:14px;
-
   border:1px solid var(--line);
   border-radius:9px;
-
   background:#0c0c0c;
 }
 
 .edit-grid{
   display:grid;
-
-  grid-template-columns:
-    minmax(0,1fr)
-    100px;
-
+  grid-template-columns:minmax(0,1fr) 100px;
   gap:10px;
 }
 
@@ -836,20 +620,15 @@ input[type="checkbox"]{
   display:flex;
   align-items:center;
   flex-wrap:wrap;
-
   gap:10px;
-
   margin-top:11px;
 }
 
 .side-check{
   display:flex;
   align-items:center;
-
   gap:8px;
-
   min-height:44px;
-
   color:#ccc;
 }
 
@@ -860,57 +639,41 @@ input[type="checkbox"]{
 
 .edit-actions{
   display:flex;
-
   gap:7px;
-
   margin-left:auto;
 }
 
 .small-btn{
   min-width:45px;
   min-height:45px;
-
   border:1px solid #444;
   border-radius:7px;
-
   background:#070707;
-
   color:white;
 }
 
 .delete-btn{
   border-color:#612929;
-
   color:#ff7474;
 }
 
 .add-btn{
   width:100%;
-
   min-height:55px;
-
   margin-top:14px;
-
   border:1px dashed var(--green);
   border-radius:9px;
-
   background:#06130a;
-
   color:var(--green2);
-
   font-size:18px;
 }
 
 .editor-footer{
   position:sticky;
-
   bottom:0;
-
   display:flex;
   justify-content:flex-end;
-
   gap:10px;
-
   margin-top:18px;
   padding:16px 0;
 
@@ -922,16 +685,9 @@ input[type="checkbox"]{
 
 .save-message{
   color:var(--green2);
-
   text-align:right;
-
   font-size:13px;
 }
-
-
-/* ==================================================
-   TABLET
-   ================================================== */
 
 @media(max-width:800px){
 
@@ -941,7 +697,6 @@ input[type="checkbox"]{
 
   .sidebar{
     display:grid;
-
     grid-template-columns:1fr 1fr;
   }
 
@@ -960,13 +715,7 @@ input[type="checkbox"]{
   .row-sides{
     display:none;
   }
-
 }
-
-
-/* ==================================================
-   iPHONE
-   ================================================== */
 
 @media(max-width:560px){
 
@@ -975,20 +724,11 @@ input[type="checkbox"]{
     padding-right:10px;
   }
 
-
-  /* FIXED PHONE HEADER */
-
   .topbar{
     min-height:135px;
-
     align-items:center;
-
-    padding:
-      8px
-      5px
-      16px;
+    padding:8px 5px 16px;
   }
-
 
   .logo-frame{
     width:215px !important;
@@ -996,79 +736,54 @@ input[type="checkbox"]{
     height:105px !important;
 
     display:flex !important;
-
     align-items:center !important;
     justify-content:flex-start !important;
 
     overflow:hidden !important;
-
     background:#090909 !important;
   }
 
-
   .logo-frame img{
     display:block !important;
-
     width:100% !important;
     height:100% !important;
-
     max-width:100% !important;
-
     object-fit:contain !important;
-
     object-position:left center !important;
-
     position:static !important;
-
     left:auto !important;
     top:auto !important;
-
     transform:none !important;
   }
 
-
   .audio-controls{
     flex:1;
-
     justify-content:flex-end;
-
     gap:5px;
   }
-
 
   .sound-label{
     display:none;
   }
 
-
   .volume{
     width:76px;
   }
 
-
   #topVolumeText{
     width:43px;
-
     text-align:right;
   }
 
-
-  /* CATEGORIES */
-
   .category-btn{
     min-height:55px;
-
     font-size:16px;
   }
 
   .coordination-btn{
     min-height:61px;
-
     font-size:21px;
   }
-
-
-  /* PLAYER */
 
   .player{
     padding:18px 15px;
@@ -1080,24 +795,18 @@ input[type="checkbox"]{
 
   .timer{
     margin-top:30px;
-
     font-size:92px;
   }
 
   .exercise-name{
     margin-top:30px;
-
     font-size:30px;
   }
 
   .exercise-cue{
     margin-top:40px;
-
     font-size:16px;
   }
-
-
-  /* CONTROLS */
 
   .player-controls{
     margin-top:28px;
@@ -1105,21 +814,13 @@ input[type="checkbox"]{
 
   .btn{
     min-height:60px;
-
     padding:7px 4px;
-
     font-size:16px;
   }
-
-
-  /* SIDEBAR */
 
   .sidebar{
     grid-template-columns:1fr;
   }
-
-
-  /* ROUTINE */
 
   .routine-title{
     font-size:23px;
@@ -1133,41 +834,31 @@ input[type="checkbox"]{
     font-size:13px;
   }
 
-
-  /* EDITOR */
-
   .edit-grid{
     grid-template-columns:1fr 90px;
   }
 
   .edit-actions{
     width:100%;
-
     margin-left:0;
   }
-
 }
 
 </style>
 </head>
 
-
 <body>
 
 <div class="app">
 
-
 <header class="topbar">
 
   <div class="logo-frame">
-
     <img
       src="icon-512.png"
       alt="Goalie Training"
     >
-
   </div>
-
 
   <div class="audio-controls">
 
@@ -1187,7 +878,6 @@ input[type="checkbox"]{
 
     </label>
 
-
     <input
       id="topVolume"
       class="volume"
@@ -1196,7 +886,6 @@ input[type="checkbox"]{
       max="100"
       value="70"
     >
-
 
     <span id="topVolumeText">
       70%
@@ -1207,12 +896,10 @@ input[type="checkbox"]{
 </header>
 
 
-
 <div
   id="playerView"
   class="player-view"
 >
-
 
 <nav class="category-grid">
 
@@ -1257,7 +944,6 @@ input[type="checkbox"]{
   </button>
 
 </div>
-
 
 
 <div class="main-grid">
@@ -1360,7 +1046,6 @@ Hip Internal Rotation
 
   </div>
 
-
   <div class="progress-meta">
 
     <span id="stepText">
@@ -1401,9 +1086,7 @@ Hip Internal Rotation
 
 </div>
 
-
 </section>
-
 
 
 <aside class="sidebar">
@@ -1427,9 +1110,7 @@ Hip Internal Rotation
     class="side-next-side hockey"
   ></div>
 
-
   <div class="divider"></div>
-
 
   <div class="side-heading hockey">
     Rest Time
@@ -1445,7 +1126,6 @@ Hip Internal Rotation
 </section>
 
 
-
 <section class="panel side-panel">
 
   <div class="side-heading hockey">
@@ -1459,7 +1139,6 @@ Hip Internal Rotation
     0 / 0
   </div>
 
-
   <div class="session-track track">
 
     <div
@@ -1468,7 +1147,6 @@ Hip Internal Rotation
     ></div>
 
   </div>
-
 
   <div class="stats">
 
@@ -1486,7 +1164,6 @@ Hip Internal Rotation
       </div>
 
     </div>
-
 
     <div class="stat">
 
@@ -1511,7 +1188,6 @@ Hip Internal Rotation
 </aside>
 
 </div>
-
 
 
 <section class="panel routine-panel">
@@ -1600,11 +1276,9 @@ Hip Internal Rotation
 
 </div>
 
-
 </section>
 
 </div>
-
 
 
 <section
@@ -1712,7 +1386,7 @@ Hip Internal Rotation
 
 
 const STORAGE_KEY =
-  'goalie-workouts-v3';
+  'goalie-workouts-v4';
 
 
 const DEFAULTS = {
@@ -1873,7 +1547,65 @@ explosive:[
 ],
 
 
-coordination:[]
+coordination:[
+
+{
+  name:'Opposite-Hand Wall Catch',
+  seconds:60,
+  sides:1,
+  cue:'Throw right and catch left. Throw left and catch right. Stay in a goalie stance with your hands out front.'
+},
+
+{
+  name:'Two-Ball Alternating',
+  seconds:60,
+  sides:1,
+  cue:'Hold one ball in each hand. Alternate throws rapidly against the wall while keeping both balls continuously moving.'
+},
+
+{
+  name:'Two-Ball Transfer',
+  seconds:60,
+  sides:1,
+  cue:'Throw one ball. Transfer the ball in your opposite hand across, then catch the rebound with the now-empty hand. Repeat continuously.'
+},
+
+{
+  name:'Simultaneous Two-Ball Catch',
+  seconds:60,
+  sides:1,
+  cue:'Throw both balls at the wall at the same time and catch both. Progress by changing the heights and angles slightly.'
+},
+
+{
+  name:'Crossed Two-Ball Throws',
+  seconds:60,
+  sides:1,
+  cue:'Throw both balls simultaneously so their paths cross, then catch each ball with the opposite hand.'
+},
+
+{
+  name:'Lateral Shuffle Wall Ball',
+  seconds:60,
+  sides:1,
+  cue:'Throw at an angle, shuffle laterally to get your body behind the rebound, catch it, then immediately throw to the opposite side. Stay low.'
+},
+
+{
+  name:'Peripheral-Vision Catch',
+  seconds:60,
+  sides:1,
+  cue:'Keep your eyes focused on one point on the wall while throwing and catching slightly to either side using peripheral vision.'
+},
+
+{
+  name:'Reaction-Ball Chaos Finish',
+  seconds:75,
+  sides:1,
+  cue:'Throw the reaction ball at different angles and heights. Shuffle to every rebound and catch it cleanly. If you miss, reset immediately and continue.'
+}
+
+]
 
 };
 
@@ -1908,19 +1640,9 @@ function loadWorkouts(){
       if(
         parsed.mobility &&
         parsed.strength &&
-        parsed.explosive
+        parsed.explosive &&
+        parsed.coordination
       ){
-
-        if(
-          !Array.isArray(
-            parsed.coordination
-          )
-        ){
-
-          parsed.coordination = [];
-
-        }
-
 
         return parsed;
 
@@ -2099,11 +1821,6 @@ const emptyState =
 
 
 
-/*
-  COORDINATION IS INTENTIONALLY
-  EXCLUDED FROM FULL SESSION.
-*/
-
 function routine(){
 
   if(routineKey === 'full'){
@@ -2123,6 +1840,21 @@ function routine(){
 
   return workouts[routineKey] || [];
 
+}
+
+
+
+function currentRestSeconds(){
+
+  if(routineKey === 'coordination'){
+    return 15;
+  }
+
+  return (
+    Number(restSelect.value)
+    ||
+    10
+  );
 }
 
 
@@ -3121,11 +2853,7 @@ function render(){
 
   restNumber.textContent =
     clock(
-      Number(
-        restSelect.value
-      )
-      ||
-      10
+      currentRestSeconds()
     );
 
 
@@ -3370,11 +3098,7 @@ function beginRest(){
 
 
   remaining =
-    Number(
-      restSelect.value
-    )
-    ||
-    10;
+    currentRestSeconds();
 
 
   phaseTotal =
@@ -3751,9 +3475,7 @@ function chooseRoutine(key){
 
 
 
-/* ==================================================
-   EDITOR
-   ================================================== */
+/* EDITOR */
 
 function openEditor(){
 
