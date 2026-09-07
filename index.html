@@ -55,6 +55,11 @@ textarea{
 
 button{cursor:pointer}
 
+button:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
 .hockey{
   font-family:Impact,Haettenschweiler,"Arial Black","Arial Narrow Bold",sans-serif;
   font-weight:900;
@@ -174,7 +179,9 @@ button{cursor:pointer}
   background:var(--panel);
 }
 
-.player{padding:24px}
+.player{
+  padding:24px;
+}
 
 .player-head{
   display:flex;
@@ -257,9 +264,13 @@ button{cursor:pointer}
   font-size:16px;
 }
 
-.hidden{display:none !important}
+.hidden{
+  display:none !important;
+}
 
-.progress-section{margin-top:34px}
+.progress-section{
+  margin-top:34px;
+}
 
 .track{
   height:10px;
@@ -313,7 +324,9 @@ button{cursor:pointer}
   gap:14px;
 }
 
-.side-panel{padding:19px}
+.side-panel{
+  padding:19px;
+}
 
 .side-heading{
   color:#8b8b8b;
@@ -345,7 +358,9 @@ button{cursor:pointer}
   font-size:35px;
 }
 
-.session-track{margin-top:12px}
+.session-track{
+  margin-top:12px;
+}
 
 .stats{
   display:grid;
@@ -385,7 +400,9 @@ button{cursor:pointer}
   gap:12px;
 }
 
-.routine-title{font-size:29px}
+.routine-title{
+  font-size:29px;
+}
 
 .edit-workout{
   min-height:48px;
@@ -415,7 +432,9 @@ button{cursor:pointer}
   border-bottom:1px solid var(--line);
 }
 
-.routine-row:last-child{border-bottom:0}
+.routine-row:last-child{
+  border-bottom:0;
+}
 
 .routine-row.active{
   background:#003b1b;
@@ -423,7 +442,9 @@ button{cursor:pointer}
   outline-offset:-1px;
 }
 
-.routine-row.done{opacity:.6}
+.routine-row.done{
+  opacity:.6;
+}
 
 .row-num{
   color:#aaa;
@@ -507,7 +528,9 @@ textarea{
   font-size:16px;
 }
 
-textarea{min-height:80px}
+textarea{
+  min-height:80px;
+}
 
 input[type="range"],
 input[type="checkbox"]{
@@ -532,13 +555,21 @@ input[type="checkbox"]{
   font-size:24px;
 }
 
-.editor{display:none}
+.editor{
+  display:none;
+}
 
-.editor.visible{display:block}
+.editor.visible{
+  display:block;
+}
 
-.player-view.hidden{display:none}
+.player-view.hidden{
+  display:none;
+}
 
-.editor-panel{padding:20px}
+.editor-panel{
+  padding:20px;
+}
 
 .editor-head{
   display:flex;
@@ -548,7 +579,9 @@ input[type="checkbox"]{
   margin-bottom:16px;
 }
 
-.editor-title{font-size:30px}
+.editor-title{
+  font-size:30px;
+}
 
 .editor-list{
   display:flex;
@@ -660,7 +693,9 @@ input[type="checkbox"]{
     grid-template-columns:30px minmax(0,1fr) 56px 24px;
   }
 
-  .row-sides{display:none}
+  .row-sides{
+    display:none;
+  }
 }
 
 @media(max-width:560px){
@@ -706,9 +741,13 @@ input[type="checkbox"]{
     gap:5px;
   }
 
-  .sound-label{display:none}
+  .sound-label{
+    display:none;
+  }
 
-  .volume{width:76px}
+  .volume{
+    width:76px;
+  }
 
   #topVolumeText{
     width:43px;
@@ -729,7 +768,9 @@ input[type="checkbox"]{
     padding:18px 15px;
   }
 
-  .exercise-count{font-size:15px}
+  .exercise-count{
+    font-size:15px;
+  }
 
   .timer{
     margin-top:30px;
@@ -746,7 +787,9 @@ input[type="checkbox"]{
     font-size:16px;
   }
 
-  .player-controls{margin-top:28px}
+  .player-controls{
+    margin-top:28px;
+  }
 
   .btn{
     min-height:60px;
@@ -758,13 +801,17 @@ input[type="checkbox"]{
     grid-template-columns:1fr;
   }
 
-  .routine-title{font-size:23px}
+  .routine-title{
+    font-size:23px;
+  }
 
   .routine-head{
     align-items:flex-start;
   }
 
-  .row-name{font-size:13px}
+  .row-name{
+    font-size:13px;
+  }
 
   .edit-grid{
     grid-template-columns:1fr 90px;
@@ -890,7 +937,6 @@ Hip Internal Rotation
 
 <div id="sideLabel" class="side-label hockey"></div>
 
-
 <div id="exerciseCue" class="exercise-cue"></div>
 
 
@@ -926,13 +972,9 @@ Hip Internal Rotation
 
   <div class="progress-meta">
 
-    <span id="stepText">
-      1 of 1
-    </span>
+    <span id="stepText">1 of 1</span>
 
-    <span id="elapsedText">
-      0:00 elapsed
-    </span>
+    <span id="elapsedText">0:00 elapsed</span>
 
   </div>
 
@@ -1122,21 +1164,10 @@ Hip Internal Rotation
 
   <select id="editRoutineSelect">
 
-    <option value="mobility">
-      Mobility
-    </option>
-
-    <option value="strength">
-      Strength
-    </option>
-
-    <option value="explosive">
-      Explosiveness
-    </option>
-
-    <option value="coordination">
-      Coordination
-    </option>
+    <option value="mobility">Mobility</option>
+    <option value="strength">Strength</option>
+    <option value="explosive">Explosiveness</option>
+    <option value="coordination">Coordination</option>
 
   </select>
 
@@ -1452,8 +1483,7 @@ function patchWorkoutData(data){
     data.explosive.find(
       x =>
         x.name &&
-        x.name.toLowerCase()
-          .includes('reverse lunge')
+        x.name.toLowerCase().includes('reverse lunge')
     );
 
   if(reverseLunge){
@@ -1461,58 +1491,7 @@ function patchWorkoutData(data){
   }
 
 
-  const gloveName =
-    'Dominant-Hand Throw → Glove-Hand Catch';
-
-  const blockerName =
-    'Throw Ball → Blocker-Hand Block';
-
-
-  const hasGlove =
-    data.coordination.some(
-      x => x.name === gloveName
-    );
-
-
-  const hasBlocker =
-    data.coordination.some(
-      x => x.name === blockerName
-    );
-
-
-  if(!hasBlocker){
-
-    data.coordination.unshift({
-
-      name:blockerName,
-      seconds:60,
-      sides:1,
-      cue:'Throw the ball at the wall and use your blocker-side hand to block or redirect the rebound. Stay balanced and keep the blocker hand out in front.'
-
-    });
-
-  }
-
-
-  if(!hasGlove){
-
-    data.coordination.unshift({
-
-      name:gloveName,
-      seconds:60,
-      sides:1,
-      cue:'Throw the ball at the wall with your dominant hand and catch the rebound cleanly with your glove hand. Stay in a goalie stance with your hands out front.'
-
-    });
-
-  }
-
-
-  const requiredCoordination =
-    DEFAULTS.coordination.slice(2);
-
-
-  requiredCoordination.forEach(
+  DEFAULTS.coordination.forEach(
     exercise => {
 
       const exists =
@@ -1526,6 +1505,39 @@ function patchWorkoutData(data){
         );
       }
 
+    }
+  );
+
+
+  const desiredOrder =
+    DEFAULTS.coordination.map(
+      x => x.name
+    );
+
+
+  data.coordination.sort(
+    (a,b) => {
+
+      const ai =
+        desiredOrder.indexOf(a.name);
+
+      const bi =
+        desiredOrder.indexOf(b.name);
+
+
+      if(ai === -1 && bi === -1){
+        return 0;
+      }
+
+      if(ai === -1){
+        return 1;
+      }
+
+      if(bi === -1){
+        return -1;
+      }
+
+      return ai-bi;
     }
   );
 
@@ -1603,22 +1615,37 @@ function loadWorkouts(){
 }
 
 
-let workouts = loadWorkouts();
+let workouts =
+  loadWorkouts();
 
-let routineKey = 'mobility';
+let routineKey =
+  'mobility';
 
 let index = 0;
 let side = 1;
-let phase = 'ready';
+
+let phase =
+  'ready';
+
 let remaining = 0;
 let phaseTotal = 0;
+
 let elapsed = 0;
 let completed = 0;
+
 let paused = false;
+
 let interval = null;
-let transitionTarget = 'next';
+
+let transitionTarget =
+  'next';
+
 let audioCtx = null;
+
 let draft = null;
+
+let transitionLocked =
+  false;
 
 
 const $ =
@@ -1666,11 +1693,6 @@ const saveMessage = $('saveMessage');
 const emptyState = $('emptyState');
 
 
-/*
-  COORDINATION REMAINS EXCLUDED
-  FROM FULL SESSION.
-*/
-
 function routine(){
 
   if(routineKey === 'full'){
@@ -1709,25 +1731,32 @@ function totalSteps(list = routine()){
 
 function currentStep(){
 
-  const list = routine();
+  const list =
+    routine();
+
 
   if(!list.length){
     return 0;
   }
 
+
   let step = 0;
 
+
   for(let i=0;i<index;i++){
+
     step +=
       list[i].sides === 2
       ? 2
       : 1;
   }
 
+
   step +=
     side === 2
     ? 2
     : 1;
+
 
   return step;
 }
@@ -1740,6 +1769,7 @@ function clock(sec){
       0,
       Math.floor(Number(sec) || 0)
     );
+
 
   return (
     String(Math.floor(sec/60)).padStart(2,'0')
@@ -1759,6 +1789,7 @@ function shortClock(sec){
       Math.floor(Number(sec) || 0)
     );
 
+
   return (
     Math.floor(sec/60)
     +
@@ -1772,11 +1803,17 @@ function shortClock(sec){
 function stopClock(){
 
   if(interval){
+
     clearInterval(interval);
+
     interval = null;
   }
 }
 
+
+/* ==================================================
+   AUDIO
+   ================================================== */
 
 function getAudio(){
 
@@ -1784,64 +1821,100 @@ function getAudio(){
     return audioCtx;
   }
 
+
   const C =
     window.AudioContext ||
     window.webkitAudioContext;
+
 
   if(!C){
     return null;
   }
 
+
   try{
-    audioCtx = new C();
+
+    audioCtx =
+      new C();
+
   }
   catch(e){
-    audioCtx = null;
+
+    audioCtx =
+      null;
   }
+
 
   return audioCtx;
 }
 
 
-function tone(freq,delay=0){
+function currentVolume(){
+
+  return Math.max(
+    0,
+    Math.min(
+      1,
+      Number(volumeSlider.value) / 100
+    )
+  );
+}
+
+
+function countdownBeep(){
 
   if(!soundToggle.checked){
     return;
   }
 
-  const ctx = getAudio();
+
+  const ctx =
+    getAudio();
+
 
   if(!ctx){
     return;
   }
 
+
   if(ctx.state === 'suspended'){
-    ctx.resume().catch(()=>{});
+
+    ctx.resume()
+      .catch(()=>{});
   }
 
+
   const volume =
-    Number(volumeSlider.value) / 100;
+    currentVolume();
+
 
   if(volume <= 0){
     return;
   }
 
+
   const start =
-    ctx.currentTime + delay;
+    ctx.currentTime;
+
 
   const osc =
     ctx.createOscillator();
 
+
   const gain =
     ctx.createGain();
 
-  osc.type = 'sine';
+
+  osc.type =
+    'square';
+
 
   osc.frequency
     .setValueAtTime(
-      freq,
+      880,
       start
     );
+
 
   gain.gain
     .setValueAtTime(
@@ -1849,50 +1922,251 @@ function tone(freq,delay=0){
       start
     );
 
+
   gain.gain
     .exponentialRampToValueAtTime(
-      Math.max(.0001,.16*volume),
-      start+.01
+      Math.max(
+        .0001,
+        .11 * volume
+      ),
+      start + .01
     );
+
 
   gain.gain
     .exponentialRampToValueAtTime(
       .0001,
-      start+.16
+      start + .12
     );
 
+
   osc.connect(gain);
+
   gain.connect(ctx.destination);
 
+
   osc.start(start);
-  osc.stop(start+.2);
+
+  osc.stop(start+.15);
 }
 
 
-function workTone(){
-  tone(760);
-  tone(920,.18);
-}
+/*
+  Synthesized hockey-arena style period horn.
+
+  Multiple detuned sawtooth oscillators make it much
+  fuller than the simple countdown beep.
+*/
+
+function arenaHorn(){
+
+  if(!soundToggle.checked){
+    return;
+  }
 
 
-function restTone(){
-  tone(520);
+  const ctx =
+    getAudio();
+
+
+  if(!ctx){
+    return;
+  }
+
+
+  if(ctx.state === 'suspended'){
+
+    ctx.resume()
+      .catch(()=>{});
+  }
+
+
+  const volume =
+    currentVolume();
+
+
+  if(volume <= 0){
+    return;
+  }
+
+
+  const start =
+    ctx.currentTime;
+
+
+  const master =
+    ctx.createGain();
+
+
+  master.gain
+    .setValueAtTime(
+      .0001,
+      start
+    );
+
+
+  master.gain
+    .exponentialRampToValueAtTime(
+      Math.max(
+        .0001,
+        .2 * volume
+      ),
+      start + .04
+    );
+
+
+  master.gain
+    .setValueAtTime(
+      Math.max(
+        .0001,
+        .2 * volume
+      ),
+      start + .85
+    );
+
+
+  master.gain
+    .exponentialRampToValueAtTime(
+      .0001,
+      start + 1.25
+    );
+
+
+  master.connect(
+    ctx.destination
+  );
+
+
+  const frequencies = [
+    165,
+    196,
+    247
+  ];
+
+
+  frequencies.forEach(
+    (frequency,i) => {
+
+      const osc =
+        ctx.createOscillator();
+
+
+      const individual =
+        ctx.createGain();
+
+
+      osc.type =
+        'sawtooth';
+
+
+      osc.frequency
+        .setValueAtTime(
+          frequency,
+          start
+        );
+
+
+      osc.detune
+        .setValueAtTime(
+          i === 0
+          ? -7
+          : i === 2
+          ? 7
+          : 0,
+          start
+        );
+
+
+      individual.gain
+        .setValueAtTime(
+          .38,
+          start
+        );
+
+
+      osc.connect(
+        individual
+      );
+
+
+      individual.connect(
+        master
+      );
+
+
+      osc.start(start);
+
+      osc.stop(start+1.3);
+
+    }
+  );
+
+
+  const low =
+    ctx.createOscillator();
+
+
+  const lowGain =
+    ctx.createGain();
+
+
+  low.type =
+    'square';
+
+
+  low.frequency
+    .setValueAtTime(
+      82.5,
+      start
+    );
+
+
+  lowGain.gain
+    .setValueAtTime(
+      .17,
+      start
+    );
+
+
+  low.connect(
+    lowGain
+  );
+
+
+  lowGain.connect(
+    master
+  );
+
+
+  low.start(start);
+
+  low.stop(start+1.3);
 }
 
 
 function finishTone(){
-  tone(650);
-  tone(820,.18);
-  tone(1040,.36);
+
+  if(!soundToggle.checked){
+    return;
+  }
+
+  arenaHorn();
 }
 
 
+/* ==================================================
+   DISPLAY
+   ================================================== */
+
 function nextInfo(){
 
-  const list = routine();
+  const list =
+    routine();
+
 
   const current =
     list[index];
+
 
   if(!current){
 
@@ -1902,6 +2176,7 @@ function nextInfo(){
     };
   }
 
+
   if(transitionTarget === 'side2'){
 
     return {
@@ -1910,8 +2185,10 @@ function nextInfo(){
     };
   }
 
+
   const next =
     list[index+1];
+
 
   if(!next){
 
@@ -1921,12 +2198,17 @@ function nextInfo(){
     };
   }
 
+
   return {
-    name:next.name,
+
+    name:
+      next.name,
+
     side:
       next.sides === 2
       ? 'Side 1 of 2'
       : ''
+
   };
 }
 
@@ -1950,23 +2232,38 @@ function updateCategoryButtons(){
 
 function renderRoutineList(){
 
-  const list = routine();
+  const list =
+    routine();
 
-  routineList.innerHTML = '';
+
+  routineList.innerHTML =
+    '';
+
 
   if(!list.length){
 
     const row =
       document.createElement('li');
 
-    row.style.padding = '20px';
-    row.style.textAlign = 'center';
-    row.style.color = '#888';
+
+    row.style.padding =
+      '20px';
+
+
+    row.style.textAlign =
+      'center';
+
+
+    row.style.color =
+      '#888';
+
 
     row.textContent =
       'No exercises yet. Tap Edit Workout to add one.';
 
+
     routineList.appendChild(row);
+
 
     return;
   }
@@ -1978,6 +2275,7 @@ function renderRoutineList(){
   list.forEach(
     (exercise,exerciseIndex) => {
 
+
       const sides =
         exercise.sides === 2
         ? [1,2]
@@ -1987,11 +2285,13 @@ function renderRoutineList(){
       sides.forEach(
         sideNumber => {
 
+
           step++;
 
 
           const row =
             document.createElement('li');
+
 
           row.className =
             'routine-row';
@@ -2008,20 +2308,28 @@ function renderRoutineList(){
 
 
           if(isCurrent){
-            row.classList.add('active');
+
+            row.classList.add(
+              'active'
+            );
           }
 
 
           if(isDone){
-            row.classList.add('done');
+
+            row.classList.add(
+              'done'
+            );
           }
 
 
           const num =
             document.createElement('div');
 
+
           num.className =
             'row-num';
+
 
           num.textContent =
             step;
@@ -2030,8 +2338,10 @@ function renderRoutineList(){
           const name =
             document.createElement('div');
 
+
           name.className =
             'row-name hockey';
+
 
           name.textContent =
             exercise.name
@@ -2046,8 +2356,10 @@ function renderRoutineList(){
           const time =
             document.createElement('div');
 
+
           time.className =
             'row-time';
+
 
           time.textContent =
             clock(exercise.seconds);
@@ -2056,8 +2368,10 @@ function renderRoutineList(){
           const sidesText =
             document.createElement('div');
 
+
           sidesText.className =
             'row-sides';
+
 
           sidesText.textContent =
             exercise.sides === 2
@@ -2068,20 +2382,29 @@ function renderRoutineList(){
           const status =
             document.createElement('div');
 
+
           status.className =
             'status';
 
 
           if(isCurrent){
-            status.classList.add('current');
+
+            status.classList.add(
+              'current'
+            );
           }
 
 
           if(isDone){
 
-            status.classList.remove('current');
+            status.classList.remove(
+              'current'
+            );
 
-            status.classList.add('done');
+
+            status.classList.add(
+              'done'
+            );
           }
 
 
@@ -2094,7 +2417,9 @@ function renderRoutineList(){
           );
 
 
-          routineList.appendChild(row);
+          routineList.appendChild(
+            row
+          );
 
         }
       );
@@ -2106,62 +2431,89 @@ function renderRoutineList(){
 
 function renderEmpty(){
 
-  timerEl.textContent = '00:00';
+  timerEl.textContent =
+    '00:00';
+
 
   exerciseNameEl.textContent =
     routineKey === 'coordination'
     ? 'Coordination'
     : 'No Exercises';
 
-  sideLabelEl.textContent = '';
 
-  exerciseCueEl.textContent = '';
+  sideLabelEl.textContent =
+    '';
 
-  emptyState.classList.remove('hidden');
 
-  nextCard.classList.add('hidden');
+  exerciseCueEl.textContent =
+    '';
+
+
+  emptyState.classList.remove(
+    'hidden'
+  );
+
+
+  nextCard.classList.add(
+    'hidden'
+  );
+
 
   exerciseCounter.textContent =
     '0 Exercises';
 
+
   phaseBadge.textContent =
     'Ready';
+
 
   exerciseFill.style.width =
     '0%';
 
+
   stepText.textContent =
     '0 of 0';
+
 
   elapsedText.textContent =
     '0:00 elapsed';
 
+
   sidebarNextName.textContent =
     '—';
+
 
   sidebarNextSide.textContent =
     '';
 
+
   sessionNumber.textContent =
     '0 / 0';
+
 
   sessionFill.style.width =
     '0%';
 
+
   elapsedStat.textContent =
     '0:00';
+
 
   completedStat.textContent =
     '0';
 
+
   previousBtn.disabled =
     true;
+
 
   startBtn.disabled =
     true;
 
+
   skipBtn.disabled =
     true;
+
 
   renderRoutineList();
 }
@@ -2181,11 +2533,21 @@ function render(){
   }
 
 
-  previousBtn.disabled = false;
-  startBtn.disabled = false;
-  skipBtn.disabled = false;
+  previousBtn.disabled =
+    transitionLocked;
 
-  emptyState.classList.add('hidden');
+
+  startBtn.disabled =
+    transitionLocked;
+
+
+  skipBtn.disabled =
+    transitionLocked;
+
+
+  emptyState.classList.add(
+    'hidden'
+  );
 
 
   const exercise =
@@ -2209,8 +2571,10 @@ function render(){
     exerciseNameEl.textContent =
       'Rest';
 
+
     sideLabelEl.textContent =
       '';
+
 
     exerciseCueEl.textContent =
       'Get into position for the next movement.';
@@ -2223,10 +2587,14 @@ function render(){
     nextName.textContent =
       next.name;
 
+
     nextSide.textContent =
       next.side;
 
-    nextCard.classList.remove('hidden');
+
+    nextCard.classList.remove(
+      'hidden'
+    );
 
   }
   else{
@@ -2245,11 +2613,16 @@ function render(){
       exercise.cue || '';
 
 
-    nextCard.classList.add('hidden');
+    nextCard.classList.add(
+      'hidden'
+    );
   }
 
 
   phaseBadge.textContent =
+    transitionLocked
+    ? 'Horn'
+    :
     phase === 'work'
     ? 'Work'
     :
@@ -2291,9 +2664,13 @@ function render(){
   exerciseFill.style.width =
     Math.max(
       0,
-      Math.min(100,progress)
+      Math.min(
+        100,
+        progress
+      )
     )
-    + '%';
+    +
+    '%';
 
 
   stepText.textContent =
@@ -2316,6 +2693,7 @@ function render(){
 
   sidebarNextName.textContent =
     next.name;
+
 
   sidebarNextSide.textContent =
     next.side;
@@ -2341,7 +2719,8 @@ function render(){
       ? (completed/total)*100
       : 0
     )
-    + '%';
+    +
+    '%';
 
 
   elapsedStat.textContent =
@@ -2373,17 +2752,33 @@ function render(){
 }
 
 
+/* ==================================================
+   TIMER CONTROL
+   ================================================== */
+
 function resetSession(){
 
   stopClock();
 
+
+  transitionLocked =
+    false;
+
+
   index = 0;
   side = 1;
-  phase = 'ready';
+
+  phase =
+    'ready';
+
   elapsed = 0;
   completed = 0;
-  paused = false;
-  transitionTarget = 'next';
+
+  paused =
+    false;
+
+  transitionTarget =
+    'next';
 
 
   const list =
@@ -2410,12 +2805,28 @@ function beginCountdown(){
     return;
   }
 
+
   getAudio();
 
-  phase = 'countdown';
+
+  transitionLocked =
+    false;
+
+
+  phase =
+    'countdown';
+
+
   remaining = 5;
+
   phaseTotal = 5;
-  paused = false;
+
+  paused =
+    false;
+
+
+  countdownBeep();
+
 
   render();
 
@@ -2437,6 +2848,10 @@ function beginWork(){
   }
 
 
+  transitionLocked =
+    false;
+
+
   phase =
     'work';
 
@@ -2452,9 +2867,10 @@ function beginWork(){
     remaining;
 
 
-  workTone();
-
   render();
+
+
+  startClock();
 }
 
 
@@ -2470,6 +2886,10 @@ function beginRest(){
 
     return;
   }
+
+
+  transitionLocked =
+    false;
 
 
   completed++;
@@ -2495,9 +2915,10 @@ function beginRest(){
     remaining;
 
 
-  restTone();
-
   render();
+
+
+  startClock();
 }
 
 
@@ -2534,13 +2955,19 @@ function finishWorkout(){
 
   stopClock();
 
+
+  transitionLocked =
+    false;
+
+
   phase =
     'done';
 
+
   remaining = 0;
+
   phaseTotal = 1;
 
-  finishTone();
 
   render();
 
@@ -2557,56 +2984,133 @@ function finishWorkout(){
     'Nice work in the crease.';
 
 
-  nextCard.classList.add('hidden');
+  nextCard.classList.add(
+    'hidden'
+  );
+}
+
+
+/*
+  Called when any timer reaches zero.
+
+  The clock stops, horn sounds, waits briefly,
+  and then the app automatically changes phases.
+*/
+
+function timerExpired(){
+
+  if(transitionLocked){
+    return;
+  }
+
+
+  transitionLocked =
+    true;
+
+
+  stopClock();
+
+
+  remaining =
+    0;
+
+
+  render();
+
+
+  arenaHorn();
+
+
+  const finishedPhase =
+    phase;
+
+
+  setTimeout(
+    () => {
+
+
+      transitionLocked =
+        false;
+
+
+      if(finishedPhase === 'countdown'){
+
+        beginWork();
+
+      }
+      else if(finishedPhase === 'work'){
+
+        beginRest();
+
+      }
+      else if(finishedPhase === 'transition'){
+
+        completeRest();
+
+      }
+
+    },
+    1250
+  );
 }
 
 
 function tick(){
 
-  if(paused){
+  if(
+    paused
+    ||
+    transitionLocked
+  ){
     return;
   }
 
 
   elapsed++;
 
+
   remaining--;
+
+
+  if(
+    remaining > 0
+    &&
+    remaining <= 5
+  ){
+
+    countdownBeep();
+  }
 
 
   if(remaining <= 0){
 
-    remaining = 0;
+    remaining =
+      0;
 
-
-    if(phase === 'countdown'){
-
-      beginWork();
-
-    }
-    else if(phase === 'work'){
-
-      beginRest();
-
-    }
-    else if(phase === 'transition'){
-
-      completeRest();
-
-    }
-
-  }
-  else{
 
     render();
+
+
+    timerExpired();
+
+    return;
   }
+
+
+  render();
 }
 
 
 function startClock(){
 
-  if(interval){
+  if(
+    interval
+    ||
+    transitionLocked
+  ){
     return;
   }
+
 
   interval =
     setInterval(
@@ -2618,7 +3122,11 @@ function startClock(){
 
 function startPause(){
 
-  if(!routine().length){
+  if(
+    !routine().length
+    ||
+    transitionLocked
+  ){
     return;
   }
 
@@ -2649,9 +3157,12 @@ function startPause(){
 
 
   if(paused){
+
     stopClock();
+
   }
   else{
+
     startClock();
   }
 
@@ -2661,6 +3172,11 @@ function startPause(){
 
 
 function skipForward(){
+
+  if(transitionLocked){
+    return;
+  }
+
 
   const list =
     routine();
@@ -2725,6 +3241,11 @@ function skipForward(){
 
 function previousStep(){
 
+  if(transitionLocked){
+    return;
+  }
+
+
   const list =
     routine();
 
@@ -2780,20 +3301,35 @@ function previousStep(){
 
 function chooseRoutine(key){
 
+  if(transitionLocked){
+    return;
+  }
+
+
   routineKey =
     key;
 
+
   updateCategoryButtons();
+
 
   resetSession();
 }
 
 
-/* EDITOR */
+/* ==================================================
+   EDITOR
+   ================================================== */
 
 function openEditor(){
 
+  if(transitionLocked){
+    return;
+  }
+
+
   stopClock();
+
 
   draft =
     clone(workouts);
@@ -2805,12 +3341,19 @@ function openEditor(){
     : routineKey;
 
 
-  playerView.classList.add('hidden');
+  playerView.classList.add(
+    'hidden'
+  );
 
-  editor.classList.add('visible');
+
+  editor.classList.add(
+    'visible'
+  );
+
 
   saveMessage.textContent =
     '';
+
 
   renderEditor();
 }
@@ -2818,9 +3361,15 @@ function openEditor(){
 
 function closeEditor(){
 
-  editor.classList.remove('visible');
+  editor.classList.remove(
+    'visible'
+  );
 
-  playerView.classList.remove('hidden');
+
+  playerView.classList.remove(
+    'hidden'
+  );
+
 
   resetSession();
 }
@@ -2845,8 +3394,10 @@ function renderEditor(){
     const empty =
       document.createElement('div');
 
+
     empty.className =
       'empty-state';
+
 
     empty.innerHTML =
       `
@@ -2856,15 +3407,20 @@ function renderEditor(){
       Tap + Add Exercise to build this workout.
       `;
 
-    editorList.appendChild(empty);
+
+    editorList.appendChild(
+      empty
+    );
   }
 
 
   list.forEach(
     (exercise,i) => {
 
+
       const card =
         document.createElement('div');
+
 
       card.className =
         'edit-card';
@@ -2991,7 +3547,9 @@ function renderEditor(){
         exercise.cue || '';
 
 
-      editorList.appendChild(card);
+      editorList.appendChild(
+        card
+      );
 
     }
   );
@@ -3103,6 +3661,7 @@ function renderEditor(){
               1
             );
 
+
             renderEditor();
 
           }
@@ -3163,7 +3722,10 @@ function renderEditor(){
               Number(btn.dataset.down);
 
 
-            if(i >= draft[key].length-1){
+            if(
+              i >=
+              draft[key].length-1
+            ){
               return;
             }
 
@@ -3214,6 +3776,7 @@ function saveWorkout(){
   Object.keys(draft)
     .forEach(
       key => {
+
 
         draft[key] =
           draft[key]
@@ -3317,7 +3880,9 @@ function syncVolume(value){
 }
 
 
-/* CATEGORY BUTTONS */
+/* ==================================================
+   EVENTS
+   ================================================== */
 
 document
   .querySelectorAll('[data-routine]')
@@ -3338,8 +3903,6 @@ document
     }
   );
 
-
-/* TIMER CONTROLS */
 
 previousBtn.addEventListener(
   'click',
@@ -3364,8 +3927,6 @@ resetBtn.addEventListener(
   resetSession
 );
 
-
-/* EDITOR */
 
 editWorkoutBtn.addEventListener(
   'click',
@@ -3397,15 +3958,11 @@ editRoutineSelect.addEventListener(
 );
 
 
-/* REST */
-
 restSelect.addEventListener(
   'change',
   render
 );
 
-
-/* VOLUME */
 
 volumeSlider.addEventListener(
   'input',
@@ -3431,8 +3988,6 @@ topVolume.addEventListener(
 );
 
 
-/* SOUND */
-
 soundToggle.addEventListener(
   'change',
   () => {
@@ -3445,11 +4000,10 @@ soundToggle.addEventListener(
 );
 
 
-/* M KEY */
-
 document.addEventListener(
   'keydown',
   event => {
+
 
     const tag =
       event.target.tagName;
@@ -3479,7 +4033,9 @@ document.addEventListener(
 );
 
 
-/* START */
+/* ==================================================
+   INITIALIZE
+   ================================================== */
 
 syncVolume(70);
 
@@ -3488,7 +4044,9 @@ updateCategoryButtons();
 resetSession();
 
 
-/* PWA SERVICE WORKER */
+/* ==================================================
+   PWA
+   ================================================== */
 
 if('serviceWorker' in navigator){
 
