@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
-
 <head>
-
 <meta charset="utf-8">
 
 <meta
@@ -10,61 +8,32 @@
   content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<meta
-  name="theme-color"
-  content="#0a0a0a"
->
+<meta name="theme-color" content="#090909">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="Goalie Training">
 
-<meta
-  name="apple-mobile-web-app-capable"
-  content="yes"
->
-
-<meta
-  name="apple-mobile-web-app-status-bar-style"
-  content="black"
->
-
-<meta
-  name="apple-mobile-web-app-title"
-  content="Goalie Training"
->
-
-<link
-  rel="manifest"
-  href="manifest.webmanifest"
->
-
-<link
-  rel="icon"
-  href="icon.svg"
-  type="image/svg+xml"
->
-
-<link
-  rel="apple-touch-icon"
-  href="icon-512.png"
->
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-512.png">
 
 <title>Goalie Training</title>
 
-
 <style>
-
 :root{
-  --black:#0a0a0a;
+  --black:#090909;
   --panel:#101010;
-  --panel2:#151515;
+  --panel2:#141414;
   --white:#ffffff;
-  --muted:#8a8a8a;
-  --line:#303030;
+  --muted:#969696;
+  --dim:#626262;
+  --line:#343434;
 
-  /* Kelly green */
-  --green:#00c853;
-  --green2:#00e65f;
-  --greenDark:#003d1b;
+  --green:#00d45a;
+  --green2:#00ef68;
+  --greenDark:#003f1b;
 
-  --danger:#ff4d4d;
+  --danger:#ff6262;
 }
 
 *{
@@ -72,13 +41,13 @@
 }
 
 html{
-  background:#0a0a0a;
+  background:var(--black);
 }
 
 body{
   margin:0;
   min-height:100%;
-  background:#0a0a0a;
+  background:var(--black);
   color:var(--white);
 
   font-family:
@@ -100,13 +69,7 @@ button{
   cursor:pointer;
 }
 
-button:disabled{
-  opacity:.45;
-  cursor:not-allowed;
-}
-
-
-/* Hockey / CCM-inspired lettering */
+/* HOCKEY LETTERING */
 
 .hockey{
   font-family:
@@ -119,21 +82,23 @@ button:disabled{
   font-weight:900;
   font-style:italic;
   text-transform:uppercase;
-  letter-spacing:.055em;
+  letter-spacing:.045em;
 
-  transform:skewX(-7deg);
+  transform:skewX(-6deg);
   transform-origin:center;
 }
 
 
+/* APP WRAPPER */
+
 .app{
-  width:min(1100px,100%);
+  width:min(1080px,100%);
   margin:0 auto;
 
   padding:
-    max(18px,env(safe-area-inset-top))
+    max(16px,env(safe-area-inset-top))
     14px
-    max(24px,env(safe-area-inset-bottom));
+    max(30px,env(safe-area-inset-bottom));
 }
 
 
@@ -143,277 +108,286 @@ button:disabled{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:16px;
-  padding:8px 4px 18px;
+  gap:18px;
+
+  padding:10px 6px 22px;
 }
 
-.brand{
-  min-width:0;
+.logo-frame{
+  width:360px;
+  max-width:48vw;
+  height:125px;
+
+  position:relative;
+  overflow:hidden;
+
+  background:var(--black);
 }
 
-.brand-logo{
-  display:block;
-  width:190px;
-  max-width:46vw;
+.logo-frame img{
+  position:absolute;
+
+  width:128%;
   height:auto;
-  object-fit:contain;
+
+  max-width:none;
+
+  left:50%;
+  top:50%;
+
+  transform:
+    translate(-50%,-50%)
+    scale(1.05);
+
+  display:block;
 }
 
-.top-controls{
+/*
+  The crop above intentionally trims the icon's old
+  rounded-square corners so only the GOALIE TRAINING
+  artwork is visible in the app header.
+*/
+
+.audio-controls{
   display:flex;
   align-items:center;
-  gap:12px;
+  justify-content:flex-end;
+
+  gap:10px;
+
+  flex-wrap:wrap;
 }
 
-.sound-switch{
+.sound-toggle{
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:7px;
 }
 
-.sound-switch input{
-  width:20px;
-  height:20px;
+.sound-toggle input{
+  width:22px;
+  height:22px;
   accent-color:var(--green);
 }
 
-.volume-mini{
-  width:95px;
+.volume{
+  width:130px;
   accent-color:var(--green);
 }
 
 
-/* WORKOUT CATEGORY TABS */
+/* CATEGORY BUTTONS */
 
-.tabs{
+.category-grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
+
   gap:8px;
 }
 
-.tab{
-  min-height:52px;
+.category-btn{
+  min-height:56px;
 
   border:1px solid var(--line);
-  border-radius:7px;
+  border-radius:8px;
 
   background:#050505;
-  color:#b9b9b9;
+  color:#aaa;
 
-  padding:8px;
+  padding:9px;
 
-  font-weight:900;
-  font-style:italic;
-  text-transform:uppercase;
+  font-size:17px;
+
+  transition:
+    background .15s,
+    border-color .15s,
+    color .15s;
 }
 
-.tab.active{
+.category-btn.active{
   background:var(--green);
   border-color:var(--green);
-  color:#001a0a;
+
+  color:#04150a;
 }
-
-
-/* Coordination sits by itself */
 
 .coordination-wrap{
   margin-top:8px;
-  margin-bottom:14px;
+  margin-bottom:16px;
 }
 
-.coordination-tab{
+.coordination-btn{
   width:100%;
   min-height:62px;
 
-  border:1px solid var(--line);
-  border-radius:7px;
-
-  background:#050505;
-  color:#b9b9b9;
-
-  font-weight:900;
-  font-style:italic;
-  text-transform:uppercase;
-
-  font-size:20px;
-}
-
-.coordination-tab.active{
-  background:var(--green);
-  border-color:var(--green);
-  color:#001a0a;
+  font-size:22px;
 }
 
 
-/* MAIN PLAYER */
+/* MAIN TIMER AREA */
 
 .main-grid{
   display:grid;
-  grid-template-columns:minmax(0,1.5fr) minmax(270px,.65fr);
+
+  grid-template-columns:
+    minmax(0,1.55fr)
+    minmax(270px,.65fr);
+
   gap:14px;
 }
 
 .panel{
   border:1px solid var(--line);
+
+  border-radius:10px;
+
   background:var(--panel);
-  border-radius:9px;
 }
 
 .player{
-  padding:20px;
+  padding:24px;
 }
 
-.player-top{
+.player-head{
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  gap:12px;
+  justify-content:space-between;
+
+  gap:10px;
 }
 
-.step-label{
-  font-size:15px;
-  color:#8e9093;
+.exercise-count{
+  color:#929292;
+  font-size:17px;
 }
 
-.phase{
+.phase-badge{
+  min-width:92px;
+
+  text-align:center;
+
   border:1px solid var(--green);
+  border-radius:7px;
+
   color:var(--green2);
 
-  border-radius:6px;
-  padding:7px 12px;
+  padding:8px 11px;
+
+  font-size:15px;
+}
+
+
+/* TIMER */
+
+.timer{
+  margin-top:26px;
+
+  text-align:center;
+
+  color:white;
+
+  font-size:clamp(82px,15vw,145px);
+  line-height:.88;
+
+  letter-spacing:-.045em;
+}
+
+.exercise-name{
+  margin-top:28px;
+
+  text-align:center;
+
+  font-size:clamp(27px,5vw,44px);
+  line-height:1.05;
+}
+
+.side-label{
+  min-height:30px;
+
+  margin-top:8px;
+
+  text-align:center;
+
+  color:var(--green2);
+
+  font-size:21px;
+}
+
+.exercise-cue{
+  width:min(650px,100%);
+
+  margin:36px auto 0;
+
+  text-align:center;
+
+  color:#aaa;
+
+  font-size:18px;
+  line-height:1.5;
+}
+
+
+/* REST NEXT-UP BOX */
+
+.next-card{
+  width:min(650px,100%);
+
+  margin:24px auto 0;
+
+  padding:15px 17px;
+
+  border:1px solid var(--greenDark);
+  border-radius:8px;
+
+  background:#06130a;
+}
+
+.next-label{
+  color:#787878;
 
   font-size:13px;
 }
 
-.big-timer{
-  margin-top:12px;
+.next-name{
+  margin-top:6px;
 
-  text-align:center;
-
-  font-size:clamp(72px,15vw,138px);
-  font-weight:900;
-  line-height:.9;
-
-  font-style:italic;
-  letter-spacing:-.04em;
-}
-
-.exercise-name{
-  margin-top:18px;
-
-  text-align:center;
-
-  font-size:clamp(25px,6vw,44px);
-  font-weight:900;
-}
-
-.side-label{
-  min-height:29px;
-  margin-top:5px;
-
-  text-align:center;
+  color:white;
 
   font-size:22px;
-  color:var(--green2);
 }
 
-.exercise-cue{
-  width:min(620px,100%);
-
-  margin:24px auto 0;
-
-  text-align:center;
-
-  color:#a6a8aa;
-
-  font-size:17px;
-  line-height:1.5;
-}
-
-.empty-message{
-  margin:20px auto 0;
-
-  width:min(620px,100%);
-
-  border:1px solid var(--greenDark);
-  border-radius:8px;
-
-  background:#07130b;
-
-  padding:18px;
-
-  text-align:center;
-  color:#a8aaa9;
-}
-
-.empty-message strong{
-  display:block;
-  margin-bottom:6px;
+.next-side{
+  margin-top:5px;
 
   color:var(--green2);
 
-  font-size:19px;
-}
-
-
-/* NEXT CARD */
-
-.next-card{
-  margin:20px auto 0;
-
-  border:1px solid var(--greenDark);
-
-  background:#00170a;
-
-  border-radius:8px;
-
-  padding:13px 15px;
-
-  width:min(620px,100%);
+  font-size:16px;
 }
 
 .hidden{
   display:none !important;
 }
 
-.next-small{
-  color:#7b8d82;
-
-  font-size:12px;
-
-  text-transform:uppercase;
-  letter-spacing:.1em;
-}
-
-.next-name{
-  margin-top:4px;
-
-  color:var(--green2);
-
-  font-size:20px;
-  font-weight:900;
-}
-
 
 /* PROGRESS */
 
-.progress-wrap{
-  margin-top:26px;
+.progress-section{
+  margin-top:34px;
 }
 
-.progress-track{
+.track{
   height:10px;
-
-  overflow:hidden;
 
   border-radius:999px;
 
-  background:#252727;
+  background:#282828;
+
+  overflow:hidden;
 }
 
-.progress-fill{
-  height:100%;
+.fill{
   width:0;
+  height:100%;
 
   background:var(--green);
 
@@ -423,53 +397,51 @@ button:disabled{
 .progress-meta{
   display:flex;
   justify-content:space-between;
+
   gap:10px;
 
-  margin-top:7px;
+  margin-top:10px;
 
-  color:#7f8285;
+  color:#868686;
 
-  font-size:12px;
+  font-size:13px;
 }
 
 
-/* BUTTONS */
+/* MAIN BUTTONS */
 
-.player-buttons{
+.player-controls{
   display:grid;
-  grid-template-columns:1fr 1.4fr 1fr;
 
-  gap:10px;
+  grid-template-columns:
+    1fr
+    1.35fr
+    1fr;
 
-  margin-top:22px;
+  gap:12px;
+
+  margin-top:28px;
 }
 
 .btn{
-  min-height:56px;
+  min-height:62px;
 
-  border:1px solid #444;
-  border-radius:7px;
+  border:1px solid #454545;
+  border-radius:9px;
 
-  background:#080808;
-  color:#fff;
+  background:#070707;
+  color:white;
 
-  padding:10px 12px;
+  padding:10px;
 
-  font-weight:900;
-  font-style:italic;
-  text-transform:uppercase;
+  font-size:18px;
 }
 
 .btn-primary{
   background:var(--green);
   border-color:var(--green);
 
-  color:#001207;
-}
-
-.btn-danger{
-  border-color:#562828;
-  color:#ff8c8c;
+  color:#031309;
 }
 
 
@@ -478,129 +450,135 @@ button:disabled{
 .sidebar{
   display:flex;
   flex-direction:column;
+
   gap:14px;
 }
 
 .side-panel{
-  padding:17px;
+  padding:19px;
 }
 
 .side-heading{
-  color:#8b8d90;
-  font-size:14px;
-}
-
-.side-big{
-  margin-top:8px;
-  font-size:25px;
-}
-
-.next-side{
-  color:var(--green2);
-
-  margin-top:6px;
+  color:#8b8b8b;
 
   font-size:15px;
 }
 
-.rest-block{
-  margin-top:18px;
-  padding-top:18px;
+.side-next-name{
+  margin-top:10px;
 
-  border-top:1px solid var(--line);
+  color:white;
+
+  font-size:23px;
+}
+
+.side-next-side{
+  margin-top:7px;
+
+  color:var(--green2);
+
+  font-size:16px;
+}
+
+.divider{
+  height:1px;
+
+  margin:18px 0;
+
+  background:var(--line);
 }
 
 .rest-number{
-  margin-top:7px;
-
-  font-size:31px;
-
-  color:#c7c7c7;
-}
-
-.session-progress{
-  font-size:34px;
-
   margin-top:8px;
+
+  color:#c3c3c3;
+
+  font-size:35px;
 }
 
-.side-progress{
+.session-number{
+  margin-top:8px;
+
+  color:white;
+
+  font-size:35px;
+}
+
+.session-track{
   margin-top:12px;
 }
 
-.stat-grid{
+.stats{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:8px;
 
-  margin-top:15px;
+  gap:9px;
+
+  margin-top:16px;
 }
 
 .stat{
-  border:1px solid var(--line);
+  padding:12px;
 
+  border:1px solid var(--line);
   border-radius:7px;
 
-  padding:12px;
+  background:#0b0b0b;
 }
 
 .stat-label{
   color:#777;
 
   font-size:11px;
-
   text-transform:uppercase;
 }
 
 .stat-value{
-  margin-top:5px;
+  margin-top:6px;
+
+  color:white;
 
   font-size:20px;
-  font-weight:800;
 }
 
 
-/* ROUTINE */
+/* ROUTINE LIST */
 
 .routine-panel{
-  margin-top:14px;
+  margin-top:15px;
 
-  padding:18px;
+  padding:20px;
 }
 
-.routine-header{
+.routine-head{
   display:flex;
-  justify-content:space-between;
-  gap:12px;
   align-items:center;
+  justify-content:space-between;
+
+  gap:12px;
 }
 
 .routine-title{
-  font-size:26px;
+  font-size:29px;
 }
 
-.edit-btn{
-  min-height:46px;
-
-  border:1px solid var(--green);
-  border-radius:7px;
-
-  background:#050505;
-  color:var(--green2);
+.edit-workout{
+  min-height:48px;
 
   padding:9px 15px;
 
-  font-weight:900;
-  font-style:italic;
-  text-transform:uppercase;
+  border:1px solid var(--green);
+  border-radius:8px;
+
+  background:#050505;
+  color:var(--green2);
 }
 
 .routine-list{
   list-style:none;
 
+  margin:15px 0 0;
   padding:0;
-
-  margin:14px 0 0;
 
   border:1px solid var(--line);
   border-radius:8px;
@@ -609,20 +587,20 @@ button:disabled{
 }
 
 .routine-row{
+  min-height:56px;
+
   display:grid;
 
   grid-template-columns:
-    38px
+    34px
     minmax(0,1fr)
     70px
     70px
-    26px;
+    24px;
 
   align-items:center;
 
-  min-height:55px;
-
-  gap:8px;
+  gap:9px;
 
   padding:8px 12px;
 
@@ -634,18 +612,18 @@ button:disabled{
 }
 
 .routine-row.active{
-  background:#003719;
+  background:#003b1b;
 
   outline:1px solid var(--green);
   outline-offset:-1px;
 }
 
 .routine-row.done{
-  opacity:.65;
+  opacity:.6;
 }
 
-.exercise-index{
-  color:#bdbdbd;
+.row-num{
+  color:#aaa;
 
   font-size:14px;
 }
@@ -653,85 +631,82 @@ button:disabled{
 .row-name{
   min-width:0;
 
-  font-weight:800;
+  font-size:15px;
 }
 
 .row-time,
 .row-sides{
   text-align:right;
 
-  color:#9b9b9b;
+  color:#999;
 
   font-size:13px;
 }
 
-.status-dot{
+.status{
   width:20px;
   height:20px;
 
-  border-radius:50%;
+  justify-self:end;
 
   border:2px solid #555;
-
-  justify-self:end;
+  border-radius:50%;
 }
 
-.status-dot.current{
+.status.current{
   border-color:var(--green);
-
   background:var(--green);
 }
 
-.status-dot.done{
-  border-color:var(--green);
-
+.status.done{
   position:relative;
+
+  border-color:var(--green);
 }
 
-.status-dot.done::after{
+.status.done::after{
   content:"✓";
 
   position:absolute;
 
+  left:1px;
+  top:-8px;
+
   color:var(--green2);
 
-  top:-7px;
-  left:1px;
-
-  font-size:22px;
+  font-size:23px;
   font-weight:900;
 }
 
 
-/* SETTINGS */
+/* ROUTINE SETTINGS */
 
-.settings-row{
+.routine-settings{
   display:flex;
   flex-wrap:wrap;
   align-items:end;
 
-  gap:16px;
+  gap:15px;
 
-  margin-top:14px;
-  padding-top:14px;
+  margin-top:16px;
+  padding-top:16px;
 
   border-top:1px solid var(--line);
 }
 
-.control-group{
-  min-width:130px;
-
+.setting{
   flex:1;
+
+  min-width:140px;
 }
 
-.control-label{
-  color:#85888a;
+.setting-label{
+  margin-bottom:6px;
+
+  color:#858585;
 
   font-size:12px;
-
   text-transform:uppercase;
-
-  margin-bottom:6px;
 }
 
 select,
@@ -740,13 +715,13 @@ input[type="number"],
 textarea{
   width:100%;
 
-  min-height:45px;
+  min-height:46px;
 
-  border:1px solid #36393a;
-  border-radius:7px;
+  border:1px solid #393939;
+  border-radius:8px;
 
   background:#050505;
-  color:#fff;
+  color:white;
 
   padding:9px 11px;
 
@@ -754,21 +729,46 @@ textarea{
 }
 
 textarea{
-  min-height:78px;
-
-  resize:vertical;
+  min-height:80px;
 }
 
+input[type="range"],
 input[type="checkbox"]{
   accent-color:var(--green);
 }
 
-input[type="range"]{
-  accent-color:var(--green);
+
+/* EMPTY COORDINATION */
+
+.empty-state{
+  margin:24px auto;
+
+  max-width:600px;
+
+  padding:25px;
+
+  text-align:center;
+
+  border:1px solid var(--greenDark);
+  border-radius:9px;
+
+  background:#07120a;
+
+  color:#aaa;
+}
+
+.empty-state strong{
+  display:block;
+
+  margin-bottom:8px;
+
+  color:var(--green2);
+
+  font-size:24px;
 }
 
 
-/* EDITOR */
+/* WORKOUT EDITOR */
 
 .editor{
   display:none;
@@ -778,60 +778,71 @@ input[type="range"]{
   display:block;
 }
 
-.player-area.hidden{
+.player-view.hidden{
   display:none;
+}
+
+.editor-panel{
+  padding:20px;
 }
 
 .editor-head{
   display:flex;
-  justify-content:space-between;
-  gap:12px;
   align-items:center;
+  justify-content:space-between;
 
-  margin-bottom:14px;
+  gap:12px;
+
+  margin-bottom:16px;
 }
 
 .editor-title{
-  font-size:28px;
-}
-
-.edit-select{
-  width:auto;
-  min-width:180px;
+  font-size:30px;
 }
 
 .editor-list{
   display:flex;
   flex-direction:column;
 
-  gap:11px;
+  gap:12px;
 }
 
 .edit-card{
-  border:1px solid var(--line);
-  border-radius:8px;
-
-  background:#080808;
-
   padding:14px;
+
+  border:1px solid var(--line);
+  border-radius:9px;
+
+  background:#0c0c0c;
 }
 
 .edit-grid{
   display:grid;
 
-  grid-template-columns:minmax(0,1fr) 105px;
+  grid-template-columns:
+    minmax(0,1fr)
+    100px;
 
   gap:10px;
 }
 
-.editor-options{
+.control-label{
+  margin-bottom:6px;
+
+  color:#858585;
+
+  font-size:12px;
+  text-transform:uppercase;
+}
+
+.edit-options{
   display:flex;
-  flex-wrap:wrap;
   align-items:center;
+  flex-wrap:wrap;
 
   gap:10px;
 
-  margin-top:10px;
+  margin-top:11px;
 }
 
 .side-check{
@@ -850,7 +861,7 @@ input[type="range"]{
   height:20px;
 }
 
-.editor-actions{
+.edit-actions{
   display:flex;
 
   gap:7px;
@@ -859,39 +870,35 @@ input[type="range"]{
 }
 
 .small-btn{
-  min-width:44px;
-  min-height:44px;
+  min-width:45px;
+  min-height:45px;
 
-  border:1px solid #414141;
+  border:1px solid #444;
   border-radius:7px;
 
-  color:#fff;
-
-  background:#080808;
+  background:#070707;
+  color:white;
 }
 
 .delete-btn{
-  color:#ff7676;
+  border-color:#612929;
 
-  border-color:#5c2525;
+  color:#ff7474;
 }
 
 .add-btn{
   width:100%;
+  min-height:55px;
 
   margin-top:14px;
 
-  min-height:52px;
-
   border:1px dashed var(--green);
-  border-radius:8px;
+  border-radius:9px;
 
-  background:#001208;
+  background:#06130a;
   color:var(--green2);
 
-  font-weight:900;
-  font-style:italic;
-  text-transform:uppercase;
+  font-size:18px;
 }
 
 .editor-footer{
@@ -902,24 +909,19 @@ input[type="range"]{
   display:flex;
   justify-content:flex-end;
 
-  gap:9px;
+  gap:10px;
 
-  margin-top:16px;
-
-  padding:12px 0;
+  margin-top:18px;
+  padding:16px 0;
 
   background:
     linear-gradient(
-      rgba(0,0,0,0),
-      rgba(0,0,0,.96) 25%
+      rgba(9,9,9,0),
+      rgba(9,9,9,.98) 28%
     );
 }
 
-.toast{
-  min-height:20px;
-
-  margin-top:8px;
-
+.save-message{
   color:var(--green2);
 
   text-align:right;
@@ -927,32 +929,10 @@ input[type="range"]{
   font-size:13px;
 }
 
-.footer-note{
-  margin-top:14px;
 
-  color:#676a6c;
-
-  font-size:12px;
-
-  text-align:center;
-}
-
-
-/* TABLET */
+/* MOBILE */
 
 @media(max-width:800px){
-
-  .topbar{
-    align-items:flex-start;
-  }
-
-  .volume-mini{
-    width:70px;
-  }
-
-  .tabs{
-    grid-template-columns:1fr 1fr;
-  }
 
   .main-grid{
     grid-template-columns:1fr;
@@ -963,12 +943,16 @@ input[type="range"]{
     grid-template-columns:1fr 1fr;
   }
 
+  .category-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
   .routine-row{
     grid-template-columns:
       30px
       minmax(0,1fr)
-      55px
-      26px;
+      56px
+      24px;
   }
 
   .row-sides{
@@ -978,67 +962,97 @@ input[type="range"]{
 }
 
 
-/* PHONE */
-
-@media(max-width:540px){
+@media(max-width:560px){
 
   .app{
     padding-left:10px;
     padding-right:10px;
   }
 
-  .top-controls{
+  .topbar{
+    align-items:center;
+
+    padding-bottom:18px;
+  }
+
+  .logo-frame{
+    width:205px;
+    max-width:52vw;
+    height:108px;
+  }
+
+  .audio-controls{
     gap:6px;
   }
 
-  .sound-word{
+  .sound-label{
     display:none;
   }
 
+  .volume{
+    width:80px;
+  }
+
+  .category-btn{
+    min-height:55px;
+
+    font-size:16px;
+  }
+
+  .coordination-btn{
+    min-height:61px;
+
+    font-size:21px;
+  }
+
   .player{
-    padding:15px;
+    padding:18px 15px;
   }
 
-  .big-timer{
-    font-size:80px;
-  }
-
-  .exercise-name{
-    font-size:27px;
-  }
-
-  .exercise-cue{
+  .exercise-count{
     font-size:15px;
   }
 
-  .player-buttons{
-    grid-template-columns:
-      1fr
-      1.3fr
-      1fr;
+  .timer{
+    margin-top:30px;
+
+    font-size:92px;
+  }
+
+  .exercise-name{
+    margin-top:30px;
+
+    font-size:30px;
+  }
+
+  .exercise-cue{
+    margin-top:40px;
+
+    font-size:16px;
+  }
+
+  .player-controls{
+    margin-top:28px;
   }
 
   .btn{
-    padding:8px 5px;
+    min-height:60px;
 
-    font-size:14px;
+    padding:7px 4px;
+
+    font-size:16px;
   }
 
   .sidebar{
     grid-template-columns:1fr;
   }
 
-  .routine-header{
-    align-items:flex-start;
-  }
-
   .routine-title{
-    font-size:22px;
+    font-size:23px;
   }
 
-  .routine-row{
-    padding-left:8px;
-    padding-right:8px;
+  .routine-head{
+    align-items:flex-start;
   }
 
   .row-name{
@@ -1046,30 +1060,21 @@ input[type="range"]{
   }
 
   .edit-grid{
-    grid-template-columns:1fr 88px;
+    grid-template-columns:1fr 90px;
   }
 
-  .editor-actions{
+  .edit-actions{
     width:100%;
-
     margin-left:0;
-  }
-
-  .coordination-tab{
-    min-height:58px;
-
-    font-size:19px;
   }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
-
 
 <div class="app">
 
@@ -1078,20 +1083,19 @@ input[type="range"]{
 
   <header class="topbar">
 
-    <div class="brand">
+    <div class="logo-frame">
 
       <img
         src="icon-512.png"
         alt="Goalie Training"
-        class="brand-logo"
       >
 
     </div>
 
 
-    <div class="top-controls">
+    <div class="audio-controls">
 
-      <label class="sound-switch">
+      <label class="sound-toggle">
 
         <span aria-hidden="true">
           🔊
@@ -1104,7 +1108,7 @@ input[type="range"]{
           aria-label="Sound cues"
         >
 
-        <span class="sound-word">
+        <span class="sound-label">
           Sound
         </span>
 
@@ -1113,14 +1117,13 @@ input[type="range"]{
 
       <input
         id="topVolume"
-        class="volume-mini"
+        class="volume"
         type="range"
         min="0"
         max="100"
         value="70"
         aria-label="Volume"
       >
-
 
       <span id="topVolumeText">
         70%
@@ -1132,50 +1135,42 @@ input[type="range"]{
 
 
 
-  <!-- PLAYER VIEW -->
+  <!-- PLAYER -->
 
   <div
-    id="playerArea"
-    class="player-area"
+    id="playerView"
+    class="player-view"
   >
 
 
-    <!-- FOUR MAIN CATEGORIES -->
-
-    <nav
-      class="tabs"
-      aria-label="Workout type"
-    >
+    <nav class="category-grid">
 
       <button
-        class="tab hockey active"
+        class="category-btn hockey active"
         data-routine="mobility"
         type="button"
       >
         Mobility
       </button>
 
-
       <button
-        class="tab hockey"
+        class="category-btn hockey"
         data-routine="strength"
         type="button"
       >
         Strength
       </button>
 
-
       <button
-        class="tab hockey"
+        class="category-btn hockey"
         data-routine="explosive"
         type="button"
       >
         Explosiveness
       </button>
 
-
       <button
-        class="tab hockey"
+        class="category-btn hockey"
         data-routine="full"
         type="button"
       >
@@ -1185,12 +1180,10 @@ input[type="range"]{
     </nav>
 
 
-    <!-- COORDINATION -->
-
     <div class="coordination-wrap">
 
       <button
-        class="coordination-tab hockey"
+        class="category-btn coordination-btn hockey"
         data-routine="coordination"
         type="button"
       >
@@ -1204,24 +1197,22 @@ input[type="range"]{
     <div class="main-grid">
 
 
-      <!-- TIMER PLAYER -->
-
       <section class="panel player">
 
 
-        <div class="player-top">
+        <div class="player-head">
 
           <div
             id="exerciseCounter"
-            class="step-label hockey"
+            class="exercise-count hockey"
           >
-            Exercise 1
+            Exercise 1 of 18
           </div>
 
 
           <div
             id="phaseBadge"
-            class="phase hockey"
+            class="phase-badge hockey"
           >
             Ready
           </div>
@@ -1232,8 +1223,7 @@ input[type="range"]{
 
         <div
           id="timer"
-          class="big-timer hockey"
-          aria-live="polite"
+          class="timer hockey"
         >
           00:40
         </div>
@@ -1264,15 +1254,15 @@ input[type="range"]{
 
 
         <div
-          id="emptyMessage"
-          class="empty-message hidden"
+          id="emptyState"
+          class="empty-state hidden"
         >
 
           <strong class="hockey">
             No Exercises Yet
           </strong>
 
-          Tap Edit Workout below to add your Coordination exercises.
+          Use Edit Workout to add exercises to this category.
 
         </div>
 
@@ -1283,8 +1273,8 @@ input[type="range"]{
           class="next-card hidden"
         >
 
-          <div class="next-small hockey">
-            Next up
+          <div class="next-label hockey">
+            Next Up
           </div>
 
           <div
@@ -1292,17 +1282,22 @@ input[type="range"]{
             class="next-name hockey"
           ></div>
 
+          <div
+            id="nextSide"
+            class="next-side hockey"
+          ></div>
+
         </div>
 
 
 
-        <div class="progress-wrap">
+        <div class="progress-section">
 
-          <div class="progress-track">
+          <div class="track">
 
             <div
-              id="exerciseProgress"
-              class="progress-fill"
+              id="exerciseFill"
+              class="fill"
             ></div>
 
           </div>
@@ -1310,8 +1305,8 @@ input[type="range"]{
 
           <div class="progress-meta">
 
-            <span id="stepProgress">
-              1 of 1
+            <span id="stepText">
+              1 of 18
             </span>
 
             <span id="elapsedText">
@@ -1324,7 +1319,7 @@ input[type="range"]{
 
 
 
-        <div class="player-buttons">
+        <div class="player-controls">
 
           <button
             id="previousBtn"
@@ -1334,7 +1329,6 @@ input[type="range"]{
             Prev
           </button>
 
-
           <button
             id="startBtn"
             class="btn btn-primary hockey"
@@ -1342,7 +1336,6 @@ input[type="range"]{
           >
             Start
           </button>
-
 
           <button
             id="skipBtn"
@@ -1358,46 +1351,40 @@ input[type="range"]{
 
 
 
-      <!-- SIDEBAR -->
-
       <aside class="sidebar">
 
 
         <section class="panel side-panel">
 
           <div class="side-heading hockey">
-            Next up
+            Next Up
           </div>
 
-
           <div
-            id="sidebarNext"
-            class="side-big hockey"
+            id="sidebarNextName"
+            class="side-next-name hockey"
           >
             —
           </div>
 
-
           <div
             id="sidebarNextSide"
-            class="next-side hockey"
+            class="side-next-side hockey"
           ></div>
 
 
+          <div class="divider"></div>
 
-          <div class="rest-block">
 
-            <div class="side-heading hockey">
-              Rest time
-            </div>
+          <div class="side-heading hockey">
+            Rest Time
+          </div>
 
-            <div
-              id="restPreview"
-              class="rest-number hockey"
-            >
-              00:10
-            </div>
-
+          <div
+            id="restNumber"
+            class="rest-number hockey"
+          >
+            00:10
           </div>
 
         </section>
@@ -1407,31 +1394,28 @@ input[type="range"]{
         <section class="panel side-panel">
 
           <div class="side-heading hockey">
-            Session progress
+            Session Progress
           </div>
-
 
           <div
-            id="sessionProgress"
-            class="session-progress hockey"
+            id="sessionNumber"
+            class="session-number hockey"
           >
-            0 / 0
+            0 / 18
           </div>
 
 
-          <div class="side-progress progress-track">
+          <div class="session-track track">
 
             <div
-              id="sessionProgressBar"
-              class="progress-fill"
+              id="sessionFill"
+              class="fill"
             ></div>
 
           </div>
 
 
-
-          <div class="stat-grid">
-
+          <div class="stats">
 
             <div class="stat">
 
@@ -1449,7 +1433,6 @@ input[type="range"]{
             </div>
 
 
-
             <div class="stat">
 
               <div class="stat-label">
@@ -1465,7 +1448,6 @@ input[type="range"]{
 
             </div>
 
-
           </div>
 
         </section>
@@ -1473,36 +1455,28 @@ input[type="range"]{
 
       </aside>
 
-
     </div>
 
 
 
-    <!-- ROUTINE LIST -->
-
     <section class="panel routine-panel">
 
 
-      <div class="routine-header">
+      <div class="routine-head">
 
-        <div
-          id="routineTitle"
-          class="routine-title hockey"
-        >
+        <div class="routine-title hockey">
           Today's Routine
         </div>
 
-
         <button
           id="editWorkoutBtn"
-          class="edit-btn hockey"
+          class="edit-workout hockey"
           type="button"
         >
           Edit Workout
         </button>
 
       </div>
-
 
 
       <ol
@@ -1512,15 +1486,13 @@ input[type="range"]{
 
 
 
-      <div class="settings-row">
+      <div class="routine-settings">
 
+        <div class="setting">
 
-        <div class="control-group">
-
-          <div class="control-label hockey">
-            Rest / transition
+          <div class="setting-label hockey">
+            Rest / Transition
           </div>
-
 
           <select id="restSelect">
 
@@ -1552,11 +1524,10 @@ input[type="range"]{
         </div>
 
 
+        <div class="setting">
 
-        <div class="control-group">
-
-          <div class="control-label hockey">
-            Cue volume
+          <div class="setting-label hockey">
+            Cue Volume
           </div>
 
           <input
@@ -1570,7 +1541,6 @@ input[type="range"]{
         </div>
 
 
-
         <button
           id="resetBtn"
           class="btn"
@@ -1579,29 +1549,25 @@ input[type="range"]{
           Reset Session
         </button>
 
-
       </div>
 
-    </section>
 
+    </section>
 
   </div>
 
 
 
-  <!-- EDIT WORKOUT VIEW -->
+  <!-- EDITOR -->
 
   <section
     id="editor"
     class="editor"
   >
 
-
-    <section class="panel routine-panel">
-
+    <section class="panel editor-panel">
 
       <div class="editor-head">
-
 
         <div>
 
@@ -1609,24 +1575,14 @@ input[type="range"]{
             Edit Workout
           </div>
 
-          <div
-            style="
-              margin-top:5px;
-              color:#777;
-              font-size:13px;
-            "
-          >
-            Changes are saved on this device.
+          <div style="color:#777;font-size:13px;margin-top:5px">
+            Saved on this iPhone.
           </div>
 
         </div>
 
 
-
-        <select
-          id="editRoutineSelect"
-          class="edit-select"
-        >
+        <select id="editRoutineSelect">
 
           <option value="mobility">
             Mobility
@@ -1646,16 +1602,13 @@ input[type="range"]{
 
         </select>
 
-
       </div>
-
 
 
       <div
         id="editorList"
         class="editor-list"
       ></div>
-
 
 
       <button
@@ -1665,7 +1618,6 @@ input[type="range"]{
       >
         + Add Exercise
       </button>
-
 
 
       <div class="editor-footer">
@@ -1678,7 +1630,6 @@ input[type="range"]{
           Cancel
         </button>
 
-
         <button
           id="saveWorkoutBtn"
           class="btn btn-primary"
@@ -1690,49 +1641,26 @@ input[type="range"]{
       </div>
 
 
-
       <div
         id="saveMessage"
-        class="toast"
-        aria-live="polite"
+        class="save-message"
       ></div>
-
 
     </section>
 
-
   </section>
-
-
-
-  <div class="footer-note">
-
-    Stop any exercise that causes sharp pain.
-
-  </div>
-
 
 </div>
 
 
 
 <script>
-
 (() => {
 
-
-/*
-  Keep the existing storage key so previously saved
-  Mobility / Strength / Explosiveness edits stay intact.
-*/
-
-const STORAGE_KEY =
-  'goalie-workouts-v3';
+const STORAGE_KEY = 'goalie-workouts-v3';
 
 
-
-const DEFAULT_WORKOUTS = {
-
+const DEFAULTS = {
 
   mobility:[
 
@@ -1740,102 +1668,80 @@ const DEFAULT_WORKOUTS = {
       name:'Hip Internal Rotation',
       seconds:40,
       sides:1,
-      cue:
-        'Work gently into internal rotation. Keep the movement at the hip and do not twist the knee.'
+      cue:'Work gently into internal rotation. Keep the movement at the hip and do not twist the knee.'
     },
-
 
     {
       name:'90/90 Stretch',
       seconds:40,
       sides:2,
-      cue:
-        'Sit tall with both legs bent about 90 degrees. Gently lean toward the front shin.'
+      cue:'Sit tall with both legs bent about 90 degrees. Gently lean toward the front shin.'
     },
-
 
     {
       name:'90/90 Active Hip Flow / Hip Switches',
       seconds:45,
       sides:1,
-      cue:
-        'Rotate both knees smoothly side to side. Stay tall and avoid using momentum.'
+      cue:'Rotate both knees smoothly side to side. Stay tall and avoid using momentum.'
     },
-
 
     {
       name:'Adductor Rock-Backs',
       seconds:45,
       sides:2,
-      cue:
-        'Extend one leg sideways and rock the hips backward while keeping a neutral spine.'
+      cue:'Extend one leg sideways and rock the hips backward while keeping a neutral spine.'
     },
-
 
     {
       name:'Couch Stretch',
       seconds:45,
       sides:2,
-      cue:
-        'Keep the torso upright, squeeze the rear glute and feel the stretch through the front of the hip.'
+      cue:'Keep the torso upright, squeeze the rear glute and feel the stretch through the front of the hip.'
     },
-
 
     {
       name:'Toes Elevated Ankle Stretch',
       seconds:30,
       sides:2,
-      cue:
-        'Gently drive the knee forward while keeping the heel controlled.'
+      cue:'Gently drive the knee forward while keeping the heel controlled.'
     },
-
 
     {
       name:'Cossack Squat',
       seconds:45,
       sides:1,
-      cue:
-        'Sit toward one leg from a wide stance while keeping the working heel planted.'
+      cue:'Sit toward one leg from a wide stance while keeping the working heel planted.'
     },
-
 
     {
       name:'Deep Squat Hold',
       seconds:40,
       sides:1,
-      cue:
-        'Sit into a comfortable deep squat with the heels planted and chest up.'
+      cue:'Sit into a comfortable deep squat with the heels planted and chest up.'
     },
-
 
     {
       name:'Banded Lat Stretch',
       seconds:40,
       sides:2,
-      cue:
-        'Sit the hips back and let the banded arm lengthen overhead.'
+      cue:'Sit the hips back and let the banded arm lengthen overhead.'
     },
-
 
     {
       name:'Lying Pec Stretch',
       seconds:40,
       sides:2,
-      cue:
-        'Rotate gently away until you feel a comfortable stretch through the chest and front shoulder.'
+      cue:'Rotate gently away until you feel a comfortable stretch through the chest and front shoulder.'
     },
-
 
     {
       name:'T-Spine Rotations',
       seconds:45,
       sides:2,
-      cue:
-        'Rotate through the middle and upper back with control.'
+      cue:'Rotate through the middle and upper back with control.'
     }
 
   ],
-
 
 
   strength:[
@@ -1844,57 +1750,45 @@ const DEFAULT_WORKOUTS = {
       name:'Bulgarian Split Squat',
       seconds:50,
       sides:2,
-      cue:
-        'Rear foot elevated. Lower under control and drive through the front foot.'
+      cue:'Rear foot elevated. Lower under control and drive through the front foot.'
     },
-
 
     {
       name:'Lateral Lunge',
       seconds:50,
       sides:1,
-      cue:
-        'Step wide, push the hips back over the working leg and drive back to center.'
+      cue:'Step wide, push the hips back over the working leg and drive back to center.'
     },
-
 
     {
       name:'Single-Leg RDL',
       seconds:50,
       sides:2,
-      cue:
-        'Hinge at the hip with a soft standing knee. Keep the hips square.'
+      cue:'Hinge at the hip with a soft standing knee. Keep the hips square.'
     },
-
 
     {
       name:'Copenhagen Plank',
       seconds:25,
       sides:2,
-      cue:
-        'Keep the body straight and start with the upper knee supported.'
+      cue:'Keep the body straight and start with the upper knee supported.'
     },
-
 
     {
       name:'Single-Leg Glute Bridge',
       seconds:45,
       sides:2,
-      cue:
-        'Drive through the planted foot and squeeze the glute to lift the hips.'
+      cue:'Drive through the planted foot and squeeze the glute to lift the hips.'
     },
-
 
     {
       name:'Dead Bug',
       seconds:45,
       sides:2,
-      cue:
-        'Keep the lower back controlled as you extend the opposite arm and leg.'
+      cue:'Keep the lower back controlled as you extend the opposite arm and leg.'
     }
 
   ],
-
 
 
   explosive:[
@@ -1903,50 +1797,34 @@ const DEFAULT_WORKOUTS = {
       name:'Skater / Lateral Bounds',
       seconds:35,
       sides:1,
-      cue:
-        'Explode sideways, land softly, stabilize briefly and push back.'
+      cue:'Explode sideways, land softly, stabilize briefly and push back.'
     },
-
 
     {
       name:'Lateral Line Hops',
       seconds:15,
       sides:1,
-      cue:
-        'Hop quickly side to side with soft knees and light feet.'
+      cue:'Hop quickly side to side with soft knees and light feet.'
     },
-
 
     {
       name:'Reverse Lunge → Knee Drive',
       seconds:40,
       sides:1,
-      cue:
-        'Step into a controlled reverse lunge, then drive through the front leg.'
+      cue:'Step into a controlled reverse lunge, then drive through the front leg.'
     }
 
   ],
 
-
-  /*
-    Coordination intentionally starts empty.
-    Exercises can be added from Edit Workout.
-  */
 
   coordination:[]
 
 };
 
 
-
 function clone(value){
-
-  return JSON.parse(
-    JSON.stringify(value)
-  );
-
+  return JSON.parse(JSON.stringify(value));
 }
-
 
 
 function loadWorkouts(){
@@ -1954,1201 +1832,664 @@ function loadWorkouts(){
   try{
 
     const saved =
-      localStorage.getItem(
-        STORAGE_KEY
-      );
-
+      localStorage.getItem(STORAGE_KEY);
 
     if(saved){
 
       const parsed =
         JSON.parse(saved);
 
-
       if(
-        parsed.mobility
-        &&
-        parsed.strength
-        &&
+        parsed.mobility &&
+        parsed.strength &&
         parsed.explosive
       ){
 
-        /*
-          Migration:
-          Existing users will not have Coordination yet.
-          Add it without touching saved workouts.
-        */
-
-        if(
-          !Array.isArray(
-            parsed.coordination
-          )
-        ){
-
-          parsed.coordination =
-            [];
-
+        if(!Array.isArray(parsed.coordination)){
+          parsed.coordination = [];
         }
 
         return parsed;
-
       }
 
     }
 
-  }
-  catch(error){
+  }catch(e){}
 
-    console.log(
-      'Could not load saved workouts.',
-      error
-    );
-
-  }
-
-
-  return clone(
-    DEFAULT_WORKOUTS
-  );
-
+  return clone(DEFAULTS);
 }
 
 
+let workouts = loadWorkouts();
 
-let workouts =
-  loadWorkouts();
+let routineKey = 'mobility';
 
+let index = 0;
+let side = 1;
 
-let currentRoutineKey =
-  'mobility';
+let phase = 'ready';
 
+let remaining = 0;
+let phaseTotal = 0;
 
-let editorDraft =
-  null;
+let elapsed = 0;
+let completed = 0;
 
+let paused = false;
 
-let index =
-  0;
+let interval = null;
 
+let transitionTarget = 'next';
 
-let side =
-  1;
+let audioCtx = null;
 
+let draft = null;
 
-let phase =
-  'ready';
 
+const $ = id =>
+  document.getElementById(id);
 
-let remaining =
-  0;
 
+const timerEl = $('timer');
+const exerciseNameEl = $('exerciseName');
+const sideLabelEl = $('sideLabel');
+const exerciseCueEl = $('exerciseCue');
 
-let phaseTotal =
-  0;
+const exerciseCounter = $('exerciseCounter');
+const phaseBadge = $('phaseBadge');
 
+const exerciseFill = $('exerciseFill');
+const stepText = $('stepText');
+const elapsedText = $('elapsedText');
 
-let elapsed =
-  0;
+const nextCard = $('nextCard');
+const nextName = $('nextName');
+const nextSide = $('nextSide');
 
+const sidebarNextName = $('sidebarNextName');
+const sidebarNextSide = $('sidebarNextSide');
 
-let completedSteps =
-  0;
+const restNumber = $('restNumber');
 
+const sessionNumber = $('sessionNumber');
+const sessionFill = $('sessionFill');
 
-let timerId =
-  null;
+const elapsedStat = $('elapsedStat');
+const completedStat = $('completedStat');
 
+const routineList = $('routineList');
 
-let paused =
-  false;
+const previousBtn = $('previousBtn');
+const startBtn = $('startBtn');
+const skipBtn = $('skipBtn');
 
+const restSelect = $('restSelect');
+const resetBtn = $('resetBtn');
 
-let transitionTarget =
-  'next';
+const soundToggle = $('soundToggle');
 
+const volumeSlider = $('volumeSlider');
+const topVolume = $('topVolume');
+const topVolumeText = $('topVolumeText');
 
-let audioContext =
-  null;
+const playerView = $('playerView');
 
+const editor = $('editor');
+const editorList = $('editorList');
 
+const editWorkoutBtn = $('editWorkoutBtn');
+const editRoutineSelect = $('editRoutineSelect');
 
-const $ =
-  id =>
-    document.getElementById(id);
+const addExerciseBtn = $('addExerciseBtn');
 
+const cancelEditBtn = $('cancelEditBtn');
+const saveWorkoutBtn = $('saveWorkoutBtn');
+const saveMessage = $('saveMessage');
 
-
-const timerEl =
-  $('timer');
-
-const exerciseNameEl =
-  $('exerciseName');
-
-const sideLabelEl =
-  $('sideLabel');
-
-const exerciseCueEl =
-  $('exerciseCue');
-
-const emptyMessage =
-  $('emptyMessage');
-
-const phaseBadge =
-  $('phaseBadge');
-
-const exerciseProgress =
-  $('exerciseProgress');
-
-const exerciseCounter =
-  $('exerciseCounter');
-
-const stepProgress =
-  $('stepProgress');
-
-const elapsedText =
-  $('elapsedText');
-
-const routineList =
-  $('routineList');
-
-const sidebarNext =
-  $('sidebarNext');
-
-const sidebarNextSide =
-  $('sidebarNextSide');
-
-const sessionProgress =
-  $('sessionProgress');
-
-const sessionProgressBar =
-  $('sessionProgressBar');
-
-const elapsedStat =
-  $('elapsedStat');
-
-const completedStat =
-  $('completedStat');
-
-const nextCard =
-  $('nextCard');
-
-const nextName =
-  $('nextName');
-
-const restPreview =
-  $('restPreview');
-
-const startBtn =
-  $('startBtn');
-
-const previousBtn =
-  $('previousBtn');
-
-const skipBtn =
-  $('skipBtn');
-
-const resetBtn =
-  $('resetBtn');
-
-const editWorkoutBtn =
-  $('editWorkoutBtn');
-
-const playerArea =
-  $('playerArea');
-
-const editor =
-  $('editor');
-
-const editorList =
-  $('editorList');
-
-const editRoutineSelect =
-  $('editRoutineSelect');
-
-const addExerciseBtn =
-  $('addExerciseBtn');
-
-const cancelEditBtn =
-  $('cancelEditBtn');
-
-const saveWorkoutBtn =
-  $('saveWorkoutBtn');
-
-const saveMessage =
-  $('saveMessage');
-
-const restSelect =
-  $('restSelect');
-
-const soundToggle =
-  $('soundToggle');
-
-const volumeSlider =
-  $('volumeSlider');
-
-const topVolume =
-  $('topVolume');
-
-const topVolumeText =
-  $('topVolumeText');
-
+const emptyState = $('emptyState');
 
 
 /*
-  IMPORTANT:
-  Full Session deliberately excludes Coordination.
+  Full Session deliberately does NOT include Coordination.
 */
 
-function currentRoutine(){
+function routine(){
 
-  if(
-    currentRoutineKey ===
-    'full'
-  ){
+  if(routineKey === 'full'){
 
     return [
-
       ...workouts.mobility,
-
       ...workouts.strength,
-
       ...workouts.explosive
-
     ];
 
   }
 
-
-  return (
-    workouts[currentRoutineKey]
-    ||
-    []
-  );
-
+  return workouts[routineKey] || [];
 }
 
 
+function totalSteps(list = routine()){
 
-function totalSteps(
-  routine = currentRoutine()
-){
-
-  return routine.reduce(
-
-    (sum,exercise) =>
-      sum
-      +
-      (
-        exercise.sides === 2
-        ?
-        2
-        :
-        1
-      ),
-
+  return list.reduce(
+    (sum,x) =>
+      sum +
+      (x.sides === 2 ? 2 : 1),
     0
-
   );
-
 }
 
 
+function currentStep(){
 
-function currentStepNumber(){
+  const list = routine();
 
-  const routine =
-    currentRoutine();
-
-
-  if(
-    routine.length ===
-    0
-  ){
-
+  if(!list.length){
     return 0;
-
   }
 
+  let step = 0;
 
-  let step =
-    0;
-
-
-  for(
-    let i = 0;
-    i < index;
-    i++
-  ){
+  for(let i=0;i<index;i++){
 
     step +=
-      routine[i].sides === 2
-      ?
-      2
-      :
-      1;
+      list[i].sides === 2
+      ? 2
+      : 1;
 
   }
-
 
   step +=
     side === 2
-    ?
-    2
-    :
-    1;
-
+    ? 2
+    : 1;
 
   return step;
-
 }
 
 
+function clock(sec){
 
-function formatClock(seconds){
-
-  seconds =
+  sec =
     Math.max(
       0,
-      Math.floor(
-        Number(seconds)
-        ||
-        0
-      )
+      Math.floor(Number(sec) || 0)
     );
 
-
   return (
-    String(
-      Math.floor(
-        seconds / 60
-      )
-    ).padStart(
-      2,
-      '0'
-    )
+    String(Math.floor(sec/60)).padStart(2,'0')
     +
     ':'
     +
-    String(
-      seconds % 60
-    ).padStart(
-      2,
-      '0'
-    )
+    String(sec%60).padStart(2,'0')
   );
-
 }
 
 
+function shortClock(sec){
 
-function formatShort(seconds){
-
-  seconds =
+  sec =
     Math.max(
       0,
-      Math.floor(
-        Number(seconds)
-        ||
-        0
-      )
+      Math.floor(Number(sec) || 0)
     );
 
-
   return (
-    Math.floor(
-      seconds / 60
-    )
+    Math.floor(sec/60)
     +
     ':'
     +
-    String(
-      seconds % 60
-    ).padStart(
-      2,
-      '0'
-    )
+    String(sec%60).padStart(2,'0')
   );
-
 }
 
 
+function stopClock(){
 
-function stopTimer(){
+  if(interval){
 
-  if(timerId){
+    clearInterval(interval);
 
-    clearInterval(
-      timerId
-    );
-
-    timerId =
-      null;
+    interval = null;
 
   }
-
 }
 
 
+function getAudio(){
 
-function audio(){
-
-  if(audioContext){
-
-    return audioContext;
-
+  if(audioCtx){
+    return audioCtx;
   }
 
-
-  const AudioCtx =
-    window.AudioContext
-    ||
+  const C =
+    window.AudioContext ||
     window.webkitAudioContext;
 
-
-  if(!AudioCtx){
-
+  if(!C){
     return null;
-
   }
-
 
   try{
-
-    audioContext =
-      new AudioCtx();
-
-  }
-  catch(error){
-
-    audioContext =
-      null;
-
+    audioCtx = new C();
+  }catch(e){
+    audioCtx = null;
   }
 
-
-  return audioContext;
-
+  return audioCtx;
 }
 
 
+function tone(freq,delay=0){
 
-function beep(
-  frequency,
-  delay = 0
-){
-
-  if(
-    !soundToggle.checked
-  ){
-
+  if(!soundToggle.checked){
     return;
-
   }
 
-
-  const ctx =
-    audio();
-
+  const ctx = getAudio();
 
   if(!ctx){
-
     return;
-
   }
 
-
-  if(
-    ctx.state ===
-    'suspended'
-  ){
-
-    ctx.resume()
-      .catch(
-        () => {}
-      );
-
+  if(ctx.state === 'suspended'){
+    ctx.resume().catch(()=>{});
   }
-
 
   const volume =
-    Number(
-      volumeSlider.value
-    )
-    /
-    100;
+    Number(volumeSlider.value) / 100;
 
-
-  if(
-    volume <=
-    0
-  ){
-
+  if(volume <= 0){
     return;
-
   }
 
-
   const start =
-    ctx.currentTime
-    +
-    delay;
+    ctx.currentTime + delay;
 
-
-  const oscillator =
+  const osc =
     ctx.createOscillator();
-
 
   const gain =
     ctx.createGain();
 
+  osc.type = 'sine';
 
-  oscillator.type =
-    'sine';
-
-
-  oscillator.frequency
-    .setValueAtTime(
-      frequency,
-      start
-    );
-
+  osc.frequency
+    .setValueAtTime(freq,start);
 
   gain.gain
-    .setValueAtTime(
-      .0001,
-      start
-    );
-
+    .setValueAtTime(.0001,start);
 
   gain.gain
     .exponentialRampToValueAtTime(
-      Math.max(
-        .0001,
-        .16 * volume
-      ),
-      start + .01
+      Math.max(.0001,.16*volume),
+      start+.01
     );
-
 
   gain.gain
     .exponentialRampToValueAtTime(
       .0001,
-      start + .16
+      start+.16
     );
 
+  osc.connect(gain);
 
-  oscillator.connect(
-    gain
-  );
+  gain.connect(ctx.destination);
 
+  osc.start(start);
 
-  gain.connect(
-    ctx.destination
-  );
-
-
-  oscillator.start(
-    start
-  );
-
-
-  oscillator.stop(
-    start + .2
-  );
-
+  osc.stop(start+.2);
 }
 
 
-
-function workCue(){
-
-  beep(
-    760
-  );
-
-
-  beep(
-    920,
-    .18
-  );
-
+function workTone(){
+  tone(760);
+  tone(920,.18);
 }
 
 
-
-function restCue(){
-
-  beep(
-    520
-  );
-
+function restTone(){
+  tone(520);
 }
 
 
-
-function finishCue(){
-
-  beep(
-    650
-  );
-
-
-  beep(
-    820,
-    .18
-  );
-
-
-  beep(
-    1040,
-    .36
-  );
-
+function finishTone(){
+  tone(650);
+  tone(820,.18);
+  tone(1040,.36);
 }
-
 
 
 function nextInfo(){
 
-  const routine =
-    currentRoutine();
+  const list = routine();
 
+  const current =
+    list[index];
 
-  const exercise =
-    routine[index];
-
-
-  if(!exercise){
+  if(!current){
 
     return {
-
       name:'—',
       side:''
-
     };
-
   }
 
-
-  if(
-    transitionTarget ===
-    'side2'
-  ){
+  if(transitionTarget === 'side2'){
 
     return {
-
-      name:
-        exercise.name,
-
-      side:
-        'Side 2 of 2'
-
+      name:current.name,
+      side:'Side 2 of 2'
     };
 
   }
 
-
   const next =
-    routine[
-      index + 1
-    ];
-
+    list[index+1];
 
   if(!next){
 
     return {
-
-      name:
-        'Session Complete',
-
-      side:
-        ''
-
+      name:'Session Complete',
+      side:''
     };
-
   }
 
-
   return {
-
-    name:
-      next.name,
-
+    name:next.name,
     side:
       next.sides === 2
-      ?
-      'Side 1 of 2'
-      :
-      ''
-
+      ? 'Side 1 of 2'
+      : ''
   };
-
 }
 
 
-
-function updateTabs(){
+function updateCategoryButtons(){
 
   document
-    .querySelectorAll(
-      '[data-routine]'
-    )
-    .forEach(
-      button => {
+    .querySelectorAll('[data-routine]')
+    .forEach(btn => {
 
-        button.classList.toggle(
+      btn.classList.toggle(
+        'active',
+        btn.dataset.routine === routineKey
+      );
 
-          'active',
-
-          button.dataset.routine
-          ===
-          currentRoutineKey
-
-        );
-
-      }
-    );
-
+    });
 }
-
 
 
 function renderRoutineList(){
 
-  const routine =
-    currentRoutine();
+  const list = routine();
 
+  routineList.innerHTML = '';
 
-  routineList.innerHTML =
-    '';
-
-
-  if(
-    routine.length ===
-    0
-  ){
+  if(!list.length){
 
     const row =
-      document.createElement(
-        'li'
-      );
+      document.createElement('li');
 
+    row.style.padding = '20px';
 
-    row.style.padding =
-      '18px';
+    row.style.textAlign = 'center';
 
-
-    row.style.color =
-      '#8a8a8a';
-
-
-    row.style.textAlign =
-      'center';
-
+    row.style.color = '#888';
 
     row.textContent =
       'No exercises yet. Tap Edit Workout to add one.';
 
-
-    routineList
-      .appendChild(
-        row
-      );
-
+    routineList.appendChild(row);
 
     return;
-
   }
 
 
-  let visualStep =
-    0;
+  let step = 0;
 
 
-  routine.forEach(
-    (
-      exercise,
-      exerciseIndex
-    ) => {
-
+  list.forEach(
+    (exercise,exerciseIndex) => {
 
       const sides =
         exercise.sides === 2
-        ?
-        [1,2]
-        :
-        [1];
+        ? [1,2]
+        : [1];
 
 
-      sides.forEach(
-        sideNumber => {
+      sides.forEach(sideNumber => {
+
+        step++;
 
 
-          visualStep++;
+        const row =
+          document.createElement('li');
+
+        row.className =
+          'routine-row';
 
 
-          const row =
-            document.createElement(
-              'li'
-            );
+        const isCurrent =
+          exerciseIndex === index &&
+          sideNumber === side;
 
 
-          row.className =
-            'routine-row';
+        const isDone =
+          step <= completed;
 
 
-          const isCurrent =
-            exerciseIndex ===
-              index
-            &&
-            sideNumber ===
-              side;
+        if(isCurrent){
+          row.classList.add('active');
+        }
 
 
-          const isDone =
-            visualStep
-            <=
-            completedSteps;
+        if(isDone){
+          row.classList.add('done');
+        }
 
 
-          if(isCurrent){
+        const num =
+          document.createElement('div');
 
-            row.classList.add(
-              'active'
-            );
+        num.className =
+          'row-num';
 
-          }
-
-
-          if(isDone){
-
-            row.classList.add(
-              'done'
-            );
-
-          }
+        num.textContent =
+          step;
 
 
+        const name =
+          document.createElement('div');
 
-          const number =
-            document.createElement(
-              'div'
-            );
+        name.className =
+          'row-name hockey';
 
-
-          number.className =
-            'exercise-index';
-
-
-          number.textContent =
-            visualStep;
-
-
-
-          const name =
-            document.createElement(
-              'div'
-            );
-
-
-          name.className =
-            'row-name hockey';
-
-
-          name.textContent =
-            exercise.name
-            +
-            (
-              exercise.sides === 2
-              ?
-              ' — Side '
-              +
-              sideNumber
-              :
-              ''
-            );
-
-
-
-          const time =
-            document.createElement(
-              'div'
-            );
-
-
-          time.className =
-            'row-time';
-
-
-          time.textContent =
-            formatClock(
-              exercise.seconds
-            );
-
-
-
-          const sideText =
-            document.createElement(
-              'div'
-            );
-
-
-          sideText.className =
-            'row-sides';
-
-
-          sideText.textContent =
+        name.textContent =
+          exercise.name +
+          (
             exercise.sides === 2
-            ?
-            '2 sides'
-            :
-            '1 side';
-
-
-
-          const status =
-            document.createElement(
-              'div'
-            );
-
-
-          status.className =
-            'status-dot';
-
-
-          if(isCurrent){
-
-            status.classList.add(
-              'current'
-            );
-
-          }
-
-
-          if(isDone){
-
-            status.classList.remove(
-              'current'
-            );
-
-
-            status.classList.add(
-              'done'
-            );
-
-          }
-
-
-
-          row.append(
-
-            number,
-            name,
-            time,
-            sideText,
-            status
-
+            ? ' — Side ' + sideNumber
+            : ''
           );
 
 
-          routineList
-            .appendChild(
-              row
-            );
+        const time =
+          document.createElement('div');
+
+        time.className =
+          'row-time';
+
+        time.textContent =
+          clock(exercise.seconds);
+
+
+        const sidesText =
+          document.createElement('div');
+
+        sidesText.className =
+          'row-sides';
+
+        sidesText.textContent =
+          exercise.sides === 2
+          ? '2 sides'
+          : '1 side';
+
+
+        const status =
+          document.createElement('div');
+
+        status.className =
+          'status';
+
+
+        if(isCurrent){
+          status.classList.add('current');
+        }
+
+
+        if(isDone){
+
+          status.classList.remove('current');
+
+          status.classList.add('done');
 
         }
-      );
+
+
+        row.append(
+          num,
+          name,
+          time,
+          sidesText,
+          status
+        );
+
+
+        routineList.appendChild(row);
+
+      });
 
     }
   );
-
 }
 
 
+function renderEmpty(){
 
-function renderEmptyRoutine(){
-
-  timerEl.textContent =
-    '00:00';
-
+  timerEl.textContent = '00:00';
 
   exerciseNameEl.textContent =
-    currentRoutineKey ===
-      'coordination'
-    ?
-    'Coordination'
-    :
-    'No Exercises';
+    routineKey === 'coordination'
+    ? 'Coordination'
+    : 'No Exercises';
 
+  sideLabelEl.textContent = '';
 
-  sideLabelEl.textContent =
-    '';
+  exerciseCueEl.textContent = '';
 
+  emptyState.classList.remove('hidden');
 
-  exerciseCueEl.textContent =
-    '';
-
-
-  emptyMessage.classList.remove(
-    'hidden'
-  );
-
-
-  nextCard.classList.add(
-    'hidden'
-  );
-
-
-  phaseBadge.textContent =
-    'Ready';
+  nextCard.classList.add('hidden');
 
 
   exerciseCounter.textContent =
     '0 Exercises';
 
+  phaseBadge.textContent =
+    'Ready';
 
-  exerciseProgress.style.width =
+
+  exerciseFill.style.width =
     '0%';
 
-
-  stepProgress.textContent =
+  stepText.textContent =
     '0 of 0';
-
 
   elapsedText.textContent =
     '0:00 elapsed';
 
 
-  sessionProgress.textContent =
+  sidebarNextName.textContent =
+    '—';
+
+  sidebarNextSide.textContent =
+    '';
+
+
+  sessionNumber.textContent =
     '0 / 0';
 
-
-  sessionProgressBar.style.width =
+  sessionFill.style.width =
     '0%';
 
 
   elapsedStat.textContent =
     '0:00';
 
-
   completedStat.textContent =
     '0';
-
-
-  sidebarNext.textContent =
-    '—';
-
-
-  sidebarNextSide.textContent =
-    '';
-
-
-  startBtn.textContent =
-    'Start';
-
-
-  startBtn.disabled =
-    true;
 
 
   previousBtn.disabled =
     true;
 
+  startBtn.disabled =
+    true;
 
   skipBtn.disabled =
     true;
 
 
   renderRoutineList();
-
 }
-
 
 
 function render(){
 
-  const routine =
-    currentRoutine();
+  const list =
+    routine();
 
+  if(!list.length){
 
-  const total =
-    totalSteps(
-      routine
-    );
-
-
-  if(
-    routine.length ===
-    0
-  ){
-
-    renderEmptyRoutine();
+    renderEmpty();
 
     return;
-
   }
 
 
-  startBtn.disabled =
-    false;
+  previousBtn.disabled = false;
+  startBtn.disabled = false;
+  skipBtn.disabled = false;
 
 
-  previousBtn.disabled =
-    false;
-
-
-  skipBtn.disabled =
-    false;
-
-
-  emptyMessage.classList.add(
-    'hidden'
-  );
+  emptyState.classList.add('hidden');
 
 
   const exercise =
-    routine[index];
+    list[index];
 
-
-  if(!exercise){
-
-    return;
-
-  }
-
+  const total =
+    totalSteps(list);
 
   const step =
-    currentStepNumber();
-
+    currentStep();
 
 
   timerEl.textContent =
-    formatClock(
-      remaining
-    );
+    clock(remaining);
 
 
-
-  if(
-    phase ===
-    'transition'
-  ){
+  if(phase === 'transition'){
 
     exerciseNameEl.textContent =
       'Rest';
 
-
     sideLabelEl.textContent =
       '';
 
-
     exerciseCueEl.textContent =
       'Get into position for the next movement.';
-
-
-    nextCard.classList.remove(
-      'hidden'
-    );
 
 
     const next =
@@ -3156,17 +2497,13 @@ function render(){
 
 
     nextName.textContent =
-      next.name
-      +
-      (
-        next.side
-        ?
-        ' — '
-        +
-        next.side
-        :
-        ''
-      );
+      next.name;
+
+    nextSide.textContent =
+      next.side;
+
+
+    nextCard.classList.remove('hidden');
 
   }
   else{
@@ -3177,379 +2514,246 @@ function render(){
 
     sideLabelEl.textContent =
       exercise.sides === 2
-      ?
-      'Side '
-      +
-      side
-      +
-      ' of 2'
-      :
-      '';
+      ? 'Side ' + side + ' of 2'
+      : '';
 
 
     exerciseCueEl.textContent =
-      exercise.cue
-      ||
-      '';
+      exercise.cue || '';
 
 
-    nextCard.classList.add(
-      'hidden'
-    );
+    nextCard.classList.add('hidden');
 
   }
 
 
-
   phaseBadge.textContent =
     phase === 'work'
-    ?
-    'Work'
+    ? 'Work'
     :
     phase === 'transition'
-    ?
-    'Rest'
+    ? 'Rest'
     :
     phase === 'countdown'
-    ?
-    'Get Ready'
+    ? 'Get Ready'
     :
     phase === 'done'
-    ?
-    'Complete'
+    ? 'Complete'
     :
     'Ready';
 
 
-
   exerciseCounter.textContent =
-    'Exercise '
-    +
-    step
-    +
-    ' of '
-    +
+    'Exercise ' +
+    step +
+    ' of ' +
     total;
 
 
-
-  const progressPercent =
+  const progress =
     phaseTotal > 0
     ?
     (
-      (
-        phaseTotal
-        -
-        remaining
-      )
+      (phaseTotal - remaining)
       /
       phaseTotal
     )
-    *
-    100
+    * 100
     :
     0;
 
 
-
-  exerciseProgress.style.width =
+  exerciseFill.style.width =
     Math.max(
       0,
-      Math.min(
-        100,
-        progressPercent
-      )
+      Math.min(100,progress)
     )
-    +
-    '%';
+    + '%';
 
 
-
-  stepProgress.textContent =
-    step
-    +
-    ' of '
-    +
+  stepText.textContent =
+    step +
+    ' of ' +
     total;
 
 
-
   elapsedText.textContent =
-    formatShort(
-      elapsed
-    )
+    shortClock(elapsed)
     +
     ' elapsed';
 
 
-
-  sessionProgress.textContent =
-    completedSteps
-    +
-    ' / '
-    +
-    total;
-
-
-
-  completedStat.textContent =
-    completedSteps;
-
-
-
-  elapsedStat.textContent =
-    formatShort(
-      elapsed
-    );
-
-
-
-  sessionProgressBar.style.width =
-    (
-      total > 0
-      ?
-      (
-        completedSteps
-        /
-        total
-      )
-      *
-      100
-      :
-      0
-    )
-    +
-    '%';
-
-
-
-  const upcoming =
+  const next =
     nextInfo();
 
 
-
-  sidebarNext.textContent =
-    upcoming.name;
-
-
+  sidebarNextName.textContent =
+    next.name;
 
   sidebarNextSide.textContent =
-    upcoming.side;
+    next.side;
 
 
-
-  restPreview.textContent =
-    formatClock(
-      Number(
-        restSelect.value
-      )
+  restNumber.textContent =
+    clock(
+      Number(restSelect.value)
       ||
       10
     );
 
 
+  sessionNumber.textContent =
+    completed +
+    ' / ' +
+    total;
+
+
+  sessionFill.style.width =
+    (
+      total > 0
+      ?
+      (completed/total)*100
+      :
+      0
+    )
+    + '%';
+
+
+  elapsedStat.textContent =
+    shortClock(elapsed);
+
+
+  completedStat.textContent =
+    completed;
+
 
   startBtn.textContent =
     paused
-    ?
-    'Resume'
+    ? 'Resume'
     :
-    (
-      phase === 'work'
-      ||
-      phase === 'transition'
-      ||
-      phase === 'countdown'
-    )
-    ?
-    'Pause'
+    phase === 'work' ||
+    phase === 'transition' ||
+    phase === 'countdown'
+    ? 'Pause'
     :
     phase === 'done'
-    ?
-    'Restart'
+    ? 'Restart'
     :
     'Start';
 
 
-
   renderRoutineList();
-
 }
-
 
 
 function resetSession(){
 
-  stopTimer();
+  stopClock();
+
+  index = 0;
+  side = 1;
+
+  phase = 'ready';
+
+  elapsed = 0;
+  completed = 0;
+
+  paused = false;
+
+  transitionTarget = 'next';
 
 
-  index =
-    0;
-
-
-  side =
-    1;
-
-
-  phase =
-    'ready';
-
-
-  elapsed =
-    0;
-
-
-  completedSteps =
-    0;
-
-
-  paused =
-    false;
-
-
-  transitionTarget =
-    'next';
-
-
-
-  const routine =
-    currentRoutine();
-
+  const list =
+    routine();
 
 
   remaining =
-    routine.length
+    list.length
     ?
-    routine[0].seconds
+    list[0].seconds
     :
     0;
-
 
 
   phaseTotal =
     remaining;
 
 
-
   render();
-
 }
-
 
 
 function beginCountdown(){
 
-  const routine =
-    currentRoutine();
-
-
-  if(
-    routine.length ===
-    0
-  ){
-
+  if(!routine().length){
     return;
-
   }
 
+  getAudio();
 
-  audio();
+  phase = 'countdown';
 
+  remaining = 5;
 
-  phase =
-    'countdown';
+  phaseTotal = 5;
 
-
-  remaining =
-    5;
-
-
-  phaseTotal =
-    5;
-
-
-  paused =
-    false;
-
+  paused = false;
 
   render();
 
-
   startClock();
-
 }
-
 
 
 function beginWork(){
 
   const exercise =
-    currentRoutine()[
-      index
-    ];
-
+    routine()[index];
 
   if(!exercise){
 
     finishWorkout();
 
     return;
-
   }
 
 
-  phase =
-    'work';
-
+  phase = 'work';
 
   remaining =
     Math.max(
       1,
-      Number(
-        exercise.seconds
-      )
-      ||
-      1
+      Number(exercise.seconds) || 1
     );
-
 
   phaseTotal =
     remaining;
 
 
-  workCue();
-
+  workTone();
 
   render();
-
 }
-
 
 
 function beginRest(){
 
   const exercise =
-    currentRoutine()[
-      index
-    ];
-
+    routine()[index];
 
   if(!exercise){
 
     finishWorkout();
 
     return;
-
   }
 
 
-  completedSteps++;
-
+  completed++;
 
 
   transitionTarget =
-    exercise.sides === 2
-    &&
+    exercise.sides === 2 &&
     side === 1
     ?
     'side2'
@@ -3557,172 +2761,107 @@ function beginRest(){
     'next';
 
 
-
-  phase =
-    'transition';
-
+  phase = 'transition';
 
   remaining =
-    Number(
-      restSelect.value
-    )
+    Number(restSelect.value)
     ||
     10;
-
 
   phaseTotal =
     remaining;
 
 
-  restCue();
-
+  restTone();
 
   render();
-
 }
-
 
 
 function completeRest(){
 
-  if(
-    transitionTarget ===
-    'side2'
-  ){
+  if(transitionTarget === 'side2'){
 
-    side =
-      2;
-
+    side = 2;
 
     beginWork();
 
-
     return;
-
   }
 
 
-
-  side =
-    1;
-
+  side = 1;
 
   index++;
 
 
-
-  if(
-    index
-    >=
-    currentRoutine()
-      .length
-  ){
+  if(index >= routine().length){
 
     finishWorkout();
 
-
     return;
-
   }
 
 
-
   beginWork();
-
 }
-
 
 
 function finishWorkout(){
 
-  stopTimer();
+  stopClock();
 
+  phase = 'done';
 
-  phase =
-    'done';
+  remaining = 0;
 
+  phaseTotal = 1;
 
-  remaining =
-    0;
-
-
-  phaseTotal =
-    1;
-
-
-  finishCue();
-
+  finishTone();
 
   render();
-
 
 
   exerciseNameEl.textContent =
     'Workout Complete';
 
-
   sideLabelEl.textContent =
     '';
-
 
   exerciseCueEl.textContent =
     'Nice work in the crease.';
 
-
-  nextCard.classList.add(
-    'hidden'
-  );
-
+  nextCard.classList.add('hidden');
 }
-
 
 
 function tick(){
 
   if(paused){
-
     return;
-
   }
 
-
   elapsed++;
-
 
   remaining--;
 
 
+  if(remaining <= 0){
 
-  if(
-    remaining <=
-    0
-  ){
-
-    remaining =
-      0;
+    remaining = 0;
 
 
-
-    if(
-      phase ===
-      'countdown'
-    ){
+    if(phase === 'countdown'){
 
       beginWork();
 
     }
-    else if(
-      phase ===
-      'work'
-    ){
+    else if(phase === 'work'){
 
       beginRest();
 
     }
-    else if(
-      phase ===
-      'transition'
-    ){
+    else if(phase === 'transition'){
 
       completeRest();
 
@@ -3734,86 +2873,54 @@ function tick(){
     render();
 
   }
-
 }
-
 
 
 function startClock(){
 
-  if(timerId){
-
+  if(interval){
     return;
-
   }
 
-
-  timerId =
-    setInterval(
-      tick,
-      1000
-    );
-
+  interval =
+    setInterval(tick,1000);
 }
-
 
 
 function startPause(){
 
-  if(
-    currentRoutine()
-      .length ===
-    0
-  ){
-
+  if(!routine().length){
     return;
-
   }
 
-
-  audio();
-
+  getAudio();
 
 
-  if(
-    phase ===
-    'done'
-  ){
+  if(phase === 'done'){
 
     resetSession();
 
-
     beginCountdown();
 
-
     return;
-
   }
 
 
-
-  if(
-    phase ===
-    'ready'
-  ){
+  if(phase === 'ready'){
 
     beginCountdown();
 
-
     return;
-
   }
-
 
 
   paused =
     !paused;
 
 
-
   if(paused){
 
-    stopTimer();
+    stopClock();
 
   }
   else{
@@ -3823,253 +2930,160 @@ function startPause(){
   }
 
 
-
   render();
-
 }
-
 
 
 function skipForward(){
 
-  const routine =
-    currentRoutine();
+  const list =
+    routine();
 
-
-  if(
-    routine.length ===
-    0
-  ){
-
+  if(!list.length){
     return;
-
   }
 
 
-  stopTimer();
-
+  stopClock();
 
 
   const exercise =
-    routine[index];
-
+    list[index];
 
 
   if(
-    exercise
-    &&
-    exercise.sides === 2
-    &&
+    exercise.sides === 2 &&
     side === 1
   ){
 
-    side =
-      2;
+    side = 2;
 
   }
   else{
 
-    side =
-      1;
-
+    side = 1;
 
     index++;
 
   }
 
 
-
-  if(
-    index >=
-    routine.length
-  ){
+  if(index >= list.length){
 
     finishWorkout();
 
-
     return;
-
   }
 
 
+  phase = 'ready';
 
-  phase =
-    'ready';
-
-
-  paused =
-    false;
-
+  paused = false;
 
   remaining =
-    routine[index]
-      .seconds;
-
+    list[index].seconds;
 
   phaseTotal =
     remaining;
 
 
   render();
-
 }
-
 
 
 function previousStep(){
 
-  const routine =
-    currentRoutine();
+  const list =
+    routine();
 
-
-  if(
-    routine.length ===
-    0
-  ){
-
+  if(!list.length){
     return;
-
   }
 
 
-  stopTimer();
-
+  stopClock();
 
 
   if(
-    routine[index]
-    ?.sides === 2
-    &&
+    list[index]?.sides === 2 &&
     side === 2
   ){
 
-    side =
-      1;
+    side = 1;
 
   }
-  else if(
-    index > 0
-  ){
+  else if(index > 0){
 
     index--;
 
-
     side =
-      routine[index]
-      .sides === 2
-      ?
-      2
-      :
-      1;
+      list[index].sides === 2
+      ? 2
+      : 1;
 
   }
 
 
+  phase = 'ready';
 
-  phase =
-    'ready';
-
-
-  paused =
-    false;
-
+  paused = false;
 
   remaining =
-    routine[index]
-      .seconds;
-
+    list[index].seconds;
 
   phaseTotal =
     remaining;
 
 
   render();
-
 }
 
 
+function chooseRoutine(key){
 
-function selectRoutine(key){
-
-  currentRoutineKey =
+  routineKey =
     key;
 
-
-  updateTabs();
-
+  updateCategoryButtons();
 
   resetSession();
-
 }
 
 
+/* EDITOR */
 
 function openEditor(){
 
-  stopTimer();
+  stopClock();
+
+  draft =
+    clone(workouts);
 
 
-  editorDraft =
-    clone(
-      workouts
-    );
+  editRoutineSelect.value =
+    routineKey === 'full'
+    ? 'mobility'
+    : routineKey;
 
 
+  playerView.classList.add('hidden');
 
-  if(
-    currentRoutineKey ===
-    'full'
-  ){
+  editor.classList.add('visible');
 
-    editRoutineSelect.value =
-      'mobility';
-
-  }
-  else{
-
-    editRoutineSelect.value =
-      currentRoutineKey;
-
-  }
-
-
-
-  playerArea.classList.add(
-    'hidden'
-  );
-
-
-  editor.classList.add(
-    'visible'
-  );
-
-
-  saveMessage.textContent =
-    '';
-
+  saveMessage.textContent = '';
 
   renderEditor();
-
 }
-
 
 
 function closeEditor(){
 
-  editor.classList.remove(
-    'visible'
-  );
+  editor.classList.remove('visible');
 
-
-  playerArea.classList.remove(
-    'hidden'
-  );
-
+  playerView.classList.remove('hidden');
 
   resetSession();
-
 }
-
 
 
 function renderEditor(){
@@ -4077,180 +3091,142 @@ function renderEditor(){
   const key =
     editRoutineSelect.value;
 
-
   const list =
-    editorDraft[key];
+    draft[key];
 
 
-  editorList.innerHTML =
-    '';
+  editorList.innerHTML = '';
 
 
-
-  if(
-    list.length ===
-    0
-  ){
+  if(!list.length){
 
     const empty =
-      document.createElement(
-        'div'
-      );
-
+      document.createElement('div');
 
     empty.className =
-      'empty-message';
-
+      'empty-state';
 
     empty.innerHTML =
       `
-        <strong class="hockey">
-          No Exercises Yet
-        </strong>
-        Tap + Add Exercise to build this routine.
+      <strong class="hockey">
+        No Exercises Yet
+      </strong>
+      Tap + Add Exercise to build this workout.
       `;
 
-
-    editorList
-      .appendChild(
-        empty
-      );
-
+    editorList.appendChild(empty);
   }
 
 
-
   list.forEach(
-    (
-      exercise,
-      i
-    ) => {
-
+    (exercise,i) => {
 
       const card =
-        document.createElement(
-          'div'
-        );
-
+        document.createElement('div');
 
       card.className =
         'edit-card';
 
 
-
       card.innerHTML =
         `
+        <div class="edit-grid">
 
-          <div class="edit-grid">
-
-            <div>
-
-              <div class="control-label hockey">
-                Exercise
-              </div>
-
-              <input
-                type="text"
-                data-name="${i}"
-                value=""
-              >
-
-            </div>
-
-
-            <div>
-
-              <div class="control-label hockey">
-                Seconds
-              </div>
-
-              <input
-                type="number"
-                min="5"
-                max="600"
-                data-seconds="${i}"
-                value="${exercise.seconds}"
-              >
-
-            </div>
-
-          </div>
-
-
-
-          <div style="margin-top:10px">
+          <div>
 
             <div class="control-label hockey">
-              Instruction
+              Exercise
             </div>
 
-            <textarea
-              data-cue="${i}"
-            ></textarea>
+            <input
+              type="text"
+              data-name="${i}"
+            >
 
           </div>
 
 
+          <div>
 
-          <div class="editor-options">
-
-            <label class="side-check">
-
-              <input
-                type="checkbox"
-                data-sides="${i}"
-                ${
-                  exercise.sides ===
-                  2
-                  ?
-                  'checked'
-                  :
-                  ''
-                }
-              >
-
-              Side 1 + Side 2
-
-            </label>
-
-
-
-            <div class="editor-actions">
-
-              <button
-                type="button"
-                class="small-btn"
-                data-up="${i}"
-                aria-label="Move exercise up"
-              >
-                ↑
-              </button>
-
-
-              <button
-                type="button"
-                class="small-btn"
-                data-down="${i}"
-                aria-label="Move exercise down"
-              >
-                ↓
-              </button>
-
-
-              <button
-                type="button"
-                class="small-btn delete-btn"
-                data-delete="${i}"
-              >
-                Delete
-              </button>
-
+            <div class="control-label hockey">
+              Seconds
             </div>
+
+            <input
+              type="number"
+              min="5"
+              max="600"
+              data-seconds="${i}"
+              value="${exercise.seconds}"
+            >
 
           </div>
 
+        </div>
+
+
+        <div style="margin-top:10px">
+
+          <div class="control-label hockey">
+            Instructions
+          </div>
+
+          <textarea
+            data-cue="${i}"
+          ></textarea>
+
+        </div>
+
+
+        <div class="edit-options">
+
+          <label class="side-check">
+
+            <input
+              type="checkbox"
+              data-sides="${i}"
+              ${
+                exercise.sides === 2
+                ? 'checked'
+                : ''
+              }
+            >
+
+            Side 1 + Side 2
+
+          </label>
+
+
+          <div class="edit-actions">
+
+            <button
+              type="button"
+              class="small-btn"
+              data-up="${i}"
+            >
+              ↑
+            </button>
+
+            <button
+              type="button"
+              class="small-btn"
+              data-down="${i}"
+            >
+              ↓
+            </button>
+
+            <button
+              type="button"
+              class="small-btn delete-btn"
+              data-delete="${i}"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
         `;
-
 
 
       const nameInput =
@@ -4258,405 +3234,190 @@ function renderEditor(){
           `[data-name="${i}"]`
         );
 
-
       const cueInput =
         card.querySelector(
           `[data-cue="${i}"]`
         );
 
 
-
       nameInput.value =
         exercise.name;
 
-
-
       cueInput.value =
-        exercise.cue
-        ||
-        '';
+        exercise.cue || '';
 
 
-
-      editorList
-        .appendChild(
-          card
-        );
+      editorList.appendChild(card);
 
     }
   );
 
 
-
   editorList
-    .querySelectorAll(
-      '[data-name]'
-    )
-    .forEach(
-      input => {
+    .querySelectorAll('[data-name]')
+    .forEach(input => {
 
-        input.addEventListener(
-          'input',
-          () => {
+      input.addEventListener(
+        'input',
+        () => {
 
-            const i =
-              Number(
-                input.dataset.name
-              );
+          draft[key][Number(input.dataset.name)].name =
+            input.value;
 
+        }
+      );
 
-            list[i].name =
-              input.value;
-
-          }
-        );
-
-      }
-    );
-
+    });
 
 
   editorList
-    .querySelectorAll(
-      '[data-seconds]'
-    )
-    .forEach(
-      input => {
+    .querySelectorAll('[data-seconds]')
+    .forEach(input => {
 
-        input.addEventListener(
-          'input',
-          () => {
+      input.addEventListener(
+        'input',
+        () => {
 
-            const i =
-              Number(
-                input.dataset.seconds
-              );
-
-
-            list[i].seconds =
-              Math.max(
-                5,
-                Math.min(
-                  600,
-                  Number(
-                    input.value
-                  )
-                  ||
-                  5
-                )
-              );
-
-          }
-        );
-
-      }
-    );
-
-
-
-  editorList
-    .querySelectorAll(
-      '[data-cue]'
-    )
-    .forEach(
-      input => {
-
-        input.addEventListener(
-          'input',
-          () => {
-
-            const i =
-              Number(
-                input.dataset.cue
-              );
-
-
-            list[i].cue =
-              input.value;
-
-          }
-        );
-
-      }
-    );
-
-
-
-  editorList
-    .querySelectorAll(
-      '[data-sides]'
-    )
-    .forEach(
-      input => {
-
-        input.addEventListener(
-          'change',
-          () => {
-
-            const i =
-              Number(
-                input.dataset.sides
-              );
-
-
-            list[i].sides =
-              input.checked
-              ?
-              2
-              :
-              1;
-
-          }
-        );
-
-      }
-    );
-
-
-
-  editorList
-    .querySelectorAll(
-      '[data-delete]'
-    )
-    .forEach(
-      button => {
-
-        button.addEventListener(
-          'click',
-          () => {
-
-            const i =
-              Number(
-                button.dataset.delete
-              );
-
-
-            list.splice(
-              i,
-              1
+          draft[key][Number(input.dataset.seconds)].seconds =
+            Math.max(
+              5,
+              Math.min(
+                600,
+                Number(input.value) || 5
+              )
             );
 
+        }
+      );
 
-            renderEditor();
-
-          }
-        );
-
-      }
-    );
-
+    });
 
 
   editorList
-    .querySelectorAll(
-      '[data-up]'
-    )
-    .forEach(
-      button => {
+    .querySelectorAll('[data-cue]')
+    .forEach(input => {
 
-        button.addEventListener(
-          'click',
-          () => {
+      input.addEventListener(
+        'input',
+        () => {
 
-            const i =
-              Number(
-                button.dataset.up
-              );
+          draft[key][Number(input.dataset.cue)].cue =
+            input.value;
 
+        }
+      );
 
-            if(
-              i <=
-              0
-            ){
-
-              return;
-
-            }
-
-
-            [
-              list[i - 1],
-              list[i]
-            ]
-            =
-            [
-              list[i],
-              list[i - 1]
-            ];
-
-
-            renderEditor();
-
-          }
-        );
-
-      }
-    );
-
+    });
 
 
   editorList
-    .querySelectorAll(
-      '[data-down]'
-    )
-    .forEach(
-      button => {
+    .querySelectorAll('[data-sides]')
+    .forEach(input => {
 
-        button.addEventListener(
-          'click',
-          () => {
+      input.addEventListener(
+        'change',
+        () => {
 
-            const i =
-              Number(
-                button.dataset.down
-              );
+          draft[key][Number(input.dataset.sides)].sides =
+            input.checked
+            ? 2
+            : 1;
 
+        }
+      );
 
-            if(
-              i >=
-              list.length - 1
-            ){
-
-              return;
-
-            }
+    });
 
 
-            [
-              list[i + 1],
-              list[i]
-            ]
-            =
-            [
-              list[i],
-              list[i + 1]
-            ];
+  editorList
+    .querySelectorAll('[data-delete]')
+    .forEach(btn => {
+
+      btn.addEventListener(
+        'click',
+        () => {
+
+          draft[key].splice(
+            Number(btn.dataset.delete),
+            1
+          );
+
+          renderEditor();
+
+        }
+      );
+
+    });
 
 
-            renderEditor();
+  editorList
+    .querySelectorAll('[data-up]')
+    .forEach(btn => {
 
+      btn.addEventListener(
+        'click',
+        () => {
+
+          const i =
+            Number(btn.dataset.up);
+
+          if(i <= 0){
+            return;
           }
-        );
 
-      }
-    );
+          [
+            draft[key][i-1],
+            draft[key][i]
+          ]
+          =
+          [
+            draft[key][i],
+            draft[key][i-1]
+          ];
 
+          renderEditor();
+
+        }
+      );
+
+    });
+
+
+  editorList
+    .querySelectorAll('[data-down]')
+    .forEach(btn => {
+
+      btn.addEventListener(
+        'click',
+        () => {
+
+          const i =
+            Number(btn.dataset.down);
+
+          if(
+            i >=
+            draft[key].length-1
+          ){
+            return;
+          }
+
+          [
+            draft[key][i+1],
+            draft[key][i]
+          ]
+          =
+          [
+            draft[key][i],
+            draft[key][i+1]
+          ];
+
+          renderEditor();
+
+        }
+      );
+
+    });
 }
-
-
-
-function saveWorkout(){
-
-  Object.keys(
-    editorDraft
-  )
-  .forEach(
-    key => {
-
-
-      editorDraft[key] =
-        editorDraft[key]
-        .filter(
-          exercise =>
-            exercise.name
-            .trim()
-            .length >
-            0
-        )
-        .map(
-          exercise => ({
-
-            name:
-              exercise.name
-              .trim(),
-
-            seconds:
-              Math.max(
-                5,
-                Math.min(
-                  600,
-                  Number(
-                    exercise.seconds
-                  )
-                  ||
-                  30
-                )
-              ),
-
-            sides:
-              exercise.sides === 2
-              ?
-              2
-              :
-              1,
-
-            cue:
-              (
-                exercise.cue
-                ||
-                ''
-              ).trim()
-
-          })
-        );
-
-    }
-  );
-
-
-
-  workouts =
-    clone(
-      editorDraft
-    );
-
-
-
-  try{
-
-    localStorage.setItem(
-
-      STORAGE_KEY,
-
-      JSON.stringify(
-        workouts
-      )
-
-    );
-
-
-    saveMessage.textContent =
-      'Workout saved on this iPhone.';
-
-  }
-  catch(error){
-
-    saveMessage.textContent =
-      'Workout changed, but this browser could not save it permanently.';
-
-  }
-
-
-
-  currentRoutineKey =
-    editRoutineSelect.value;
-
-
-
-  setTimeout(
-    () => {
-
-      updateTabs();
-
-
-      closeEditor();
-
-    },
-    450
-  );
-
-}
-
 
 
 function addExercise(){
@@ -4665,30 +3426,101 @@ function addExercise(){
     editRoutineSelect.value;
 
 
+  draft[key].push({
 
-  editorDraft[key]
-    .push({
+    name:'New Exercise',
 
-      name:
-        'New Exercise',
+    seconds:30,
 
-      seconds:
-        30,
+    sides:1,
 
-      sides:
-        1,
+    cue:''
 
-      cue:
-        ''
+  });
+
+
+  renderEditor();
+}
+
+
+function saveWorkout(){
+
+  Object.keys(draft)
+    .forEach(key => {
+
+      draft[key] =
+        draft[key]
+        .filter(
+          x =>
+            x.name.trim().length > 0
+        )
+        .map(
+          x => ({
+
+            name:
+              x.name.trim(),
+
+            seconds:
+              Math.max(
+                5,
+                Math.min(
+                  600,
+                  Number(x.seconds) || 30
+                )
+              ),
+
+            sides:
+              x.sides === 2
+              ? 2
+              : 1,
+
+            cue:
+              (x.cue || '').trim()
+
+          })
+        );
 
     });
 
 
+  workouts =
+    clone(draft);
 
-  renderEditor();
 
+  try{
+
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify(workouts)
+    );
+
+    saveMessage.textContent =
+      'Workout saved on this iPhone.';
+
+  }
+  catch(e){
+
+    saveMessage.textContent =
+      'Workout changed, but could not be saved permanently.';
+
+  }
+
+
+  routineKey =
+    editRoutineSelect.value;
+
+
+  setTimeout(
+    () => {
+
+      updateCategoryButtons();
+
+      closeEditor();
+
+    },
+    400
+  );
 }
-
 
 
 function syncVolume(value){
@@ -4698,9 +3530,7 @@ function syncVolume(value){
       0,
       Math.min(
         100,
-        Number(value)
-        ||
-        0
+        Number(value) || 0
       )
     );
 
@@ -4708,64 +3538,50 @@ function syncVolume(value){
   volumeSlider.value =
     clean;
 
-
   topVolume.value =
     clean;
 
-
   topVolumeText.textContent =
-    clean
-    +
-    '%';
-
+    clean + '%';
 }
-
 
 
 /* CATEGORY BUTTONS */
 
 document
-  .querySelectorAll(
-    '[data-routine]'
-  )
-  .forEach(
-    button => {
+  .querySelectorAll('[data-routine]')
+  .forEach(btn => {
 
-      button.addEventListener(
-        'click',
-        () => {
+    btn.addEventListener(
+      'click',
+      () => {
 
-          selectRoutine(
-            button.dataset.routine
-          );
+        chooseRoutine(
+          btn.dataset.routine
+        );
 
-        }
-      );
+      }
+    );
 
-    }
-  );
+  });
 
 
-
-/* TIMER CONTROLS */
-
-startBtn.addEventListener(
-  'click',
-  startPause
-);
-
+/* TIMER */
 
 previousBtn.addEventListener(
   'click',
   previousStep
 );
 
+startBtn.addEventListener(
+  'click',
+  startPause
+);
 
 skipBtn.addEventListener(
   'click',
   skipForward
 );
-
 
 resetBtn.addEventListener(
   'click',
@@ -4773,32 +3589,27 @@ resetBtn.addEventListener(
 );
 
 
-
-/* WORKOUT EDITOR */
+/* EDITOR */
 
 editWorkoutBtn.addEventListener(
   'click',
   openEditor
 );
 
-
 cancelEditBtn.addEventListener(
   'click',
   closeEditor
 );
-
 
 saveWorkoutBtn.addEventListener(
   'click',
   saveWorkout
 );
 
-
 addExerciseBtn.addEventListener(
   'click',
   addExercise
 );
-
 
 editRoutineSelect.addEventListener(
   'change',
@@ -4806,23 +3617,12 @@ editRoutineSelect.addEventListener(
 );
 
 
-
-/* REST TIME */
+/* REST */
 
 restSelect.addEventListener(
   'change',
-  () => {
-
-    restPreview.textContent =
-      formatClock(
-        Number(
-          restSelect.value
-        )
-      );
-
-  }
+  render
 );
-
 
 
 /* VOLUME */
@@ -4838,7 +3638,6 @@ volumeSlider.addEventListener(
   }
 );
 
-
 topVolume.addEventListener(
   'input',
   () => {
@@ -4851,58 +3650,39 @@ topVolume.addEventListener(
 );
 
 
-
-/* SOUND */
+/* AUDIO */
 
 soundToggle.addEventListener(
   'change',
   () => {
 
-    if(
-      soundToggle.checked
-    ){
-
-      audio();
-
+    if(soundToggle.checked){
+      getAudio();
     }
 
   }
 );
 
 
-
-/* M KEY MUTES DESKTOP VERSION */
+/* DESKTOP MUTE SHORTCUT */
 
 document.addEventListener(
   'keydown',
   event => {
 
     const tag =
-      event.target
-      .tagName;
-
+      event.target.tagName;
 
     if(
-      tag ===
-      'INPUT'
-      ||
-      tag ===
-      'TEXTAREA'
-      ||
-      tag ===
-      'SELECT'
+      tag === 'INPUT' ||
+      tag === 'SELECT' ||
+      tag === 'TEXTAREA'
     ){
-
       return;
-
     }
 
-
     if(
-      event.key
-      .toLowerCase()
-      ===
-      'm'
+      event.key.toLowerCase() === 'm'
     ){
 
       soundToggle.checked =
@@ -4914,26 +3694,18 @@ document.addEventListener(
 );
 
 
+/* INITIALIZE */
 
-syncVolume(
-  70
-);
+syncVolume(70);
 
-
-updateTabs();
-
+updateCategoryButtons();
 
 resetSession();
 
 
+/* PWA */
 
-/* OFFLINE PWA */
-
-if(
-  'serviceWorker'
-  in
-  navigator
-){
+if('serviceWorker' in navigator){
 
   window.addEventListener(
     'load',
@@ -4941,24 +3713,16 @@ if(
 
       navigator
         .serviceWorker
-        .register(
-          './sw.js'
-        )
-        .catch(
-          () => {}
-        );
+        .register('./sw.js')
+        .catch(()=>{});
 
     }
   );
 
 }
 
-
 })();
-
 </script>
 
-
 </body>
-
 </html>
