@@ -1,9 +1,17 @@
 {
-  "name": "Goalie Workout Timer",
-  "short_name": "Goalie Timer",
+  "name": "Goalie Training",
+  "short_name": "Goalie Training",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#111111",
-  "description": "At-home hockey goalie mobility, strength, and explosiveness workout timer."
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "description": "At-home hockey goalie mobility, strength and explosiveness training.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
 }
