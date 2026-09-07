@@ -1,1224 +1,3806 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#111111">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Goalie Timer">
+<meta charset="utf-8">
 
-  <link rel="manifest" href="manifest.webmanifest">
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
 
+<meta name="theme-color" content="#000000">
 
-  <title>Goalie Workout Timer</title>
+<meta
+  name="apple-mobile-web-app-capable"
+  content="yes"
+>
 
-  <style>
-    :root{
-      --bg:#f6f6f7;
-      --card:#fff;
-      --text:#111;
-      --muted:#666;
-      --border:#d9d9de;
-      --accent:#1f6feb;
-      --accentbg:#eaf2ff;
-    }
+<meta
+  name="apple-mobile-web-app-status-bar-style"
+  content="black"
+>
 
-    *{box-sizing:border-box}
+<meta
+  name="apple-mobile-web-app-title"
+  content="Goalie Training"
+>
 
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      background:var(--bg);
-      color:var(--text);
-    }
+<link
+  rel="manifest"
+  href="manifest.webmanifest"
+>
 
-    main{
-      max-width:980px;
-      margin:0 auto;
-      padding:18px;
-    }
+<title>Goalie Training</title>
 
-    .grid{
-      display:grid;
-      gap:14px;
-      grid-template-columns:minmax(0,1.2fr) minmax(280px,.8fr);
-    }
+<style>
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:16px;
-    }
+:root{
+  --black:#000000;
+  --panel:#090a0a;
+  --panel2:#101111;
+  --white:#ffffff;
+  --muted:#8c8f92;
+  --line:#2a2d2e;
+  --green:#00c853;
+  --green2:#00e65f;
+  --greenDark:#003d1b;
+  --danger:#ff4d4d;
+}
 
-    .header{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:flex-start;
-    }
+*{
+  box-sizing:border-box;
+}
 
-    .small{
-      font-size:13px;
-      color:var(--muted);
-    }
+html{
+  background:var(--black);
+}
 
-    h1{
-      font-size:24px;
-      margin:4px 0 0;
-    }
+body{
+  margin:0;
+  min-height:100%;
+  background:var(--black);
+  color:var(--white);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
 
-    .badge{
-      border:1px solid var(--border);
-      border-radius:999px;
-      padding:6px 10px;
-      font-size:13px;
-    }
+button,
+input,
+select,
+textarea{
+  font:inherit;
+}
 
-    .timer{
-      text-align:center;
-      font-size:72px;
-      font-weight:800;
-      letter-spacing:-2px;
-      margin-top:28px;
-      font-variant-numeric:tabular-nums;
-    }
+button{
+  cursor:pointer;
+}
 
-    .center{text-align:center}
+button:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+}
 
-    #dose{
-      font-weight:600;
-      margin-top:6px;
-    }
+.hockey{
+  font-family:
+    Impact,
+    Haettenschweiler,
+    "Arial Narrow Bold",
+    Arial,
+    sans-serif;
 
-    #nextUp{
-      font-weight:700;
-      margin-top:10px;
-    }
+  font-style:italic;
+  text-transform:uppercase;
+  letter-spacing:.035em;
+}
 
-    #cue{
-      color:var(--muted);
-      font-size:14px;
-      line-height:1.45;
-      max-width:640px;
-      margin:8px auto 0;
-    }
+.app{
+  width:min(1100px,100%);
+  margin:0 auto;
+  padding:
+    max(18px,env(safe-area-inset-top))
+    14px
+    max(24px,env(safe-area-inset-bottom));
+}
 
-    .bar{
-      height:9px;
-      background:#ececf0;
-      border-radius:999px;
-      overflow:hidden;
-      margin-top:24px;
-    }
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:8px 4px 18px;
+}
 
-    #progress{
-      height:100%;
-      background:var(--accent);
-      width:0%;
-      transition:width .25s;
-    }
+.brand{
+  min-width:0;
+}
 
-    .controls{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      justify-content:center;
-      margin-top:18px;
-    }
+.brand-main{
+  font-size:34px;
+  line-height:.95;
+  font-weight:900;
+}
 
-    button,select,input{font:inherit}
+.brand-sub{
+  margin-top:3px;
+  font-size:13px;
+  letter-spacing:.35em;
+  color:#c6c6c6;
+}
 
-    button{
-      min-height:44px;
-      border-radius:12px;
-      border:1px solid var(--border);
-      background:#fff;
-      padding:10px 14px;
-      font-weight:600;
-    }
+.top-controls{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
 
-    button.primary{
-      background:var(--accent);
-      color:#fff;
-      border-color:var(--accent);
-    }
+.sound-switch{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
 
-    label{
-      display:block;
-      font-size:13px;
-      font-weight:700;
-      margin-top:14px;
-    }
+.sound-switch input{
+  width:20px;
+  height:20px;
+  accent-color:var(--green);
+}
 
-    select{
-      width:100%;
-      min-height:44px;
-      border:1px solid var(--border);
-      border-radius:12px;
-      background:#fff;
-      padding:0 12px;
-      margin-top:6px;
-    }
+.volume-mini{
+  width:95px;
+  accent-color:var(--green);
+}
 
-    .check{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:500;
-    }
+.tabs{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-bottom:14px;
+}
 
-    .check input{
-      width:20px;
-      height:20px;
-    }
+.tab{
+  min-height:52px;
+  border:1px solid var(--line);
+  border-radius:7px;
+  background:#050505;
+  color:#b9b9b9;
+  padding:8px;
+  font-weight:900;
+  font-style:italic;
+  text-transform:uppercase;
+}
 
-    .rangeRow{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-top:14px;
-    }
+.tab.active{
+  background:var(--green);
+  border-color:var(--green);
+  color:#001a0a;
+}
 
-    input[type=range]{
-      width:100%;
-      margin-top:8px;
-    }
+.main-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.5fr) minmax(270px,.65fr);
+  gap:14px;
+}
 
-    .list{
-      max-height:330px;
-      overflow:auto;
-      padding-left:0;
-      list-style:none;
-      margin:10px 0 0;
-    }
+.panel{
+  border:1px solid var(--line);
+  background:var(--panel);
+  border-radius:9px;
+}
 
-    .list li{
-      padding:8px;
-      border-radius:10px;
-    }
+.player{
+  padding:20px;
+}
 
-    .list .active{
-      background:var(--accentbg);
-      font-weight:700;
-    }
+.player-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
 
-    .muted{color:var(--muted)}
+.step-label{
+  font-size:15px;
+  color:#8e9093;
+}
 
-    .summary{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:8px;
-      margin-top:10px;
-    }
+.phase{
+  border:1px solid var(--green);
+  color:var(--green2);
+  border-radius:6px;
+  padding:7px 12px;
+  font-size:13px;
+}
 
-    .stat{
-      background:#f1f1f3;
-      border-radius:12px;
-      padding:10px;
-      text-align:center;
-    }
+.big-timer{
+  margin-top:12px;
+  text-align:center;
+  font-size:clamp(72px,15vw,138px);
+  font-weight:900;
+  line-height:.9;
+  font-style:italic;
+  letter-spacing:-.04em;
+}
 
-    .stat strong{
-      display:block;
-      font-size:20px;
-    }
+.exercise-name{
+  margin-top:18px;
+  text-align:center;
+  font-size:clamp(25px,6vw,44px);
+  font-weight:900;
+}
 
-    .note{
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.5;
-    }
+.side-label{
+  min-height:29px;
+  margin-top:5px;
+  text-align:center;
+  font-size:22px;
+  color:var(--green2);
+}
 
-    @media(max-width:760px){
-      .grid{grid-template-columns:1fr}
-      .timer{font-size:58px}
-      main{padding:12px}
-    }
-  </style>
+.exercise-cue{
+  width:min(620px,100%);
+  margin:24px auto 0;
+  text-align:center;
+  color:#a6a8aa;
+  font-size:17px;
+  line-height:1.5;
+}
+
+.next-card{
+  margin:20px auto 0;
+  border:1px solid var(--greenDark);
+  background:#00170a;
+  border-radius:8px;
+  padding:13px 15px;
+  width:min(620px,100%);
+}
+
+.next-card.hidden{
+  display:none;
+}
+
+.next-small{
+  color:#7b8d82;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+
+.next-name{
+  margin-top:4px;
+  color:var(--green2);
+  font-size:20px;
+  font-weight:900;
+}
+
+.progress-wrap{
+  margin-top:26px;
+}
+
+.progress-track{
+  height:10px;
+  overflow:hidden;
+  border-radius:999px;
+  background:#252727;
+}
+
+.progress-fill{
+  height:100%;
+  width:0;
+  background:var(--green);
+  transition:width .25s linear;
+}
+
+.progress-meta{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:7px;
+  color:#7f8285;
+  font-size:12px;
+}
+
+.player-buttons{
+  display:grid;
+  grid-template-columns:1fr 1.4fr 1fr;
+  gap:10px;
+  margin-top:22px;
+}
+
+.btn{
+  min-height:56px;
+  border:1px solid #444;
+  background:#080808;
+  color:#fff;
+  border-radius:7px;
+  padding:10px 12px;
+  font-weight:900;
+  font-style:italic;
+  text-transform:uppercase;
+}
+
+.btn-primary{
+  background:var(--green);
+  border-color:var(--green);
+  color:#001207;
+}
+
+.btn-danger{
+  border-color:#562828;
+  color:#ff8c8c;
+}
+
+.sidebar{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.side-panel{
+  padding:17px;
+}
+
+.side-heading{
+  color:#8b8d90;
+  font-size:14px;
+}
+
+.side-big{
+  margin-top:8px;
+  font-size:25px;
+}
+
+.next-side{
+  color:var(--green2);
+  margin-top:6px;
+  font-size:15px;
+}
+
+.rest-block{
+  margin-top:18px;
+  padding-top:18px;
+  border-top:1px solid var(--line);
+}
+
+.rest-number{
+  margin-top:7px;
+  font-size:31px;
+  color:#c7c7c7;
+}
+
+.session-progress{
+  font-size:34px;
+  margin-top:8px;
+}
+
+.side-progress{
+  margin-top:12px;
+}
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:15px;
+}
+
+.stat{
+  border:1px solid var(--line);
+  border-radius:7px;
+  padding:12px;
+}
+
+.stat-label{
+  color:#777;
+  font-size:11px;
+  text-transform:uppercase;
+}
+
+.stat-value{
+  margin-top:5px;
+  font-size:20px;
+  font-weight:800;
+}
+
+.routine-panel{
+  margin-top:14px;
+  padding:18px;
+}
+
+.routine-header{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+}
+
+.routine-title{
+  font-size:26px;
+}
+
+.edit-btn{
+  min-height:46px;
+  border:1px solid var(--green);
+  background:#050505;
+  color:var(--green2);
+  border-radius:7px;
+  padding:9px 15px;
+  font-weight:900;
+  font-style:italic;
+  text-transform:uppercase;
+}
+
+.routine-list{
+  list-style:none;
+  padding:0;
+  margin:14px 0 0;
+  border:1px solid var(--line);
+  border-radius:8px;
+  overflow:hidden;
+}
+
+.routine-row{
+  display:grid;
+  grid-template-columns:38px minmax(0,1fr) 70px 70px 26px;
+  align-items:center;
+  min-height:55px;
+  gap:8px;
+  padding:8px 12px;
+  border-bottom:1px solid var(--line);
+}
+
+.routine-row:last-child{
+  border-bottom:0;
+}
+
+.routine-row.active{
+  background:#003719;
+  outline:1px solid var(--green);
+  outline-offset:-1px;
+}
+
+.routine-row.done{
+  opacity:.65;
+}
+
+.exercise-index{
+  color:#bdbdbd;
+  font-size:14px;
+}
+
+.row-name{
+  min-width:0;
+  font-weight:800;
+}
+
+.row-time,
+.row-sides{
+  text-align:right;
+  color:#9b9b9b;
+  font-size:13px;
+}
+
+.status-dot{
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  border:2px solid #555;
+  justify-self:end;
+}
+
+.status-dot.current{
+  border-color:var(--green);
+  background:var(--green);
+}
+
+.status-dot.done{
+  border-color:var(--green);
+  position:relative;
+}
+
+.status-dot.done::after{
+  content:"✓";
+  position:absolute;
+  color:var(--green2);
+  top:-7px;
+  left:1px;
+  font-size:22px;
+  font-weight:900;
+}
+
+.settings-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:end;
+  gap:16px;
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+}
+
+.control-group{
+  min-width:130px;
+  flex:1;
+}
+
+.control-label{
+  color:#85888a;
+  font-size:12px;
+  text-transform:uppercase;
+  margin-bottom:6px;
+}
+
+select,
+input[type="text"],
+input[type="number"],
+textarea{
+  width:100%;
+  min-height:45px;
+  border:1px solid #36393a;
+  border-radius:7px;
+  background:#050505;
+  color:#fff;
+  padding:9px 11px;
+  font-size:16px;
+}
+
+textarea{
+  min-height:78px;
+  resize:vertical;
+}
+
+input[type="checkbox"]{
+  accent-color:var(--green);
+}
+
+input[type="range"]{
+  accent-color:var(--green);
+}
+
+.editor{
+  display:none;
+}
+
+.editor.visible{
+  display:block;
+}
+
+.player-area.hidden{
+  display:none;
+}
+
+.editor-head{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  align-items:center;
+  margin-bottom:14px;
+}
+
+.editor-title{
+  font-size:28px;
+}
+
+.edit-select{
+  width:auto;
+  min-width:180px;
+}
+
+.editor-list{
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+}
+
+.edit-card{
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#080808;
+  padding:14px;
+}
+
+.edit-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 105px;
+  gap:10px;
+}
+
+.editor-options{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px;
+  margin-top:10px;
+}
+
+.side-check{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  min-height:44px;
+  color:#ccc;
+}
+
+.side-check input{
+  width:20px;
+  height:20px;
+}
+
+.editor-actions{
+  display:flex;
+  gap:7px;
+  margin-left:auto;
+}
+
+.small-btn{
+  min-width:44px;
+  min-height:44px;
+  border:1px solid #414141;
+  border-radius:7px;
+  color:#fff;
+  background:#080808;
+}
+
+.delete-btn{
+  color:#ff7676;
+  border-color:#5c2525;
+}
+
+.add-btn{
+  width:100%;
+  margin-top:14px;
+  min-height:52px;
+  border:1px dashed var(--green);
+  background:#001208;
+  color:var(--green2);
+  border-radius:8px;
+  font-weight:900;
+  font-style:italic;
+  text-transform:uppercase;
+}
+
+.editor-footer{
+  position:sticky;
+  bottom:0;
+  display:flex;
+  justify-content:flex-end;
+  gap:9px;
+  margin-top:16px;
+  padding:12px 0;
+  background:linear-gradient(
+    rgba(0,0,0,0),
+    rgba(0,0,0,.96) 25%
+  );
+}
+
+.toast{
+  min-height:20px;
+  margin-top:8px;
+  color:var(--green2);
+  text-align:right;
+  font-size:13px;
+}
+
+.footer-note{
+  margin-top:14px;
+  color:#676a6c;
+  font-size:12px;
+  text-align:center;
+}
+
+@media(max-width:800px){
+
+  .topbar{
+    align-items:flex-start;
+  }
+
+  .brand-main{
+    font-size:27px;
+  }
+
+  .brand-sub{
+    font-size:10px;
+  }
+
+  .volume-mini{
+    width:70px;
+  }
+
+  .tabs{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .main-grid{
+    grid-template-columns:1fr;
+  }
+
+  .sidebar{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+
+  .routine-row{
+    grid-template-columns:30px minmax(0,1fr) 55px 26px;
+  }
+
+  .row-sides{
+    display:none;
+  }
+}
+
+@media(max-width:540px){
+
+  .app{
+    padding-left:10px;
+    padding-right:10px;
+  }
+
+  .top-controls{
+    gap:6px;
+  }
+
+  .sound-word{
+    display:none;
+  }
+
+  .player{
+    padding:15px;
+  }
+
+  .big-timer{
+    font-size:80px;
+  }
+
+  .exercise-name{
+    font-size:27px;
+  }
+
+  .exercise-cue{
+    font-size:15px;
+  }
+
+  .player-buttons{
+    grid-template-columns:1fr 1.3fr 1fr;
+  }
+
+  .btn{
+    padding:8px 5px;
+    font-size:14px;
+  }
+
+  .sidebar{
+    grid-template-columns:1fr;
+  }
+
+  .routine-header{
+    align-items:flex-start;
+  }
+
+  .routine-title{
+    font-size:22px;
+  }
+
+  .routine-row{
+    padding-left:8px;
+    padding-right:8px;
+  }
+
+  .row-name{
+    font-size:13px;
+  }
+
+  .edit-grid{
+    grid-template-columns:1fr 88px;
+  }
+
+  .editor-actions{
+    width:100%;
+    margin-left:0;
+  }
+}
+
+</style>
 </head>
+
 
 <body>
 
-<main id="app" tabindex="0">
+<div class="app">
 
-  <div class="grid">
+  <header class="topbar">
 
-    <section class="card">
+    <div class="brand">
 
-      <div class="header">
-        <div>
-          <div class="small">At-home hockey goalie program</div>
-          <h1 id="exerciseName">Choose a routine</h1>
+      <div class="brand-main hockey">
+        Goalie
+      </div>
+
+      <div class="brand-sub hockey">
+        Training
+      </div>
+
+    </div>
+
+    <div class="top-controls">
+
+      <label class="sound-switch">
+
+        <span aria-hidden="true">🔊</span>
+
+        <input
+          id="soundToggle"
+          type="checkbox"
+          checked
+          aria-label="Sound cues"
+        >
+
+        <span class="sound-word">Sound</span>
+
+      </label>
+
+      <input
+        id="topVolume"
+        class="volume-mini"
+        type="range"
+        min="0"
+        max="100"
+        value="70"
+        aria-label="Volume"
+      >
+
+      <span id="topVolumeText">
+        70%
+      </span>
+
+    </div>
+
+  </header>
+
+
+  <div
+    id="playerArea"
+    class="player-area"
+  >
+
+    <nav
+      class="tabs"
+      aria-label="Workout type"
+    >
+
+      <button
+        class="tab hockey active"
+        data-routine="mobility"
+        type="button"
+      >
+        Mobility
+      </button>
+
+      <button
+        class="tab hockey"
+        data-routine="strength"
+        type="button"
+      >
+        Strength
+      </button>
+
+      <button
+        class="tab hockey"
+        data-routine="explosive"
+        type="button"
+      >
+        Explosiveness
+      </button>
+
+      <button
+        class="tab hockey"
+        data-routine="full"
+        type="button"
+      >
+        Full Session
+      </button>
+
+    </nav>
+
+
+    <div class="main-grid">
+
+      <section class="panel player">
+
+        <div class="player-top">
+
+          <div
+            id="exerciseCounter"
+            class="step-label hockey"
+          >
+            Exercise 1
+          </div>
+
+          <div
+            id="phaseBadge"
+            class="phase hockey"
+          >
+            Ready
+          </div>
+
         </div>
-        <span id="phaseBadge" class="badge">Ready</span>
-      </div>
 
-      <div class="timer" id="timer" aria-live="polite">00:00</div>
 
-      <div class="center">
-        <div id="dose">Select Mobility, Strength, or Explosiveness.</div>
-        <div id="nextUp"></div>
-        <div id="cue">
-          The app will count you in, time each movement, rest between movements, and advance automatically.
+        <div
+          id="timer"
+          class="big-timer hockey"
+          aria-live="polite"
+        >
+          00:40
         </div>
+
+
+        <div
+          id="exerciseName"
+          class="exercise-name hockey"
+        >
+          Hip Internal Rotation
+        </div>
+
+
+        <div
+          id="sideLabel"
+          class="side-label hockey"
+        ></div>
+
+
+        <div
+          id="exerciseCue"
+          class="exercise-cue"
+        ></div>
+
+
+        <div
+          id="nextCard"
+          class="next-card hidden"
+        >
+
+          <div class="next-small hockey">
+            Next up
+          </div>
+
+          <div
+            id="nextName"
+            class="next-name hockey"
+          ></div>
+
+        </div>
+
+
+        <div class="progress-wrap">
+
+          <div class="progress-track">
+
+            <div
+              id="exerciseProgress"
+              class="progress-fill"
+            ></div>
+
+          </div>
+
+          <div class="progress-meta">
+
+            <span id="stepProgress">
+              1 of 1
+            </span>
+
+            <span id="elapsedText">
+              0:00 elapsed
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="player-buttons">
+
+          <button
+            id="previousBtn"
+            class="btn hockey"
+            type="button"
+          >
+            Prev
+          </button>
+
+          <button
+            id="startBtn"
+            class="btn btn-primary hockey"
+            type="button"
+          >
+            Start
+          </button>
+
+          <button
+            id="skipBtn"
+            class="btn hockey"
+            type="button"
+          >
+            Skip
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <aside class="sidebar">
+
+        <section class="panel side-panel">
+
+          <div class="side-heading hockey">
+            Next up
+          </div>
+
+          <div
+            id="sidebarNext"
+            class="side-big hockey"
+          >
+            —
+          </div>
+
+          <div
+            id="sidebarNextSide"
+            class="next-side hockey"
+          ></div>
+
+
+          <div class="rest-block">
+
+            <div class="side-heading hockey">
+              Rest time
+            </div>
+
+            <div
+              id="restPreview"
+              class="rest-number hockey"
+            >
+              00:10
+            </div>
+
+          </div>
+
+        </section>
+
+
+        <section class="panel side-panel">
+
+          <div class="side-heading hockey">
+            Session progress
+          </div>
+
+          <div
+            id="sessionProgress"
+            class="session-progress hockey"
+          >
+            0 / 0
+          </div>
+
+          <div class="side-progress progress-track">
+
+            <div
+              id="sessionProgressBar"
+              class="progress-fill"
+            ></div>
+
+          </div>
+
+          <div class="stat-grid">
+
+            <div class="stat">
+
+              <div class="stat-label">
+                Elapsed
+              </div>
+
+              <div
+                id="elapsedStat"
+                class="stat-value hockey"
+              >
+                0:00
+              </div>
+
+            </div>
+
+            <div class="stat">
+
+              <div class="stat-label">
+                Completed
+              </div>
+
+              <div
+                id="completedStat"
+                class="stat-value hockey"
+              >
+                0
+              </div>
+
+            </div>
+
+          </div>
+
+        </section>
+
+      </aside>
+
+    </div>
+
+
+    <section class="panel routine-panel">
+
+      <div class="routine-header">
+
+        <div
+          id="routineTitle"
+          class="routine-title hockey"
+        >
+          Today's Routine
+        </div>
+
+        <button
+          id="editWorkoutBtn"
+          class="edit-btn hockey"
+          type="button"
+        >
+          Edit Workout
+        </button>
+
       </div>
 
-      <div class="bar">
-        <div id="progress"></div>
-      </div>
 
-      <div class="controls">
-        <button id="startBtn" class="primary">Start</button>
-        <button id="pauseBtn">Pause</button>
-        <button id="prevBtn">Previous</button>
-        <button id="nextBtn">Next</button>
-        <button id="resetBtn">Reset</button>
+      <ol
+        id="routineList"
+        class="routine-list"
+      ></ol>
+
+
+      <div class="settings-row">
+
+        <div class="control-group">
+
+          <div class="control-label hockey">
+            Rest / transition
+          </div>
+
+          <select id="restSelect">
+
+            <option value="5">
+              5 seconds
+            </option>
+
+            <option
+              value="10"
+              selected
+            >
+              10 seconds
+            </option>
+
+            <option value="15">
+              15 seconds
+            </option>
+
+            <option value="20">
+              20 seconds
+            </option>
+
+            <option value="30">
+              30 seconds
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="control-group">
+
+          <div class="control-label hockey">
+            Cue volume
+          </div>
+
+          <input
+            id="volumeSlider"
+            type="range"
+            min="0"
+            max="100"
+            value="70"
+          >
+
+        </div>
+
+
+        <button
+          id="resetBtn"
+          class="btn"
+          type="button"
+        >
+          Reset Session
+        </button>
+
       </div>
 
     </section>
 
-    <aside>
+  </div>
 
-      <section class="card">
 
-        <label for="routineSelect">Routine</label>
-        <select id="routineSelect">
-          <option value="mobility">Mobility • 3–5×/week</option>
-          <option value="strength">Strength • 1–2×/week</option>
-          <option value="explosive">Explosiveness • 1×/week</option>
-          <option value="full">Full goalie session</option>
+
+  <section
+    id="editor"
+    class="editor"
+  >
+
+    <section class="panel routine-panel">
+
+      <div class="editor-head">
+
+        <div>
+
+          <div
+            class="editor-title hockey"
+          >
+            Edit Workout
+          </div>
+
+          <div
+            style="
+              margin-top:5px;
+              color:#777;
+              font-size:13px;
+            "
+          >
+            Changes are saved on this device.
+          </div>
+
+        </div>
+
+
+        <select
+          id="editRoutineSelect"
+          class="edit-select"
+        >
+
+          <option value="mobility">
+            Mobility
+          </option>
+
+          <option value="strength">
+            Strength
+          </option>
+
+          <option value="explosive">
+            Explosiveness
+          </option>
+
         </select>
 
-        <label for="transitionSelect">Rest / transition</label>
-        <select id="transitionSelect">
-          <option value="5">5 seconds</option>
-          <option value="10" selected>10 seconds</option>
-          <option value="15">15 seconds</option>
-          <option value="20">20 seconds</option>
-        </select>
+      </div>
 
-        <label class="check">
-          <input id="autoAdvance" type="checkbox" checked>
-          Automatically advance
-        </label>
 
-        <label class="check">
-          <input id="soundToggle" type="checkbox" checked>
-          Sound cues
-        </label>
+      <div
+        id="editorList"
+        class="editor-list"
+      ></div>
 
-        <div class="rangeRow">
-          <strong style="font-size:13px">Cue volume</strong>
-          <span id="volumeLabel" class="small">70%</span>
-        </div>
 
-        <input id="volumeControl" type="range" min="0" max="100" value="70">
+      <button
+        id="addExerciseBtn"
+        class="add-btn hockey"
+        type="button"
+      >
+        + Add Exercise
+      </button>
 
-        <div class="small" style="margin-top:6px">
-          Keyboard: press M to mute/unmute.
-        </div>
 
-      </section>
+      <div class="editor-footer">
 
-      <section class="card" style="margin-top:14px">
+        <button
+          id="cancelEditBtn"
+          class="btn"
+          type="button"
+        >
+          Cancel
+        </button>
 
-        <div class="header">
-          <strong>Session progress</strong>
-          <span id="counter" class="small">0 / 0</span>
-        </div>
+        <button
+          id="saveWorkoutBtn"
+          class="btn btn-primary"
+          type="button"
+        >
+          Save Workout
+        </button>
 
-        <ol id="exerciseList" class="list"></ol>
+      </div>
 
-      </section>
 
-      <section class="card" style="margin-top:14px">
+      <div
+        id="saveMessage"
+        class="toast"
+        aria-live="polite"
+      ></div>
 
-        <strong>Workout summary</strong>
+    </section>
 
-        <div class="summary">
+  </section>
 
-          <div class="stat">
-            <strong id="summaryDone">0</strong>
-            <span class="small">Completed</span>
-          </div>
 
-          <div class="stat">
-            <strong id="summaryTotal">0</strong>
-            <span class="small">Total</span>
-          </div>
+  <div class="footer-note">
 
-          <div class="stat">
-            <strong id="summaryTime">0:00</strong>
-            <span class="small">Elapsed</span>
-          </div>
-
-        </div>
-
-        <div id="summaryMessage" class="small" style="margin-top:10px">
-          Start a routine to track your session.
-        </div>
-
-      </section>
-
-    </aside>
+    Stop any exercise that causes sharp pain.
 
   </div>
 
-  <section class="card note" style="margin-top:14px">
-    Two-sided mobility stretches run Side 1, rest, then Side 2.
-    One tone signals rest; two tones signal work.
-    The rest screen shows exactly what is next.
-  </section>
+</div>
 
-</main>
+
 
 <script>
+
 (() => {
 
-  const mobility = [
+const STORAGE_KEY =
+  'goalie-workouts-v3';
+
+const SETTINGS_KEY =
+  'goalie-settings-v3';
+
+
+const DEFAULT_WORKOUTS = {
+
+  mobility:[
+
     {
-      n:'Hip Internal Rotation',
-      d:'2 × 30–45 sec',
-      s:40,
-      cue:'Work gently into internal rotation. Keep the motion at the hip and do not twist the knee.'
+      name:'Hip Internal Rotation',
+      seconds:40,
+      sides:1,
+      cue:
+        'Work gently into internal rotation. Keep the movement at the hip and do not twist the knee.'
     },
+
     {
-      n:'90/90 Stretch',
-      d:'30–45 sec per side',
-      s:40,
+      name:'90/90 Stretch',
+      seconds:40,
       sides:2,
-      cue:'Sit tall with both legs bent about 90°. Gently lean toward the front shin.'
+      cue:
+        'Sit tall with both legs bent about 90 degrees. Gently lean toward the front shin.'
     },
+
     {
-      n:'90/90 Active Hip Flow / Hip Switches',
-      d:'2 × 10 switches',
-      s:45,
-      cue:'Rotate both knees smoothly side to side. Stay tall and avoid using momentum.'
+      name:'90/90 Active Hip Flow / Hip Switches',
+      seconds:45,
+      sides:1,
+      cue:
+        'Rotate both knees smoothly side to side. Stay tall and avoid using momentum.'
     },
+
     {
-      n:'Adductor Rock-Backs',
-      d:'10 reps per side',
-      s:45,
+      name:'Adductor Rock-Backs',
+      seconds:45,
       sides:2,
-      cue:'Extend one leg sideways from hands and knees, then rock the hips backward with a neutral spine.'
+      cue:
+        'Extend one leg sideways and rock the hips backward while keeping a neutral spine.'
     },
+
     {
-      n:'Couch Stretch',
-      d:'45 sec per side',
-      s:45,
+      name:'Couch Stretch',
+      seconds:45,
       sides:2,
-      cue:'Rear foot supported. Squeeze the rear-side glute and keep your torso tall.'
+      cue:
+        'Keep the torso upright, squeeze the rear glute and feel the stretch through the front of the hip.'
     },
+
     {
-      n:'Toes Elevated Ankle Stretch',
-      d:'30 sec per side',
-      s:30,
+      name:'Toes Elevated Ankle Stretch',
+      seconds:30,
       sides:2,
-      cue:'Elevate the forefoot slightly and gently drive the knee forward while controlling the heel.'
+      cue:
+        'Gently drive the knee forward while keeping the heel controlled.'
     },
+
     {
-      n:'Cossack Squat',
-      d:'2 × 6/side',
-      s:45,
-      cue:'Sit toward one leg from a wide stance. Keep the working heel planted and the opposite leg long.'
+      name:'Cossack Squat',
+      seconds:45,
+      sides:1,
+      cue:
+        'Sit toward one leg from a wide stance while keeping the working heel planted.'
     },
+
     {
-      n:'Deep Squat Hold',
-      d:'2 × 30–45 sec',
-      s:40,
-      cue:'Sit into a comfortable deep squat with heels planted and chest up.'
+      name:'Deep Squat Hold',
+      seconds:40,
+      sides:1,
+      cue:
+        'Sit into a comfortable deep squat with the heels planted and chest up.'
     },
+
     {
-      n:'Banded Lat Stretch',
-      d:'30–45 sec per side',
-      s:40,
+      name:'Banded Lat Stretch',
+      seconds:40,
       sides:2,
-      cue:'With a band anchored above or ahead, sit the hips back and let the arm lengthen overhead.'
+      cue:
+        'Sit the hips back and let the banded arm lengthen overhead.'
     },
+
     {
-      n:'Lying Pec Stretch',
-      d:'30–45 sec per side',
-      s:40,
+      name:'Lying Pec Stretch',
+      seconds:40,
       sides:2,
-      cue:'Rotate gently away from the extended arm until you feel the chest and front shoulder stretch.'
+      cue:
+        'Rotate gently away until you feel a comfortable stretch through the chest and front shoulder.'
     },
+
     {
-      n:'T-Spine Rotations',
-      d:'8 reps per side',
-      s:45,
+      name:'T-Spine Rotations',
+      seconds:45,
       sides:2,
-      cue:'Rotate through the mid and upper back using a book-opener or thread-the-needle motion.'
+      cue:
+        'Rotate through the middle and upper back with control.'
     }
-  ];
 
-  const strength = [
-  {
-    n:'Bulgarian Split Squat',
-    d:'3 × 8/leg',
-    s:50,
-    sides:2,
-    cue:'Rear foot elevated. Lower under control and drive through the front foot.'
-  },
-  {
-    n:'Lateral Lunge',
-    d:'3 × 8/side',
-    s:50,
-    cue:'Step wide, push the hips back over the working leg, then drive back to center.'
-  },
-  {
-    n:'Single-Leg RDL',
-    d:'3 × 8/leg',
-    s:50,
-    sides:2,
-    cue:'Hinge at the hip with a soft standing knee. Keep hips square and spine neutral.'
-  },
-  {
-    n:'Copenhagen Plank',
-    d:'3 × 15–25 sec/side',
-    s:25,
-    sides:2,
-    cue:'Start with the upper knee supported on a couch or bench. Keep the body straight.'
-  },
-  {
-    n:'Single-Leg Glute Bridge',
-    d:'3 × 12/leg',
-    s:45,
-    sides:2,
-    cue:'Drive through the planted foot and squeeze the glute to lift the hips.'
-  },
-  {
-    n:'Dead Bug',
-    d:'3 × 8/side',
-    s:45,
-    sides:2,
-    cue:'Keep the low back controlled as you extend the opposite arm and leg.'
-  }
-];
-  const explosive = [
+  ],
+
+
+  strength:[
+
     {
-      n:'Skater / Lateral Bounds',
-      d:'4 × 5/side',
-      s:35,
-      cue:'Explode sideways, land softly on one leg, stabilize briefly, then push back.'
+      name:'Bulgarian Split Squat',
+      seconds:50,
+      sides:2,
+      cue:
+        'Rear foot elevated. Lower under control and drive through the front foot.'
     },
+
     {
-      n:'Lateral Line Hops',
-      d:'3 × 15 sec',
-      s:15,
-      cue:'Hop quickly side to side over a line with soft knees and light feet.'
+      name:'Lateral Lunge',
+      seconds:50,
+      sides:1,
+      cue:
+        'Step wide, push the hips back over the working leg and drive back to center.'
     },
+
     {
-      n:'Reverse Lunge → Knee Drive',
-      d:'3 × 6/leg',
-      s:40,
-      cue:'Step into a controlled reverse lunge, then drive through the front leg and bring the rear knee forward.'
-    }
-  ];
+      name:'Single-Leg RDL',
+      seconds:50,
+      sides:2,
+      cue:
+        'Hinge at the hip with a soft standing knee. Keep the hips square.'
+    },
 
-  const $ = id => document.getElementById(id);
+    {
+      name:'Copenhagen Plank',
+      seconds:25,
+      sides:2,
+      cue:
+        'Keep the body straight and start with the upper knee supported.'
+    },
 
-  const timerEl = $('timer');
-  const nameEl = $('exerciseName');
-  const doseEl = $('dose');
-  const cueEl = $('cue');
-  const nextUpEl = $('nextUp');
-  const badge = $('phaseBadge');
-  const progress = $('progress');
-  const list = $('exerciseList');
-  const counter = $('counter');
+    {
+      name:'Single-Leg Glute Bridge',
+      seconds:45,
+      sides:2,
+      cue:
+        'Drive through the planted foot and squeeze the glute to lift the hips.'
+    },
 
-  const startBtn = $('startBtn');
-  const pauseBtn = $('pauseBtn');
-  const prevBtn = $('prevBtn');
-  const nextBtn = $('nextBtn');
-  const resetBtn = $('resetBtn');
-
-  const routineSelect = $('routineSelect');
-  const transitionSelect = $('transitionSelect');
-  const autoAdvance = $('autoAdvance');
-  const soundToggle = $('soundToggle');
-  const volumeControl = $('volumeControl');
-  const volumeLabel = $('volumeLabel');
-
-  const summaryDone = $('summaryDone');
-  const summaryTotal = $('summaryTotal');
-  const summaryTime = $('summaryTime');
-  const summaryMessage = $('summaryMessage');
-
-  let routine = [];
-  let index = 0;
-  let remaining = 0;
-  let total = 0;
-  let phase = 'ready';
-  let interval = null;
-  let paused = false;
-  let sideRep = 1;
-  let transitionTarget = 'next';
-  let audioCtx = null;
-  let elapsed = 0;
-  let completedUnits = 0;
-
-  function selectedRoutine(){
-    if(routineSelect.value === 'strength') return strength;
-    if(routineSelect.value === 'explosive') return explosive;
-    if(routineSelect.value === 'full') return [...mobility,...strength,...explosive];
-    return mobility;
-  }
-
-  function unitCount(arr){
-    return arr.reduce((sum,x) => sum + (x.sides === 2 ? 2 : 1), 0);
-  }
-
-  function fmt(sec){
-    sec = Math.max(0, Math.floor(sec));
-    return String(Math.floor(sec/60)).padStart(2,'0')
-      + ':'
-      + String(sec%60).padStart(2,'0');
-  }
-
-  function fmtShort(sec){
-    sec = Math.max(0, Math.floor(sec));
-    return Math.floor(sec/60)
-      + ':'
-      + String(sec%60).padStart(2,'0');
-  }
-
-  function stopClock(){
-    if(interval){
-      clearInterval(interval);
-      interval = null;
-    }
-  }
-
-  function initAudio(){
-    if(audioCtx) return audioCtx;
-
-    const Ctx = window.AudioContext || window.webkitAudioContext;
-
-    if(!Ctx) return null;
-
-    try{
-      audioCtx = new Ctx();
-    }catch(e){
-      audioCtx = null;
+    {
+      name:'Dead Bug',
+      seconds:45,
+      sides:2,
+      cue:
+        'Keep the lower back controlled as you extend the opposite arm and leg.'
     }
 
-    return audioCtx;
-  }
+  ],
 
-  function tone(freq,duration,delay=0){
 
-    if(!soundToggle.checked) return;
+  explosive:[
 
-    const ctx = initAudio();
+    {
+      name:'Skater / Lateral Bounds',
+      seconds:35,
+      sides:1,
+      cue:
+        'Explode sideways, land softly, stabilize briefly and push back.'
+    },
 
-    if(!ctx) return;
+    {
+      name:'Lateral Line Hops',
+      seconds:15,
+      sides:1,
+      cue:
+        'Hop quickly side to side with soft knees and light feet.'
+    },
 
-    if(ctx.state === 'suspended'){
-      ctx.resume().catch(() => {});
+    {
+      name:'Reverse Lunge → Knee Drive',
+      seconds:40,
+      sides:1,
+      cue:
+        'Step into a controlled reverse lunge, then drive through the front leg.'
     }
 
-    const volume =
-      Math.max(0,Math.min(1,Number(volumeControl.value)/100));
+  ]
 
-    if(volume <= 0) return;
+};
 
-    const start = ctx.currentTime + delay;
 
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
+function clone(value){
 
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(freq,start);
+  return JSON.parse(
+    JSON.stringify(value)
+  );
 
-    gain.gain.setValueAtTime(0.0001,start);
-    gain.gain.exponentialRampToValueAtTime(
-      Math.max(0.0001,0.18*volume),
-      start+0.01
-    );
+}
 
-    gain.gain.exponentialRampToValueAtTime(
-      0.0001,
-      start+duration
-    );
 
-    osc.connect(gain);
-    gain.connect(ctx.destination);
+function loadWorkouts(){
 
-    osc.start(start);
-    osc.stop(start+duration+0.03);
-  }
+  try{
 
-  function cueRest(){
-    tone(520,0.18);
-  }
-
-  function cueWork(){
-    tone(740,0.14);
-    tone(900,0.16,0.2);
-  }
-
-  function cueFinish(){
-    tone(660,0.15);
-    tone(820,0.15,0.18);
-    tone(1040,0.22,0.36);
-  }
-
-  function currentLabel(){
-
-    const x = routine[index];
-
-    if(!x) return '';
-
-    return x.sides === 2
-      ? x.n + ' — Side ' + sideRep
-      : x.n;
-  }
-
-  function upcomingLabel(){
-
-    const x = routine[index];
-
-    if(!x) return '';
-
-    if(transitionTarget === 'side2'){
-      return x.n + ' — Side 2';
-    }
-
-    if(routine[index+1]){
-      return routine[index+1].n
-        + (routine[index+1].sides === 2 ? ' — Side 1' : '');
-    }
-
-    return 'Session complete';
-  }
-
-  function renderSummary(){
-
-    summaryDone.textContent = completedUnits;
-    summaryTotal.textContent = unitCount(routine);
-    summaryTime.textContent = fmtShort(elapsed);
-
-    if(phase === 'done'){
-      summaryMessage.textContent =
-        'Workout complete. Nice work in the crease.';
-    }
-    else if(elapsed > 0){
-      summaryMessage.textContent =
-        'Session in progress.';
-    }
-    else{
-      summaryMessage.textContent =
-        'Start a routine to track your session.';
-    }
-  }
-
-  function renderList(){
-
-    list.innerHTML = '';
-
-    routine.forEach((x,i) => {
-
-      const li = document.createElement('li');
-
-      if(i === index){
-        li.className = 'active';
-      }
-
-      if(x.sides === 2){
-
-        const a = document.createElement('div');
-        const b = document.createElement('div');
-
-        a.textContent =
-          (i+1) + '. ' + x.n + ' — Side 1';
-
-        b.textContent =
-          x.n + ' — Side 2';
-
-        b.style.paddingLeft = '16px';
-        b.className = 'muted';
-
-        if(i === index && sideRep === 2){
-          a.className = 'muted';
-          b.className = '';
-          b.style.paddingLeft = '16px';
-        }
-
-        li.append(a,b);
-      }
-      else{
-        li.textContent =
-          (i+1) + '. ' + x.n;
-      }
-
-      list.appendChild(li);
-    });
-
-    counter.textContent =
-      routine.length
-      ? (index+1) + ' / ' + routine.length
-      : '0 / 0';
-  }
-
-  function render(){
-
-    const x = routine[index];
-
-    if(!x) return;
-
-    if(phase === 'transition'){
-
-      nameEl.textContent =
-        'Rest / Transition';
-
-      doseEl.textContent =
-        'Get ready for the next movement';
-
-      cueEl.textContent =
-        'Use this time to switch sides or get into position.';
-
-      nextUpEl.textContent =
-        'Next: ' + upcomingLabel();
-    }
-    else{
-
-      nameEl.textContent =
-        currentLabel();
-
-      doseEl.textContent =
-        x.d;
-
-      cueEl.textContent =
-        x.cue;
-
-      nextUpEl.textContent = '';
-    }
-
-    timerEl.textContent =
-      fmt(remaining);
-
-    const pct =
-      total > 0
-      ? ((total-remaining)/total)*100
-      : 0;
-
-    progress.style.width =
-      Math.max(0,Math.min(100,pct)) + '%';
-
-    badge.textContent =
-      phase === 'countdown'
-      ? 'Get ready'
-      : phase === 'work'
-      ? 'Work'
-      : phase === 'transition'
-      ? 'Rest'
-      : phase === 'done'
-      ? 'Complete'
-      : 'Ready';
-
-    pauseBtn.textContent =
-      paused ? 'Resume' : 'Pause';
-
-    renderList();
-    renderSummary();
-  }
-
-  function loadRoutine(){
-
-    stopClock();
-
-    routine = selectedRoutine();
-
-    index = 0;
-    sideRep = 1;
-    transitionTarget = 'next';
-    phase = 'ready';
-    paused = false;
-    elapsed = 0;
-    completedUnits = 0;
-
-    remaining =
-      routine[0]?.s || 0;
-
-    total = remaining;
-
-    render();
-  }
-
-  function beginCountdown(){
-
-    initAudio();
-
-    stopClock();
-
-    phase = 'countdown';
-    remaining = 5;
-    total = 5;
-    paused = false;
-
-    render();
-    startClock();
-  }
-
-  function beginWork(){
-
-    phase = 'work';
-
-    remaining =
-      routine[index].s;
-
-    total = remaining;
-
-    cueWork();
-    render();
-  }
-
-  function beginTransition(){
-
-    completedUnits++;
-
-    const current =
-      routine[index];
-
-    transitionTarget =
-      current.sides === 2 && sideRep === 1
-      ? 'side2'
-      : 'next';
-
-    cueRest();
-
-    if(!autoAdvance.checked){
-
-      if(transitionTarget === 'side2'){
-        sideRep = 2;
-      }
-      else{
-        sideRep = 1;
-
-        if(index < routine.length-1){
-          index++;
-        }
-        else{
-          finish();
-          return;
-        }
-      }
-
-      phase = 'ready';
-
-      remaining =
-        routine[index].s;
-
-      total = remaining;
-
-      stopClock();
-      render();
-
-      return;
-    }
-
-    phase = 'transition';
-
-    remaining =
-      Math.max(
-        0,
-        Number(transitionSelect.value) || 10
+    const saved =
+      localStorage.getItem(
+        STORAGE_KEY
       );
 
-    total =
-      remaining || 1;
+    if(saved){
 
-    render();
+      const parsed =
+        JSON.parse(saved);
 
-    if(remaining === 0){
-      completeTransition();
-    }
-  }
-
-  function completeTransition(){
-
-    if(transitionTarget === 'side2'){
-
-      sideRep = 2;
-
-      beginWork();
-
-      return;
-    }
-
-    sideRep = 1;
-    index++;
-
-    if(index >= routine.length){
-      finish();
-      return;
-    }
-
-    beginWork();
-  }
-
-  function finish(){
-
-    stopClock();
-
-    phase = 'done';
-    remaining = 0;
-    total = 1;
-
-    progress.style.width = '100%';
-
-    badge.textContent =
-      'Complete';
-
-    nameEl.textContent =
-      'Session complete 🥅';
-
-    doseEl.textContent =
-      'Nice work.';
-
-    cueEl.textContent =
-      'Reset to start another session.';
-
-    nextUpEl.textContent = '';
-
-    timerEl.textContent =
-      '00:00';
-
-    cueFinish();
-    renderSummary();
-  }
-
-  function tick(){
-
-    if(paused) return;
-
-    elapsed++;
-    remaining--;
-
-    if(remaining <= 0){
-
-      remaining = 0;
-
-      render();
-
-      if(phase === 'countdown'){
-        beginWork();
+      if(
+        parsed.mobility
+        &&
+        parsed.strength
+        &&
+        parsed.explosive
+      ){
+        return parsed;
       }
-      else if(phase === 'work'){
-        beginTransition();
-      }
-      else if(phase === 'transition'){
-        completeTransition();
-      }
+
     }
-    else{
-      render();
-    }
+
+  }
+  catch(error){}
+
+  return clone(
+    DEFAULT_WORKOUTS
+  );
+
+}
+
+
+let workouts =
+  loadWorkouts();
+
+
+let currentRoutineKey =
+  'mobility';
+
+
+let editorDraft = null;
+
+
+let index = 0;
+
+let side = 1;
+
+let phase =
+  'ready';
+
+let remaining = 0;
+
+let phaseTotal = 0;
+
+let elapsed = 0;
+
+let completedSteps = 0;
+
+let timerId = null;
+
+let paused = false;
+
+let transitionTarget =
+  'next';
+
+let audioContext =
+  null;
+
+
+
+const $ =
+  id =>
+    document.getElementById(id);
+
+
+
+const timerEl =
+  $('timer');
+
+const exerciseNameEl =
+  $('exerciseName');
+
+const sideLabelEl =
+  $('sideLabel');
+
+const exerciseCueEl =
+  $('exerciseCue');
+
+const phaseBadge =
+  $('phaseBadge');
+
+const exerciseProgress =
+  $('exerciseProgress');
+
+const exerciseCounter =
+  $('exerciseCounter');
+
+const stepProgress =
+  $('stepProgress');
+
+const elapsedText =
+  $('elapsedText');
+
+const routineList =
+  $('routineList');
+
+const sidebarNext =
+  $('sidebarNext');
+
+const sidebarNextSide =
+  $('sidebarNextSide');
+
+const sessionProgress =
+  $('sessionProgress');
+
+const sessionProgressBar =
+  $('sessionProgressBar');
+
+const elapsedStat =
+  $('elapsedStat');
+
+const completedStat =
+  $('completedStat');
+
+const nextCard =
+  $('nextCard');
+
+const nextName =
+  $('nextName');
+
+const restPreview =
+  $('restPreview');
+
+const startBtn =
+  $('startBtn');
+
+const previousBtn =
+  $('previousBtn');
+
+const skipBtn =
+  $('skipBtn');
+
+const resetBtn =
+  $('resetBtn');
+
+const editWorkoutBtn =
+  $('editWorkoutBtn');
+
+const playerArea =
+  $('playerArea');
+
+const editor =
+  $('editor');
+
+const editorList =
+  $('editorList');
+
+const editRoutineSelect =
+  $('editRoutineSelect');
+
+const addExerciseBtn =
+  $('addExerciseBtn');
+
+const cancelEditBtn =
+  $('cancelEditBtn');
+
+const saveWorkoutBtn =
+  $('saveWorkoutBtn');
+
+const saveMessage =
+  $('saveMessage');
+
+const restSelect =
+  $('restSelect');
+
+const soundToggle =
+  $('soundToggle');
+
+const volumeSlider =
+  $('volumeSlider');
+
+const topVolume =
+  $('topVolume');
+
+const topVolumeText =
+  $('topVolumeText');
+
+
+
+function currentRoutine(){
+
+  if(
+    currentRoutineKey ===
+    'full'
+  ){
+
+    return [
+
+      ...workouts.mobility,
+
+      ...workouts.strength,
+
+      ...workouts.explosive
+
+    ];
+
   }
 
-  function startClock(){
+  return (
+    workouts[currentRoutineKey]
+    || []
+  );
 
-    if(interval) return;
+}
 
-    interval =
-      setInterval(tick,1000);
-  }
 
-  function start(){
 
-    initAudio();
+function totalSteps(
+  routine = currentRoutine()
+){
 
-    if(!routine.length){
-      loadRoutine();
-    }
+  return routine.reduce(
 
-    if(phase === 'done'){
-      loadRoutine();
-    }
-
-    if(phase === 'ready'){
-      beginCountdown();
-    }
-    else{
-      paused = false;
-      startClock();
-      render();
-    }
-  }
-
-  function next(){
-
-    if(!routine.length) return;
-
-    stopClock();
-
-    const x =
-      routine[index];
-
-    if(x?.sides === 2 && sideRep === 1){
-      sideRep = 2;
-    }
-    else{
-      sideRep = 1;
-      index++;
-    }
-
-    if(index >= routine.length){
-      finish();
-      return;
-    }
-
-    phase = 'ready';
-
-    remaining =
-      routine[index].s;
-
-    total = remaining;
-
-    render();
-  }
-
-  function prev(){
-
-    if(!routine.length) return;
-
-    stopClock();
-
-    if(routine[index]?.sides === 2 && sideRep === 2){
-      sideRep = 1;
-    }
-    else if(index > 0){
-
-      index--;
-
-      sideRep =
-        routine[index]?.sides === 2
+    (sum,exercise) =>
+      sum
+      +
+      (
+        exercise.sides === 2
         ? 2
-        : 1;
-    }
+        : 1
+      ),
 
-    phase = 'ready';
-    paused = false;
+    0
 
-    remaining =
-      routine[index].s;
+  );
 
-    total = remaining;
+}
 
-    render();
+
+
+function currentStepNumber(){
+
+  const routine =
+    currentRoutine();
+
+  let step = 0;
+
+  for(
+    let i = 0;
+    i < index;
+    i++
+  ){
+
+    step +=
+      routine[i].sides === 2
+      ? 2
+      : 1;
+
   }
 
-  startBtn.addEventListener(
-    'click',
+  step +=
+    side === 2
+    ? 2
+    : 1;
+
+  return step;
+
+}
+
+
+
+function formatClock(seconds){
+
+  seconds =
+    Math.max(
+      0,
+      Math.floor(seconds)
+    );
+
+  return (
+    String(
+      Math.floor(
+        seconds / 60
+      )
+    ).padStart(2,'0')
+    +
+    ':'
+    +
+    String(
+      seconds % 60
+    ).padStart(2,'0')
+  );
+
+}
+
+
+
+function formatShort(seconds){
+
+  seconds =
+    Math.max(
+      0,
+      Math.floor(seconds)
+    );
+
+  return (
+    Math.floor(
+      seconds / 60
+    )
+    +
+    ':'
+    +
+    String(
+      seconds % 60
+    ).padStart(2,'0')
+  );
+
+}
+
+
+
+function stopTimer(){
+
+  if(timerId){
+
+    clearInterval(
+      timerId
+    );
+
+    timerId =
+      null;
+
+  }
+
+}
+
+
+
+function audio(){
+
+  if(audioContext){
+    return audioContext;
+  }
+
+  const AudioCtx =
+    window.AudioContext
+    ||
+    window.webkitAudioContext;
+
+  if(!AudioCtx){
+    return null;
+  }
+
+  try{
+
+    audioContext =
+      new AudioCtx();
+
+  }
+  catch(error){
+
+    return null;
+
+  }
+
+  return audioContext;
+
+}
+
+
+
+function beep(
+  frequency,
+  delay = 0
+){
+
+  if(
+    !soundToggle.checked
+  ){
+    return;
+  }
+
+  const ctx =
+    audio();
+
+  if(!ctx){
+    return;
+  }
+
+  if(
+    ctx.state ===
+    'suspended'
+  ){
+
+    ctx.resume()
+      .catch(() => {});
+
+  }
+
+  const volume =
+    Number(
+      volumeSlider.value
+    ) / 100;
+
+  if(volume <= 0){
+    return;
+  }
+
+  const start =
+    ctx.currentTime
+    +
+    delay;
+
+  const oscillator =
+    ctx.createOscillator();
+
+  const gain =
+    ctx.createGain();
+
+  oscillator.type =
+    'sine';
+
+  oscillator.frequency
+    .setValueAtTime(
+      frequency,
+      start
+    );
+
+  gain.gain
+    .setValueAtTime(
+      .0001,
+      start
+    );
+
+  gain.gain
+    .exponentialRampToValueAtTime(
+      Math.max(
+        .0001,
+        .16 * volume
+      ),
+      start + .01
+    );
+
+  gain.gain
+    .exponentialRampToValueAtTime(
+      .0001,
+      start + .16
+    );
+
+  oscillator.connect(gain);
+
+  gain.connect(
+    ctx.destination
+  );
+
+  oscillator.start(
     start
   );
 
-  pauseBtn.addEventListener(
-    'click',
+  oscillator.stop(
+    start + .2
+  );
+
+}
+
+
+
+function workCue(){
+
+  beep(760);
+
+  beep(
+    920,
+    .18
+  );
+
+}
+
+
+
+function restCue(){
+
+  beep(520);
+
+}
+
+
+
+function finishCue(){
+
+  beep(650);
+
+  beep(
+    820,
+    .18
+  );
+
+  beep(
+    1040,
+    .36
+  );
+
+}
+
+
+
+function nextInfo(){
+
+  const routine =
+    currentRoutine();
+
+  const exercise =
+    routine[index];
+
+  if(!exercise){
+
+    return {
+      name:'Session Complete',
+      side:''
+    };
+
+  }
+
+  if(
+    transitionTarget ===
+    'side2'
+  ){
+
+    return {
+      name:exercise.name,
+      side:'Side 2 of 2'
+    };
+
+  }
+
+  const next =
+    routine[
+      index + 1
+    ];
+
+  if(!next){
+
+    return {
+      name:'Session Complete',
+      side:''
+    };
+
+  }
+
+  return {
+
+    name:next.name,
+
+    side:
+      next.sides === 2
+      ? 'Side 1 of 2'
+      : ''
+
+  };
+
+}
+
+
+
+function updateTabs(){
+
+  document
+    .querySelectorAll(
+      '.tab'
+    )
+    .forEach(button => {
+
+      button.classList.toggle(
+
+        'active',
+
+        button.dataset.routine
+        ===
+        currentRoutineKey
+
+      );
+
+    });
+
+}
+
+
+
+function renderRoutineList(){
+
+  const routine =
+    currentRoutine();
+
+  routineList.innerHTML =
+    '';
+
+  let visualStep =
+    0;
+
+  routine.forEach(
+    (exercise,exerciseIndex) => {
+
+      const sides =
+        exercise.sides === 2
+        ? [1,2]
+        : [1];
+
+      sides.forEach(
+        sideNumber => {
+
+          visualStep++;
+
+          const row =
+            document.createElement(
+              'li'
+            );
+
+          row.className =
+            'routine-row';
+
+          const isCurrent =
+            exerciseIndex === index
+            &&
+            sideNumber === side;
+
+          const isDone =
+            visualStep
+            <=
+            completedSteps;
+
+          if(isCurrent){
+
+            row.classList.add(
+              'active'
+            );
+
+          }
+
+          if(isDone){
+
+            row.classList.add(
+              'done'
+            );
+
+          }
+
+          const number =
+            document.createElement(
+              'div'
+            );
+
+          number.className =
+            'exercise-index';
+
+          number.textContent =
+            visualStep;
+
+
+          const name =
+            document.createElement(
+              'div'
+            );
+
+          name.className =
+            'row-name hockey';
+
+          name.textContent =
+            exercise.name
+            +
+            (
+              exercise.sides === 2
+              ?
+              ' — Side '
+              +
+              sideNumber
+              :
+              ''
+            );
+
+
+          const time =
+            document.createElement(
+              'div'
+            );
+
+          time.className =
+            'row-time';
+
+          time.textContent =
+            formatClock(
+              exercise.seconds
+            );
+
+
+          const sideText =
+            document.createElement(
+              'div'
+            );
+
+          sideText.className =
+            'row-sides';
+
+          sideText.textContent =
+            exercise.sides === 2
+            ?
+            '2 sides'
+            :
+            '1 side';
+
+
+          const status =
+            document.createElement(
+              'div'
+            );
+
+          status.className =
+            'status-dot';
+
+          if(isCurrent){
+
+            status.classList.add(
+              'current'
+            );
+
+          }
+
+          if(isDone){
+
+            status.classList.remove(
+              'current'
+            );
+
+            status.classList.add(
+              'done'
+            );
+
+          }
+
+
+          row.append(
+            number,
+            name,
+            time,
+            sideText,
+            status
+          );
+
+          routineList
+            .appendChild(row);
+
+        }
+      );
+
+    }
+  );
+
+}
+
+
+
+function render(){
+
+  const routine =
+    currentRoutine();
+
+  const exercise =
+    routine[index];
+
+  const total =
+    totalSteps(routine);
+
+  if(!exercise){
+
+    return;
+  }
+
+
+  const step =
+    currentStepNumber();
+
+
+  timerEl.textContent =
+    formatClock(
+      remaining
+    );
+
+
+  if(
+    phase ===
+    'transition'
+  ){
+
+    exerciseNameEl.textContent =
+      'Rest';
+
+    sideLabelEl.textContent =
+      '';
+
+    exerciseCueEl.textContent =
+      'Get into position for the next movement.';
+
+    nextCard.classList.remove(
+      'hidden'
+    );
+
+    const next =
+      nextInfo();
+
+    nextName.textContent =
+      next.name
+      +
+      (
+        next.side
+        ?
+        ' — '
+        +
+        next.side
+        :
+        ''
+      );
+
+  }
+  else{
+
+    exerciseNameEl.textContent =
+      exercise.name;
+
+    sideLabelEl.textContent =
+      exercise.sides === 2
+      ?
+      'Side '
+      +
+      side
+      +
+      ' of 2'
+      :
+      '';
+
+    exerciseCueEl.textContent =
+      exercise.cue
+      ||
+      '';
+
+    nextCard.classList.add(
+      'hidden'
+    );
+
+  }
+
+
+  phaseBadge.textContent =
+    phase === 'work'
+    ?
+    'Work'
+    :
+    phase === 'transition'
+    ?
+    'Rest'
+    :
+    phase === 'countdown'
+    ?
+    'Get Ready'
+    :
+    phase === 'done'
+    ?
+    'Complete'
+    :
+    'Ready';
+
+
+  exerciseCounter.textContent =
+    'Exercise '
+    +
+    step
+    +
+    ' of '
+    +
+    total;
+
+
+  const progressPercent =
+    phaseTotal > 0
+    ?
+    (
+      (
+        phaseTotal
+        -
+        remaining
+      )
+      /
+      phaseTotal
+    )
+    *
+    100
+    :
+    0;
+
+
+  exerciseProgress.style.width =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        progressPercent
+      )
+    )
+    +
+    '%';
+
+
+  stepProgress.textContent =
+    step
+    +
+    ' of '
+    +
+    total;
+
+
+  elapsedText.textContent =
+    formatShort(elapsed)
+    +
+    ' elapsed';
+
+
+  sessionProgress.textContent =
+    completedSteps
+    +
+    ' / '
+    +
+    total;
+
+
+  completedStat.textContent =
+    completedSteps;
+
+
+  elapsedStat.textContent =
+    formatShort(
+      elapsed
+    );
+
+
+  sessionProgressBar.style.width =
+    (
+      total > 0
+      ?
+      (
+        completedSteps
+        /
+        total
+      )
+      *
+      100
+      :
+      0
+    )
+    +
+    '%';
+
+
+  const upcoming =
+    nextInfo();
+
+  sidebarNext.textContent =
+    upcoming.name;
+
+  sidebarNextSide.textContent =
+    upcoming.side;
+
+
+  restPreview.textContent =
+    formatClock(
+      Number(
+        restSelect.value
+      )
+      ||
+      10
+    );
+
+
+  startBtn.textContent =
+    paused
+    ?
+    'Resume'
+    :
+    phase === 'work'
+    ||
+    phase === 'transition'
+    ||
+    phase === 'countdown'
+    ?
+    'Pause'
+    :
+    phase === 'done'
+    ?
+    'Restart'
+    :
+    'Start';
+
+
+  renderRoutineList();
+
+}
+
+
+
+function resetSession(){
+
+  stopTimer();
+
+  index =
+    0;
+
+  side =
+    1;
+
+  phase =
+    'ready';
+
+  remaining =
+    currentRoutine()[0]
+    ?.seconds
+    ||
+    0;
+
+  phaseTotal =
+    remaining;
+
+  elapsed =
+    0;
+
+  completedSteps =
+    0;
+
+  paused =
+    false;
+
+  transitionTarget =
+    'next';
+
+  render();
+
+}
+
+
+
+function beginCountdown(){
+
+  audio();
+
+  phase =
+    'countdown';
+
+  remaining =
+    5;
+
+  phaseTotal =
+    5;
+
+  paused =
+    false;
+
+  render();
+
+  startClock();
+
+}
+
+
+
+function beginWork(){
+
+  const exercise =
+    currentRoutine()[index];
+
+  if(!exercise){
+
+    finishWorkout();
+
+    return;
+
+  }
+
+  phase =
+    'work';
+
+  remaining =
+    Math.max(
+      1,
+      Number(
+        exercise.seconds
+      )
+      ||
+      1
+    );
+
+  phaseTotal =
+    remaining;
+
+  workCue();
+
+  render();
+
+}
+
+
+
+function beginRest(){
+
+  const exercise =
+    currentRoutine()[index];
+
+  completedSteps++;
+
+
+  transitionTarget =
+    exercise.sides === 2
+    &&
+    side === 1
+    ?
+    'side2'
+    :
+    'next';
+
+
+  phase =
+    'transition';
+
+  remaining =
+    Number(
+      restSelect.value
+    )
+    ||
+    10;
+
+  phaseTotal =
+    remaining;
+
+  restCue();
+
+  render();
+
+}
+
+
+
+function completeRest(){
+
+  if(
+    transitionTarget ===
+    'side2'
+  ){
+
+    side =
+      2;
+
+    beginWork();
+
+    return;
+
+  }
+
+
+  side =
+    1;
+
+  index++;
+
+
+  if(
+    index
+    >=
+    currentRoutine()
+      .length
+  ){
+
+    finishWorkout();
+
+    return;
+
+  }
+
+
+  beginWork();
+
+}
+
+
+
+function finishWorkout(){
+
+  stopTimer();
+
+  phase =
+    'done';
+
+  remaining =
+    0;
+
+  phaseTotal =
+    1;
+
+  finishCue();
+
+  render();
+
+
+  exerciseNameEl.textContent =
+    'Workout Complete';
+
+  sideLabelEl.textContent =
+    '';
+
+  exerciseCueEl.textContent =
+    'Nice work in the crease.';
+
+  nextCard.classList.add(
+    'hidden'
+  );
+
+}
+
+
+
+function tick(){
+
+  if(paused){
+    return;
+  }
+
+  elapsed++;
+
+  remaining--;
+
+
+  if(
+    remaining <=
+    0
+  ){
+
+    remaining =
+      0;
+
+    if(
+      phase ===
+      'countdown'
+    ){
+
+      beginWork();
+
+    }
+    else if(
+      phase ===
+      'work'
+    ){
+
+      beginRest();
+
+    }
+    else if(
+      phase ===
+      'transition'
+    ){
+
+      completeRest();
+
+    }
+
+  }
+  else{
+
+    render();
+
+  }
+
+}
+
+
+
+function startClock(){
+
+  if(timerId){
+    return;
+  }
+
+  timerId =
+    setInterval(
+      tick,
+      1000
+    );
+
+}
+
+
+
+function startPause(){
+
+  audio();
+
+
+  if(
+    phase ===
+    'done'
+  ){
+
+    resetSession();
+
+    beginCountdown();
+
+    return;
+
+  }
+
+
+  if(
+    phase ===
+    'ready'
+  ){
+
+    beginCountdown();
+
+    return;
+
+  }
+
+
+  paused =
+    !paused;
+
+
+  if(paused){
+
+    stopTimer();
+
+  }
+  else{
+
+    startClock();
+
+  }
+
+
+  render();
+
+}
+
+
+
+function skipForward(){
+
+  stopTimer();
+
+
+  const routine =
+    currentRoutine();
+
+  const exercise =
+    routine[index];
+
+
+  if(
+    exercise
+    &&
+    exercise.sides === 2
+    &&
+    side === 1
+  ){
+
+    side =
+      2;
+
+  }
+  else{
+
+    side =
+      1;
+
+    index++;
+
+  }
+
+
+  if(
+    index >=
+    routine.length
+  ){
+
+    finishWorkout();
+
+    return;
+
+  }
+
+
+  phase =
+    'ready';
+
+  paused =
+    false;
+
+  remaining =
+    routine[index]
+      .seconds;
+
+  phaseTotal =
+    remaining;
+
+  render();
+
+}
+
+
+
+function previousStep(){
+
+  stopTimer();
+
+
+  const routine =
+    currentRoutine();
+
+
+  if(
+    routine[index]
+    ?.sides === 2
+    &&
+    side === 2
+  ){
+
+    side =
+      1;
+
+  }
+  else if(
+    index > 0
+  ){
+
+    index--;
+
+    side =
+      routine[index]
+      .sides === 2
+      ?
+      2
+      :
+      1;
+
+  }
+
+
+  phase =
+    'ready';
+
+  paused =
+    false;
+
+  remaining =
+    routine[index]
+    .seconds;
+
+  phaseTotal =
+    remaining;
+
+  render();
+
+}
+
+
+
+function selectRoutine(key){
+
+  currentRoutineKey =
+    key;
+
+  updateTabs();
+
+  resetSession();
+
+}
+
+
+
+function openEditor(){
+
+  stopTimer();
+
+  editorDraft =
+    clone(workouts);
+
+
+  editRoutineSelect.value =
+    currentRoutineKey ===
+    'full'
+    ?
+    'mobility'
+    :
+    currentRoutineKey;
+
+
+  playerArea.classList.add(
+    'hidden'
+  );
+
+  editor.classList.add(
+    'visible'
+  );
+
+  saveMessage.textContent =
+    '';
+
+  renderEditor();
+
+}
+
+
+
+function closeEditor(){
+
+  editor.classList.remove(
+    'visible'
+  );
+
+  playerArea.classList.remove(
+    'hidden'
+  );
+
+  resetSession();
+
+}
+
+
+
+function renderEditor(){
+
+  const key =
+    editRoutineSelect.value;
+
+  const list =
+    editorDraft[key];
+
+  editorList.innerHTML =
+    '';
+
+
+  list.forEach(
+    (exercise,i) => {
+
+      const card =
+        document.createElement(
+          'div'
+        );
+
+      card.className =
+        'edit-card';
+
+
+      card.innerHTML = `
+
+        <div class="edit-grid">
+
+          <div>
+
+            <div class="control-label hockey">
+              Exercise
+            </div>
+
+            <input
+              type="text"
+              data-name="${i}"
+              value=""
+            >
+
+          </div>
+
+
+          <div>
+
+            <div class="control-label hockey">
+              Seconds
+            </div>
+
+            <input
+              type="number"
+              min="5"
+              max="600"
+              data-seconds="${i}"
+              value="${exercise.seconds}"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div style="margin-top:10px">
+
+          <div class="control-label hockey">
+            Instruction
+          </div>
+
+          <textarea
+            data-cue="${i}"
+          ></textarea>
+
+        </div>
+
+
+        <div class="editor-options">
+
+          <label class="side-check">
+
+            <input
+              type="checkbox"
+              data-sides="${i}"
+              ${exercise.sides === 2 ? 'checked' : ''}
+            >
+
+            Side 1 + Side 2
+
+          </label>
+
+
+          <div class="editor-actions">
+
+            <button
+              type="button"
+              class="small-btn"
+              data-up="${i}"
+              aria-label="Move exercise up"
+            >
+              ↑
+            </button>
+
+            <button
+              type="button"
+              class="small-btn"
+              data-down="${i}"
+              aria-label="Move exercise down"
+            >
+              ↓
+            </button>
+
+            <button
+              type="button"
+              class="small-btn delete-btn"
+              data-delete="${i}"
+            >
+              Delete
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      const nameInput =
+        card.querySelector(
+          `[data-name="${i}"]`
+        );
+
+      const cueInput =
+        card.querySelector(
+          `[data-cue="${i}"]`
+        );
+
+
+      nameInput.value =
+        exercise.name;
+
+      cueInput.value =
+        exercise.cue
+        ||
+        '';
+
+
+      editorList
+        .appendChild(card);
+
+    }
+  );
+
+
+  editorList
+    .querySelectorAll(
+      '[data-name]'
+    )
+    .forEach(input => {
+
+      input.addEventListener(
+        'input',
+        () => {
+
+          const i =
+            Number(
+              input.dataset.name
+            );
+
+          list[i].name =
+            input.value;
+
+        }
+      );
+
+    });
+
+
+  editorList
+    .querySelectorAll(
+      '[data-seconds]'
+    )
+    .forEach(input => {
+
+      input.addEventListener(
+        'input',
+        () => {
+
+          const i =
+            Number(
+              input.dataset.seconds
+            );
+
+          list[i].seconds =
+            Math.max(
+              5,
+              Math.min(
+                600,
+                Number(
+                  input.value
+                )
+                ||
+                5
+              )
+            );
+
+        }
+      );
+
+    });
+
+
+  editorList
+    .querySelectorAll(
+      '[data-cue]'
+    )
+    .forEach(input => {
+
+      input.addEventListener(
+        'input',
+        () => {
+
+          const i =
+            Number(
+              input.dataset.cue
+            );
+
+          list[i].cue =
+            input.value;
+
+        }
+      );
+
+    });
+
+
+  editorList
+    .querySelectorAll(
+      '[data-sides]'
+    )
+    .forEach(input => {
+
+      input.addEventListener(
+        'change',
+        () => {
+
+          const i =
+            Number(
+              input.dataset.sides
+            );
+
+          list[i].sides =
+            input.checked
+            ?
+            2
+            :
+            1;
+
+        }
+      );
+
+    });
+
+
+  editorList
+    .querySelectorAll(
+      '[data-delete]'
+    )
+    .forEach(button => {
+
+      button.addEventListener(
+        'click',
+        () => {
+
+          const i =
+            Number(
+              button.dataset.delete
+            );
+
+          list.splice(
+            i,
+            1
+          );
+
+          renderEditor();
+
+        }
+      );
+
+    });
+
+
+  editorList
+    .querySelectorAll(
+      '[data-up]'
+    )
+    .forEach(button => {
+
+      button.addEventListener(
+        'click',
+        () => {
+
+          const i =
+            Number(
+              button.dataset.up
+            );
+
+          if(i <= 0){
+            return;
+          }
+
+          [
+            list[i-1],
+            list[i]
+          ]
+          =
+          [
+            list[i],
+            list[i-1]
+          ];
+
+          renderEditor();
+
+        }
+      );
+
+    });
+
+
+  editorList
+    .querySelectorAll(
+      '[data-down]'
+    )
+    .forEach(button => {
+
+      button.addEventListener(
+        'click',
+        () => {
+
+          const i =
+            Number(
+              button.dataset.down
+            );
+
+          if(
+            i
+            >=
+            list.length - 1
+          ){
+            return;
+          }
+
+          [
+            list[i+1],
+            list[i]
+          ]
+          =
+          [
+            list[i],
+            list[i+1]
+          ];
+
+          renderEditor();
+
+        }
+      );
+
+    });
+
+}
+
+
+
+function saveWorkout(){
+
+  Object.keys(
+    editorDraft
+  )
+  .forEach(key => {
+
+    editorDraft[key] =
+      editorDraft[key]
+      .filter(
+        exercise =>
+          exercise.name
+          .trim()
+          .length > 0
+      )
+      .map(
+        exercise => ({
+
+          name:
+            exercise.name
+            .trim(),
+
+          seconds:
+            Math.max(
+              5,
+              Math.min(
+                600,
+                Number(
+                  exercise.seconds
+                )
+                ||
+                30
+              )
+            ),
+
+          sides:
+            exercise.sides === 2
+            ?
+            2
+            :
+            1,
+
+          cue:
+            (
+              exercise.cue
+              ||
+              ''
+            ).trim()
+
+        })
+      );
+
+  });
+
+
+  workouts =
+    clone(
+      editorDraft
+    );
+
+
+  try{
+
+    localStorage.setItem(
+
+      STORAGE_KEY,
+
+      JSON.stringify(
+        workouts
+      )
+
+    );
+
+    saveMessage.textContent =
+      'Workout saved on this iPhone.';
+
+  }
+  catch(error){
+
+    saveMessage.textContent =
+      'Workout changed, but this browser could not save it permanently.';
+
+  }
+
+
+  currentRoutineKey =
+    editRoutineSelect.value;
+
+  setTimeout(
+    () => {
+
+      updateTabs();
+
+      closeEditor();
+
+    },
+    500
+  );
+
+}
+
+
+
+function addExercise(){
+
+  const key =
+    editRoutineSelect.value;
+
+  editorDraft[key]
+    .push({
+
+      name:'New Exercise',
+
+      seconds:30,
+
+      sides:1,
+
+      cue:''
+
+    });
+
+  renderEditor();
+
+}
+
+
+
+function syncVolume(value){
+
+  const clean =
+    Math.max(
+      0,
+      Math.min(
+        100,
+        Number(value)
+        ||
+        0
+      )
+    );
+
+  volumeSlider.value =
+    clean;
+
+  topVolume.value =
+    clean;
+
+  topVolumeText.textContent =
+    clean
+    +
+    '%';
+
+}
+
+
+
+document
+  .querySelectorAll(
+    '.tab'
+  )
+  .forEach(button => {
+
+    button.addEventListener(
+      'click',
+      () => {
+
+        selectRoutine(
+          button.dataset.routine
+        );
+
+      }
+    );
+
+  });
+
+
+
+startBtn.addEventListener(
+  'click',
+  startPause
+);
+
+
+previousBtn.addEventListener(
+  'click',
+  previousStep
+);
+
+
+skipBtn.addEventListener(
+  'click',
+  skipForward
+);
+
+
+resetBtn.addEventListener(
+  'click',
+  resetSession
+);
+
+
+editWorkoutBtn.addEventListener(
+  'click',
+  openEditor
+);
+
+
+cancelEditBtn.addEventListener(
+  'click',
+  closeEditor
+);
+
+
+saveWorkoutBtn.addEventListener(
+  'click',
+  saveWorkout
+);
+
+
+addExerciseBtn.addEventListener(
+  'click',
+  addExercise
+);
+
+
+editRoutineSelect
+  .addEventListener(
+    'change',
+    renderEditor
+  );
+
+
+restSelect.addEventListener(
+  'change',
+  () => {
+
+    restPreview.textContent =
+      formatClock(
+        Number(
+          restSelect.value
+        )
+      );
+
+  }
+);
+
+
+volumeSlider
+  .addEventListener(
+    'input',
+    () => {
+
+      syncVolume(
+        volumeSlider.value
+      );
+
+    }
+  );
+
+
+topVolume
+  .addEventListener(
+    'input',
+    () => {
+
+      syncVolume(
+        topVolume.value
+      );
+
+    }
+  );
+
+
+soundToggle
+  .addEventListener(
+    'change',
     () => {
 
       if(
-        phase === 'ready'
-        || phase === 'done'
+        soundToggle.checked
       ){
-        return;
+
+        audio();
+
       }
 
-      paused = !paused;
-
-      if(!paused){
-        startClock();
-      }
-
-      render();
     }
   );
 
-  nextBtn.addEventListener(
-    'click',
-    next
-  );
 
-  prevBtn.addEventListener(
-    'click',
-    prev
-  );
+document.addEventListener(
+  'keydown',
+  event => {
 
-  resetBtn.addEventListener(
-    'click',
-    loadRoutine
-  );
+    const tag =
+      event.target
+      .tagName;
 
-  routineSelect.addEventListener(
-    'change',
-    loadRoutine
-  );
-
-  volumeControl.addEventListener(
-    'input',
-    () => {
-      volumeLabel.textContent =
-        volumeControl.value + '%';
+    if(
+      tag === 'INPUT'
+      ||
+      tag === 'TEXTAREA'
+      ||
+      tag === 'SELECT'
+    ){
+      return;
     }
-  );
 
-  soundToggle.addEventListener(
-    'change',
-    () => {
-      if(soundToggle.checked){
-        initAudio();
-      }
+
+    if(
+      event.key
+      .toLowerCase()
+      ===
+      'm'
+    ){
+
+      soundToggle.checked =
+        !soundToggle.checked;
+
     }
-  );
 
-  document
-    .getElementById('app')
-    .addEventListener(
-      'keydown',
-      e => {
-
-        const t =
-          e.target.tagName;
-
-        if(
-          t === 'INPUT'
-          || t === 'SELECT'
-          || t === 'TEXTAREA'
-        ){
-          return;
-        }
-
-        if(e.key.toLowerCase() === 'm'){
-
-          e.preventDefault();
-
-          soundToggle.checked =
-            !soundToggle.checked;
-
-          if(soundToggle.checked){
-            initAudio();
-          }
-        }
-      }
-    );
-
-  loadRoutine();
-
-  if('serviceWorker' in navigator){
-
-    window.addEventListener(
-      'load',
-      () => {
-        navigator
-          .serviceWorker
-          .register('./sw.js')
-          .catch(() => {});
-      }
-    );
   }
+);
+
+
+syncVolume(70);
+
+updateTabs();
+
+resetSession();
+
+
+if(
+  'serviceWorker'
+  in
+  navigator
+){
+
+  window.addEventListener(
+    'load',
+    () => {
+
+      navigator
+        .serviceWorker
+        .register(
+          './sw.js'
+        )
+        .catch(
+          () => {}
+        );
+
+    }
+  );
+
+}
 
 })();
 </script>
