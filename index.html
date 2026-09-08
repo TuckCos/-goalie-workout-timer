@@ -17,6 +17,13 @@
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-512.png">
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,700;1,700&display=swap"
+  rel="stylesheet"
+>
+
 <title>Goalie Training</title>
 
 <style>
@@ -60,15 +67,99 @@ button:disabled{
   cursor:not-allowed;
 }
 
+
+/* ==================================================
+   SHARP-EDGE HOCKEY FONT
+   ================================================== */
+
 .hockey{
-  font-family:Impact,Haettenschweiler,"Arial Black","Arial Narrow Bold",sans-serif;
-  font-weight:900;
+  font-family:"Quantico","Arial Black",Impact,sans-serif;
+  font-weight:700;
   font-style:italic;
   text-transform:uppercase;
-  letter-spacing:.045em;
-  transform:skewX(-6deg);
+  letter-spacing:.015em;
+  transform:skewX(-5deg);
   transform-origin:center;
 }
+
+
+/* Main interface text uses the sharp sports font */
+
+.category-btn,
+.coordination-btn,
+.exercise-count,
+.phase-badge,
+.timer,
+.exercise-name,
+.side-label,
+.next-label,
+.next-name,
+.next-side,
+.btn,
+.side-heading,
+.side-next-name,
+.side-next-side,
+.rest-number,
+.session-number,
+.stat-value,
+.routine-title,
+.edit-workout,
+.row-num,
+.row-name,
+.row-time,
+.row-sides,
+.setting-label,
+.control-label,
+.editor-title,
+.add-btn{
+  font-family:"Quantico","Arial Black",Impact,sans-serif;
+  font-weight:700;
+  font-style:italic;
+  text-transform:uppercase;
+}
+
+
+/* Timer gets an extra aggressive sports treatment */
+
+.timer{
+  font-weight:700;
+  font-style:italic;
+  letter-spacing:-.06em;
+  transform:skewX(-5deg);
+  transform-origin:center;
+}
+
+
+/* Workout names stay wide and sharp */
+
+.exercise-name{
+  letter-spacing:-.02em;
+  transform:skewX(-4deg);
+}
+
+
+/* Keep instructions easy to read */
+
+.exercise-cue,
+.progress-meta,
+.stat-label,
+select,
+input[type="text"],
+input[type="number"],
+textarea,
+.side-check,
+.save-message,
+#topVolumeText{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  font-style:normal;
+  text-transform:none;
+  transform:none;
+}
+
+
+/* ==================================================
+   APP
+   ================================================== */
 
 .app{
   width:min(1080px,100%);
@@ -148,6 +239,7 @@ button:disabled{
   color:#aaa;
   padding:9px;
   font-size:17px;
+  letter-spacing:.01em;
 }
 
 .category-btn.active{
@@ -211,7 +303,6 @@ button:disabled{
   color:white;
   font-size:clamp(82px,15vw,145px);
   line-height:.88;
-  letter-spacing:-.045em;
 }
 
 .exercise-name{
@@ -511,7 +602,6 @@ button:disabled{
   margin-bottom:6px;
   color:#858585;
   font-size:12px;
-  text-transform:uppercase;
 }
 
 select,
@@ -1202,7 +1292,6 @@ Hip Internal Rotation
 </section>
 
 </div>
-
 
 
 <script>
@@ -1953,9 +2042,6 @@ function countdownBeep(){
 
 /*
   Synthesized hockey-arena style period horn.
-
-  Multiple detuned sawtooth oscillators make it much
-  fuller than the simple countdown beep.
 */
 
 function arenaHorn(){
@@ -2989,13 +3075,6 @@ function finishWorkout(){
   );
 }
 
-
-/*
-  Called when any timer reaches zero.
-
-  The clock stops, horn sounds, waits briefly,
-  and then the app automatically changes phases.
-*/
 
 function timerExpired(){
 
