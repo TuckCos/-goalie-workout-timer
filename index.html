@@ -912,7 +912,487 @@ input[type="checkbox"]{
     margin-left:0;
   }
 }
+/* ==================================================
+   SHARP / BOLD HOCKEY TYPOGRAPHY PATCH
+   ================================================== */
 
+/*
+  Main sports font:
+  heavier, more italic, tighter, squared-off look
+  closer to the reference design.
+*/
+.hockey{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+  font-weight:700 !important;
+  font-style:italic !important;
+  text-transform:uppercase !important;
+  letter-spacing:-0.01em !important;
+
+  /* Stronger forward hockey slant */
+  transform:skewX(-9deg) !important;
+  transform-origin:center !important;
+
+  /* Adds a little visual weight */
+  -webkit-text-stroke:.35px currentColor;
+}
+
+
+/* ==================================================
+   GIANT 00:40 TIMER
+   ================================================== */
+
+.timer{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  letter-spacing:-0.075em !important;
+
+  transform:skewX(-10deg) scaleX(1.04) !important;
+  transform-origin:center !important;
+
+  /*
+    Slight stroke makes the numbers feel heavier
+    and more like the reference timer.
+  */
+  -webkit-text-stroke:1.15px currentColor;
+
+  text-shadow:
+    .35px 0 currentColor,
+    -.35px 0 currentColor;
+}
+
+
+/* ==================================================
+   HIP INTERNAL ROTATION / EXERCISE NAME
+   ================================================== */
+
+.exercise-name{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  letter-spacing:-0.035em !important;
+
+  transform:skewX(-9deg) scaleX(1.025) !important;
+  transform-origin:center !important;
+
+  -webkit-text-stroke:.45px currentColor;
+}
+
+
+/* ==================================================
+   MOBILITY / STRENGTH / EXPLOSIVENESS /
+   FULL SESSION / COORDINATION
+   ================================================== */
+
+.category-btn,
+.coordination-btn{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  letter-spacing:-0.025em !important;
+
+  transform:skewX(-8deg) !important;
+  transform-origin:center !important;
+
+  -webkit-text-stroke:.35px currentColor;
+}
+
+
+/*
+  Keep the actual buttons squared/athletic,
+  rather than looking soft and rounded.
+*/
+.category-btn{
+  border-radius:5px !important;
+}
+
+.coordination-btn{
+  border-radius:5px !important;
+}
+
+
+/* ==================================================
+   START / PAUSE / PREV / SKIP
+   ================================================== */
+
+.btn{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  letter-spacing:-0.02em !important;
+
+  transform:skewX(-7deg) !important;
+
+  -webkit-text-stroke:.4px currentColor;
+
+  border-radius:5px !important;
+}
+
+
+/*
+  Counter-skew can keep the whole button shape from
+  visually leaning too much while retaining italic text.
+*/
+.player-controls .btn{
+  transform:skewX(-5deg) !important;
+}
+
+
+/* ==================================================
+   READY / WORK / REST / HORN / COMPLETE
+   ================================================== */
+
+.phase-badge{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  letter-spacing:-0.025em !important;
+
+  transform:skewX(-8deg) !important;
+
+  -webkit-text-stroke:.35px currentColor;
+
+  border-radius:4px !important;
+}
+
+
+/* ==================================================
+   EXERCISE 1 OF 18
+   ================================================== */
+
+.exercise-count{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  letter-spacing:-0.025em !important;
+
+  transform:skewX(-7deg) !important;
+
+  -webkit-text-stroke:.25px currentColor;
+}
+
+
+/* ==================================================
+   NEXT UP
+   ================================================== */
+
+.next-label,
+.side-heading{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  letter-spacing:-0.02em !important;
+
+  transform:skewX(-7deg) !important;
+
+  -webkit-text-stroke:.25px currentColor;
+}
+
+
+.next-name,
+.side-next-name{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  letter-spacing:-0.03em !important;
+
+  transform:skewX(-8deg) !important;
+
+  -webkit-text-stroke:.35px currentColor;
+}
+
+
+.next-side,
+.side-next-side{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  transform:skewX(-8deg) !important;
+
+  -webkit-text-stroke:.25px currentColor;
+}
+
+
+/* ==================================================
+   SIDE 1 OF 2
+   ================================================== */
+
+.side-label{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  letter-spacing:-0.02em !important;
+
+  transform:skewX(-8deg) !important;
+
+  -webkit-text-stroke:.3px currentColor;
+}
+
+
+/* ==================================================
+   REST TIME / SESSION PROGRESS NUMBERS
+   ================================================== */
+
+.rest-number,
+.session-number,
+.stat-value{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  letter-spacing:-0.045em !important;
+
+  transform:skewX(-8deg) !important;
+
+  -webkit-text-stroke:.4px currentColor;
+}
+
+
+/* ==================================================
+   TODAY'S ROUTINE
+   ================================================== */
+
+.routine-title{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  letter-spacing:-0.03em !important;
+
+  transform:skewX(-8deg) !important;
+
+  -webkit-text-stroke:.4px currentColor;
+}
+
+
+/* ==================================================
+   EDIT WORKOUT
+   ================================================== */
+
+.edit-workout{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  letter-spacing:-0.025em !important;
+
+  transform:skewX(-7deg) !important;
+
+  -webkit-text-stroke:.3px currentColor;
+
+  border-radius:4px !important;
+}
+
+
+/* ==================================================
+   ROUTINE LIST
+   ================================================== */
+
+.row-num,
+.row-name,
+.row-time,
+.row-sides{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  letter-spacing:-0.025em !important;
+
+  -webkit-text-stroke:.2px currentColor;
+}
+
+
+.row-name{
+  transform:skewX(-7deg) !important;
+}
+
+
+/*
+  Sharper routine container corners.
+*/
+.routine-list{
+  border-radius:4px !important;
+}
+
+
+.routine-row{
+  border-radius:0 !important;
+}
+
+
+/*
+  Current exercise gets the harder-edged green
+  highlight like the reference.
+*/
+.routine-row.active{
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,212,90,.30),
+      rgba(0,212,90,.11)
+    ) !important;
+
+  outline:1px solid var(--green) !important;
+  outline-offset:-1px !important;
+}
+
+
+/* ==================================================
+   MAIN PANELS — LESS ROUNDED
+   ================================================== */
+
+/*
+  The reference design uses nearly square cards.
+  This reduces the rounded-phone-app appearance.
+*/
+.panel{
+  border-radius:5px !important;
+}
+
+
+.next-card{
+  border-radius:4px !important;
+}
+
+
+/* ==================================================
+   EDITOR SPORTS TEXT
+   ================================================== */
+
+.editor-title,
+.add-btn,
+.setting-label,
+.control-label{
+  font-family:"Quantico","Arial Black",Impact,sans-serif !important;
+
+  font-weight:700 !important;
+  font-style:italic !important;
+
+  text-transform:uppercase !important;
+
+  letter-spacing:-0.02em !important;
+
+  -webkit-text-stroke:.2px currentColor;
+}
+
+
+/* ==================================================
+   KEEP LONG TEXT CLEAN / READABLE
+   ================================================== */
+
+.exercise-cue,
+.progress-meta,
+.stat-label,
+select,
+input[type="text"],
+input[type="number"],
+textarea,
+.side-check,
+.save-message,
+#topVolumeText{
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif !important;
+
+  font-weight:400 !important;
+  font-style:normal !important;
+
+  text-transform:none !important;
+
+  letter-spacing:normal !important;
+
+  transform:none !important;
+
+  -webkit-text-stroke:0 !important;
+
+  text-shadow:none !important;
+}
+
+
+/* ==================================================
+   PHONE TUNING
+   ================================================== */
+
+@media(max-width:560px){
+
+  .timer{
+    font-size:96px !important;
+    letter-spacing:-0.075em !important;
+  }
+
+  .exercise-name{
+    font-size:30px !important;
+    letter-spacing:-0.04em !important;
+  }
+
+  .category-btn{
+    font-size:16px !important;
+  }
+
+  .coordination-btn{
+    font-size:21px !important;
+  }
+
+  .player-controls .btn{
+    font-size:17px !important;
+  }
+
+  .exercise-count{
+    font-size:15px !important;
+  }
+
+}
 </style>
 </head>
 
