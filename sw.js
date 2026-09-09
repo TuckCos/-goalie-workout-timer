@@ -1,4 +1,4 @@
-const CACHE_NAME = 'goalie-timer-v18';
+const CACHE_NAME = 'goalie-timer-v19';
 
 const ASSETS = [
   './',
