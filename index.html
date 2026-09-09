@@ -19,6 +19,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link
   href="https://fonts.googleapis.com/css2?family=Quantico:ital,wght@0,700;1,700&display=swap"
   rel="stylesheet"
@@ -52,7 +53,12 @@ body{
 }
 
 body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Arial,
+    sans-serif;
 }
 
 button,
@@ -71,6 +77,7 @@ button:disabled{
   cursor:not-allowed;
 }
 
+
 /* ==================================================
    SHARP HOCKEY FONT
    ================================================== */
@@ -81,10 +88,13 @@ button:disabled{
   font-style:italic !important;
   text-transform:uppercase !important;
   letter-spacing:-.01em !important;
+
   transform:skewX(-9deg);
   transform-origin:center;
+
   -webkit-text-stroke:.35px currentColor;
 }
+
 
 /* ==================================================
    APP
@@ -99,6 +109,7 @@ button:disabled{
     14px
     max(30px,env(safe-area-inset-bottom));
 }
+
 
 /* ==================================================
    HEADER
@@ -123,11 +134,13 @@ button:disabled{
   justify-content:flex-start;
 
   overflow:hidden;
+
   background:#090909;
 }
 
 .logo-frame img{
   display:block;
+
   width:100%;
   height:100%;
   max-width:100%;
@@ -136,6 +149,7 @@ button:disabled{
   object-position:left center;
 
   position:static;
+
   transform:none;
 }
 
@@ -143,26 +157,32 @@ button:disabled{
   display:flex;
   align-items:center;
   justify-content:flex-end;
+
   gap:9px;
+
   flex-wrap:wrap;
 }
 
 .sound-toggle{
   display:flex;
   align-items:center;
+
   gap:7px;
 }
 
 .sound-toggle input{
   width:22px;
   height:22px;
+
   accent-color:var(--green);
 }
 
 .volume{
   width:125px;
+
   accent-color:var(--green);
 }
+
 
 /* ==================================================
    CATEGORY BUTTONS
@@ -171,6 +191,7 @@ button:disabled{
 .category-grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
+
   gap:8px;
 }
 
@@ -181,14 +202,17 @@ button:disabled{
   border-radius:5px;
 
   background:#050505;
+
   color:#aaa;
 
   padding:9px;
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
+
   font-size:17px;
   font-weight:700;
   font-style:italic;
+
   text-transform:uppercase;
 
   letter-spacing:-.025em;
@@ -201,6 +225,7 @@ button:disabled{
 .category-btn.active{
   background:var(--green);
   border-color:var(--green);
+
   color:#04150a;
 }
 
@@ -208,25 +233,27 @@ button:disabled{
   margin-top:8px;
 }
 
-.full-session-btn{
-  width:100%;
-  min-height:62px;
-  font-size:22px;
+.coordination-wrap{
+  margin-top:8px;
 }
 
-.coordination-wrap{
+.pregame-wrap{
   margin-top:8px;
   margin-bottom:16px;
 }
 
-.coordination-btn{
+.full-session-btn,
+.coordination-btn,
+.pregame-btn{
   width:100%;
   min-height:62px;
+
   font-size:22px;
 }
 
+
 /* ==================================================
-   PLAYER LAYOUT
+   MAIN PLAYER
    ================================================== */
 
 .main-grid{
@@ -242,6 +269,7 @@ button:disabled{
 .panel{
   border:1px solid var(--line);
   border-radius:5px;
+
   background:var(--panel);
 }
 
@@ -253,16 +281,19 @@ button:disabled{
   display:flex;
   align-items:center;
   justify-content:space-between;
+
   gap:10px;
 }
 
 .exercise-count{
   color:#929292;
-  font-size:17px;
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
+
+  font-size:17px;
   font-weight:700;
   font-style:italic;
+
   text-transform:uppercase;
 
   transform:skewX(-7deg);
@@ -283,9 +314,10 @@ button:disabled{
   padding:8px 11px;
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
+
+  font-size:15px;
   font-weight:700;
   font-style:italic;
-  font-size:15px;
 
   text-transform:uppercase;
 
@@ -293,6 +325,7 @@ button:disabled{
 
   -webkit-text-stroke:.35px currentColor;
 }
+
 
 /* ==================================================
    TIMER
@@ -302,6 +335,7 @@ button:disabled{
   margin-top:26px;
 
   text-align:center;
+
   color:white;
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
@@ -314,7 +348,9 @@ button:disabled{
 
   letter-spacing:-.075em;
 
-  transform:skewX(-10deg) scaleX(1.04);
+  transform:
+    skewX(-10deg)
+    scaleX(1.04);
 
   -webkit-text-stroke:1.15px currentColor;
 
@@ -329,6 +365,7 @@ button:disabled{
   text-align:center;
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
+
   font-size:clamp(27px,5vw,44px);
   font-weight:700;
   font-style:italic;
@@ -339,13 +376,16 @@ button:disabled{
 
   letter-spacing:-.035em;
 
-  transform:skewX(-9deg) scaleX(1.025);
+  transform:
+    skewX(-9deg)
+    scaleX(1.025);
 
   -webkit-text-stroke:.45px currentColor;
 }
 
 .side-label{
   min-height:30px;
+
   margin-top:8px;
 
   text-align:center;
@@ -353,6 +393,7 @@ button:disabled{
   color:var(--green2);
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
+
   font-size:21px;
   font-weight:700;
   font-style:italic;
@@ -377,6 +418,7 @@ button:disabled{
   line-height:1.5;
 }
 
+
 /* ==================================================
    NEXT UP
    ================================================== */
@@ -385,6 +427,7 @@ button:disabled{
   width:min(650px,100%);
 
   margin:24px auto 0;
+
   padding:15px 17px;
 
   border:1px solid var(--greenDark);
@@ -398,6 +441,7 @@ button:disabled{
   color:#787878;
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
+
   font-weight:700;
   font-style:italic;
 
@@ -419,6 +463,7 @@ button:disabled{
   color:white;
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
+
   font-weight:700;
   font-style:italic;
 
@@ -442,6 +487,7 @@ button:disabled{
   color:var(--green2);
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
+
   font-weight:700;
   font-style:italic;
 
@@ -459,6 +505,7 @@ button:disabled{
 .hidden{
   display:none !important;
 }
+
 
 /* ==================================================
    PROGRESS
@@ -490,6 +537,7 @@ button:disabled{
 .progress-meta{
   display:flex;
   justify-content:space-between;
+
   gap:10px;
 
   margin-top:10px;
@@ -498,6 +546,7 @@ button:disabled{
 
   font-size:13px;
 }
+
 
 /* ==================================================
    PLAYER CONTROLS
@@ -529,6 +578,7 @@ button:disabled{
   padding:10px;
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
+
   font-size:18px;
   font-weight:700;
   font-style:italic;
@@ -549,6 +599,7 @@ button:disabled{
   color:#031309;
 }
 
+
 /* ==================================================
    SIDEBAR
    ================================================== */
@@ -566,6 +617,7 @@ button:disabled{
 
 .side-heading{
   color:#8b8b8b;
+
   font-size:15px;
 }
 
@@ -596,6 +648,7 @@ button:disabled{
   color:white;
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
+
   font-size:35px;
   font-weight:700;
   font-style:italic;
@@ -641,6 +694,7 @@ button:disabled{
   color:white;
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
+
   font-size:20px;
   font-weight:700;
   font-style:italic;
@@ -648,8 +702,9 @@ button:disabled{
   transform:skewX(-8deg);
 }
 
+
 /* ==================================================
-   ROUTINE LIST
+   ROUTINE PANEL
    ================================================== */
 
 .routine-panel{
@@ -695,6 +750,7 @@ button:disabled{
   color:var(--green2);
 
   font-family:"Quantico","Arial Black",Impact,sans-serif;
+
   font-weight:700;
   font-style:italic;
 
@@ -702,6 +758,11 @@ button:disabled{
 
   transform:skewX(-7deg);
 }
+
+
+/* ==================================================
+   ROUTINE LIST
+   ================================================== */
 
 .routine-list{
   list-style:none;
@@ -775,6 +836,7 @@ button:disabled{
 
 .row-num{
   color:#aaa;
+
   font-size:14px;
 }
 
@@ -832,6 +894,7 @@ button:disabled{
   font-weight:900;
 }
 
+
 /* ==================================================
    ROUTINE SETTINGS
    ================================================== */
@@ -851,7 +914,8 @@ button:disabled{
 
 .setting{
   flex:1;
-  min-width:140px;
+
+  min-width:160px;
 }
 
 .setting-label,
@@ -867,6 +931,15 @@ button:disabled{
   font-style:italic;
 
   text-transform:uppercase;
+}
+
+.rest-note{
+  margin-top:7px;
+
+  color:#6f6f6f;
+
+  font-size:11px;
+  line-height:1.35;
 }
 
 select,
@@ -898,6 +971,7 @@ input[type="checkbox"]{
   accent-color:var(--green);
 }
 
+
 /* ==================================================
    EMPTY STATE
    ================================================== */
@@ -928,6 +1002,7 @@ input[type="checkbox"]{
 
   font-size:24px;
 }
+
 
 /* ==================================================
    EDITOR
@@ -1099,6 +1174,7 @@ input[type="checkbox"]{
   font-size:13px;
 }
 
+
 /* ==================================================
    TABLET
    ================================================== */
@@ -1125,7 +1201,9 @@ input[type="checkbox"]{
   .row-sides{
     display:none;
   }
+
 }
+
 
 /* ==================================================
    PHONE
@@ -1206,7 +1284,8 @@ input[type="checkbox"]{
   }
 
   .full-session-btn,
-  .coordination-btn{
+  .coordination-btn,
+  .pregame-btn{
     min-height:61px;
 
     font-size:21px;
@@ -1275,6 +1354,7 @@ input[type="checkbox"]{
 
     margin-left:0;
   }
+
 }
 
 </style>
@@ -1284,11 +1364,18 @@ input[type="checkbox"]{
 
 <div class="app">
 
+
 <header class="topbar">
 
   <div class="logo-frame">
-    <img src="icon-512.png" alt="Goalie Training">
+
+    <img
+      src="icon-512.png"
+      alt="Goalie Training"
+    >
+
   </div>
+
 
   <div class="audio-controls">
 
@@ -1308,6 +1395,7 @@ input[type="checkbox"]{
 
     </label>
 
+
     <input
       id="topVolume"
       class="volume"
@@ -1316,6 +1404,7 @@ input[type="checkbox"]{
       max="100"
       value="70"
     >
+
 
     <span id="topVolumeText">
       70%
@@ -1330,6 +1419,7 @@ input[type="checkbox"]{
   id="playerView"
   class="player-view"
 >
+
 
 <nav class="category-grid">
 
@@ -1388,9 +1478,23 @@ input[type="checkbox"]{
 </div>
 
 
+<div class="pregame-wrap">
+
+  <button
+    class="category-btn pregame-btn hockey"
+    data-routine="pregame"
+  >
+    Pregame
+  </button>
+
+</div>
+
+
 <div class="main-grid">
 
+
 <section class="panel player">
+
 
 <div class="player-head">
 
@@ -1410,12 +1514,14 @@ input[type="checkbox"]{
 
 </div>
 
+
 <div
   id="timer"
   class="timer hockey"
 >
 00:40
 </div>
+
 
 <div
   id="exerciseName"
@@ -1424,15 +1530,18 @@ input[type="checkbox"]{
 Hip Internal Rotation
 </div>
 
+
 <div
   id="sideLabel"
   class="side-label hockey"
 ></div>
 
+
 <div
   id="exerciseCue"
   class="exercise-cue"
 ></div>
+
 
 <div
   id="emptyState"
@@ -1446,6 +1555,7 @@ Hip Internal Rotation
   Use Edit Workout to add exercises to this category.
 
 </div>
+
 
 <div
   id="nextCard"
@@ -1467,6 +1577,7 @@ Hip Internal Rotation
   ></div>
 
 </div>
+
 
 <div class="progress-section">
 
@@ -1492,6 +1603,7 @@ Hip Internal Rotation
   </div>
 
 </div>
+
 
 <div class="player-controls">
 
@@ -1523,6 +1635,7 @@ Hip Internal Rotation
 
 <aside class="sidebar">
 
+
 <section class="panel side-panel">
 
   <div class="side-heading hockey">
@@ -1541,7 +1654,9 @@ Hip Internal Rotation
     class="side-next-side hockey"
   ></div>
 
+
   <div class="divider"></div>
+
 
   <div class="side-heading hockey">
     Rest Time
@@ -1570,6 +1685,7 @@ Hip Internal Rotation
     0 / 0
   </div>
 
+
   <div class="session-track track">
 
     <div
@@ -1578,6 +1694,7 @@ Hip Internal Rotation
     ></div>
 
   </div>
+
 
   <div class="stats">
 
@@ -1595,6 +1712,7 @@ Hip Internal Rotation
       </div>
 
     </div>
+
 
     <div class="stat">
 
@@ -1615,12 +1733,14 @@ Hip Internal Rotation
 
 </section>
 
+
 </aside>
 
 </div>
 
 
 <section class="panel routine-panel">
+
 
 <div class="routine-head">
 
@@ -1637,12 +1757,15 @@ Hip Internal Rotation
 
 </div>
 
+
 <ol
   id="routineList"
   class="routine-list"
 ></ol>
 
+
 <div class="routine-settings">
+
 
   <div class="setting">
 
@@ -1656,7 +1779,10 @@ Hip Internal Rotation
         5 seconds
       </option>
 
-      <option value="10" selected>
+      <option
+        value="10"
+        selected
+      >
         10 seconds
       </option>
 
@@ -1674,7 +1800,17 @@ Hip Internal Rotation
 
     </select>
 
+    <div
+      id="restNote"
+      class="rest-note"
+    >
+      Mobility, Strength and Explosiveness use this setting.
+      Dynamic Warm-Up has no rest. Coordination uses 10 seconds.
+      Pregame uses 5 seconds.
+    </div>
+
   </div>
+
 
   <div class="setting">
 
@@ -1691,6 +1827,7 @@ Hip Internal Rotation
     >
 
   </div>
+
 
   <button
     id="resetBtn"
@@ -1713,6 +1850,7 @@ Hip Internal Rotation
 
 <section class="panel editor-panel">
 
+
 <div class="editor-head">
 
   <div>
@@ -1728,10 +1866,11 @@ Hip Internal Rotation
         margin-top:5px;
       "
     >
-      Saved on this iPhone.
+      Saved on this device.
     </div>
 
   </div>
+
 
   <select id="editRoutineSelect">
 
@@ -1755,14 +1894,20 @@ Hip Internal Rotation
       Coordination
     </option>
 
+    <option value="pregame">
+      Pregame
+    </option>
+
   </select>
 
 </div>
+
 
 <div
   id="editorList"
   class="editor-list"
 ></div>
+
 
 <button
   id="addExerciseBtn"
@@ -1770,6 +1915,7 @@ Hip Internal Rotation
 >
   + Add Exercise
 </button>
+
 
 <div class="editor-footer">
 
@@ -1789,10 +1935,12 @@ Hip Internal Rotation
 
 </div>
 
+
 <div
   id="saveMessage"
   class="save-message"
 ></div>
+
 
 </section>
 
@@ -1801,23 +1949,40 @@ Hip Internal Rotation
 </div>
 
 
+
 <script>
 
 (() => {
 
+
+/* ==================================================
+   STORAGE
+   ================================================== */
+
 const STORAGE_KEY =
-  'goalie-workouts-v6';
+  'goalie-workouts-v7';
+
+
+const SETTINGS_KEY =
+  'goalie-settings-v1';
 
 
 const LEGACY_KEYS = [
+  'goalie-workouts-v6',
   'goalie-workouts-v5',
   'goalie-workouts-v4',
   'goalie-workouts-v3'
 ];
 
 
+/* ==================================================
+   DEFAULT WORKOUTS
+   ================================================== */
+
 const DEFAULTS = {
 
+
+/* ---------------- MOBILITY ---------------- */
 
 mobility:[
 
@@ -1901,6 +2066,8 @@ mobility:[
 ],
 
 
+/* ---------------- DYNAMIC WARM-UP ---------------- */
+
 dynamic:[
 
 {
@@ -1928,7 +2095,7 @@ dynamic:[
   name:'High Knees',
   seconds:30,
   sides:1,
-  cue:'Drive the knees up with quick controlled steps while keeping your torso tall.'
+  cue:'Drive your knees up with quick controlled steps while keeping your torso tall.'
 },
 
 {
@@ -1975,6 +2142,8 @@ dynamic:[
 
 ],
 
+
+/* ---------------- STRENGTH ---------------- */
 
 strength:[
 
@@ -2023,6 +2192,8 @@ strength:[
 ],
 
 
+/* ---------------- EXPLOSIVENESS ---------------- */
+
 explosive:[
 
 {
@@ -2048,6 +2219,8 @@ explosive:[
 
 ],
 
+
+/* ---------------- COORDINATION ---------------- */
 
 coordination:[
 
@@ -2121,18 +2294,77 @@ coordination:[
   cue:'Throw the reaction ball at different angles and heights. Shuffle to every rebound and catch it cleanly. If you miss, reset immediately and continue.'
 }
 
+],
+
+
+/* ---------------- PREGAME ---------------- */
+
+pregame:[
+
+{
+  name:'90/90 Stretch',
+  seconds:30,
+  sides:2,
+  cue:'Sit tall with both legs bent about 90 degrees. Relax into a comfortable stretch without forcing your range.'
+},
+
+{
+  name:'Hip Internal Rotation Stretch',
+  seconds:30,
+  sides:2,
+  cue:'Gently work the hip into internal rotation. Keep the movement at the hip and avoid twisting the knee.'
+},
+
+{
+  name:'Figure-4 Glute Stretch',
+  seconds:30,
+  sides:2,
+  cue:'Cross one ankle over the opposite leg and gently bring the legs toward you until you feel the glute stretch.'
+},
+
+{
+  name:'Half-Kneeling Hip Flexor Stretch',
+  seconds:30,
+  sides:2,
+  cue:'Stay tall, lightly tuck the pelvis and shift forward until you feel the front of the rear hip open.'
+},
+
+{
+  name:'Adductor Rock-Backs',
+  seconds:30,
+  sides:2,
+  cue:'Extend one leg to the side and gently rock the hips backward. Keep this smooth and comfortable.'
+},
+
+{
+  name:'Ankle Dorsiflexion Stretch',
+  seconds:30,
+  sides:2,
+  cue:'Drive the knee gently forward over the toes while keeping the heel down.'
+},
+
+{
+  name:'Child’s Pose + Lat Reach',
+  seconds:30,
+  sides:2,
+  cue:'Sit the hips back and reach one arm long to open the lat and side of the upper body.'
+},
+
+{
+  name:'Open-Book T-Spine Rotation',
+  seconds:30,
+  sides:2,
+  cue:'Lie on your side with the knees bent and rotate the top arm and upper back open without forcing the movement.'
+}
+
 ]
 
 };
 
 
-const DYNAMIC_NAMES =
-  new Set(
-    DEFAULTS.dynamic.map(
-      exercise => exercise.name
-    )
-  );
-
+/* ==================================================
+   HELPERS
+   ================================================== */
 
 function clone(value){
 
@@ -2142,6 +2374,10 @@ function clone(value){
 
 }
 
+
+/* ==================================================
+   PATCH / MIGRATE OLD SAVED WORKOUTS
+   ================================================== */
 
 function patchWorkoutData(data){
 
@@ -2156,52 +2392,30 @@ function patchWorkoutData(data){
   }
 
 
-  if(
-    !Array.isArray(
-      data.mobility
-    )
-  ){
+  [
+    'mobility',
+    'dynamic',
+    'strength',
+    'explosive'
+  ]
+  .forEach(
+    key => {
 
-    data.mobility =
-      clone(DEFAULTS.mobility);
+      if(
+        !Array.isArray(
+          data[key]
+        )
+      ){
 
-  }
+        data[key] =
+          clone(
+            DEFAULTS[key]
+          );
 
+      }
 
-  if(
-    !Array.isArray(
-      data.dynamic
-    )
-  ){
-
-    data.dynamic =
-      clone(DEFAULTS.dynamic);
-
-  }
-
-
-  if(
-    !Array.isArray(
-      data.strength
-    )
-  ){
-
-    data.strength =
-      clone(DEFAULTS.strength);
-
-  }
-
-
-  if(
-    !Array.isArray(
-      data.explosive
-    )
-  ){
-
-    data.explosive =
-      clone(DEFAULTS.explosive);
-
-  }
+    }
+  );
 
 
   if(
@@ -2211,16 +2425,33 @@ function patchWorkoutData(data){
   ){
 
     data.coordination =
-      [];
+      clone(
+        DEFAULTS.coordination
+      );
+
+  }
+
+
+  if(
+    !Array.isArray(
+      data.pregame
+    )
+  ){
+
+    data.pregame =
+      clone(
+        DEFAULTS.pregame
+      );
 
   }
 
 
   const reverseLunge =
     data.explosive.find(
-      x =>
-        x.name &&
-        x.name
+      exercise =>
+        exercise.name
+        &&
+        exercise.name
           .toLowerCase()
           .includes(
             'reverse lunge'
@@ -2243,8 +2474,8 @@ function patchWorkoutData(data){
         const exists =
           data.coordination
             .some(
-              x =>
-                x.name ===
+              current =>
+                current.name ===
                 exercise.name
             );
 
@@ -2263,8 +2494,13 @@ function patchWorkoutData(data){
 
 
   return data;
+
 }
 
+
+/* ==================================================
+   LOAD WORKOUTS
+   ================================================== */
 
 function loadWorkouts(){
 
@@ -2280,13 +2516,17 @@ function loadWorkouts(){
 
       const parsed =
         patchWorkoutData(
-          JSON.parse(current)
+          JSON.parse(
+            current
+          )
         );
 
 
       localStorage.setItem(
         STORAGE_KEY,
-        JSON.stringify(parsed)
+        JSON.stringify(
+          parsed
+        )
       );
 
 
@@ -2310,7 +2550,9 @@ function loadWorkouts(){
 
         const migrated =
           patchWorkoutData(
-            JSON.parse(saved)
+            JSON.parse(
+              saved
+            )
           );
 
 
@@ -2329,7 +2571,14 @@ function loadWorkouts(){
     }
 
   }
-  catch(e){}
+  catch(error){
+
+    console.warn(
+      'Could not load saved workouts.',
+      error
+    );
+
+  }
 
 
   const fresh =
@@ -2340,54 +2589,165 @@ function loadWorkouts(){
 
     localStorage.setItem(
       STORAGE_KEY,
-      JSON.stringify(fresh)
+      JSON.stringify(
+        fresh
+      )
     );
 
   }
-  catch(e){}
+  catch(error){}
 
 
   return fresh;
+
 }
 
 
+/* ==================================================
+   LOAD SETTINGS
+   ================================================== */
+
+function loadSettings(){
+
+  try{
+
+    const saved =
+      localStorage.getItem(
+        SETTINGS_KEY
+      );
+
+
+    if(saved){
+
+      return JSON.parse(
+        saved
+      );
+
+    }
+
+  }
+  catch(error){}
+
+
+  return {
+
+    restSeconds:10,
+    volume:70,
+    sound:true
+
+  };
+
+}
+
+
+function saveSettings(){
+
+  try{
+
+    localStorage.setItem(
+
+      SETTINGS_KEY,
+
+      JSON.stringify({
+
+        restSeconds:
+          Number(
+            restSelect.value
+          )
+          ||
+          10,
+
+        volume:
+          Number(
+            volumeSlider.value
+          )
+          ||
+          0,
+
+        sound:
+          soundToggle.checked
+
+      })
+
+    );
+
+  }
+  catch(error){}
+
+}
+
+
+/* ==================================================
+   STATE
+   ================================================== */
+
 let workouts =
   loadWorkouts();
+
+
+const savedSettings =
+  loadSettings();
 
 
 let routineKey =
   'mobility';
 
 
-let index = 0;
+let index =
+  0;
 
-let side = 1;
+
+let side =
+  1;
+
 
 let phase =
   'ready';
 
-let remaining = 0;
 
-let phaseTotal = 0;
+let remaining =
+  0;
 
-let elapsed = 0;
 
-let completed = 0;
+let phaseTotal =
+  0;
 
-let paused = false;
 
-let interval = null;
+let elapsed =
+  0;
+
+
+let completed =
+  0;
+
+
+let paused =
+  false;
+
+
+let interval =
+  null;
+
 
 let transitionTarget =
   'next';
 
-let audioCtx = null;
 
-let draft = null;
+let audioCtx =
+  null;
+
+
+let draft =
+  null;
+
 
 let transitionLocked =
   false;
 
+
+/* ==================================================
+   DOM
+   ================================================== */
 
 const $ =
   id =>
@@ -2513,9 +2873,12 @@ const saveMessage =
 const emptyState =
   $('emptyState');
 
+const restNote =
+  $('restNote');
+
 
 /* ==================================================
-   ROUTINES
+   ROUTINE
    ================================================== */
 
 function routine(){
@@ -2560,54 +2923,91 @@ function currentExercise(){
 }
 
 
-function currentIsDynamic(){
+/* ==================================================
+   IDENTIFY FULL-SESSION SECTION
+   ================================================== */
 
-  const exercise =
-    currentExercise();
-
-
-  if(!exercise){
-    return false;
-  }
-
+function currentSection(){
 
   if(
-    routineKey ===
-    'dynamic'
-  ){
-
-    return true;
-
-  }
-
-
-  if(
-    routineKey ===
+    routineKey !==
     'full'
   ){
 
-    return DYNAMIC_NAMES
-      .has(
-        exercise.name
-      );
+    return routineKey;
 
   }
 
 
-  return false;
+  const mobilityEnd =
+    workouts.mobility.length;
+
+
+  const dynamicEnd =
+    mobilityEnd
+    +
+    workouts.dynamic.length;
+
+
+  const strengthEnd =
+    dynamicEnd
+    +
+    workouts.strength.length;
+
+
+  if(
+    index <
+    mobilityEnd
+  ){
+
+    return 'mobility';
+
+  }
+
+
+  if(
+    index <
+    dynamicEnd
+  ){
+
+    return 'dynamic';
+
+  }
+
+
+  if(
+    index <
+    strengthEnd
+  ){
+
+    return 'strength';
+
+  }
+
+
+  return 'explosive';
 
 }
 
 
+/* ==================================================
+   REST LOGIC
+   ================================================== */
+
 function currentRestSeconds(){
 
+  const section =
+    currentSection();
+
+
   /*
-    Dynamic warm-up runs continuously,
-    with no separate rest phase.
+    Dynamic Warm-Up:
+    continuous, no rest.
   */
 
   if(
-    currentIsDynamic()
+    section ===
+    'dynamic'
   ){
 
     return 0;
@@ -2615,15 +3015,41 @@ function currentRestSeconds(){
   }
 
 
+  /*
+    Coordination:
+    fixed at 10 seconds.
+  */
+
   if(
-    routineKey ===
+    section ===
     'coordination'
   ){
 
-    return 15;
+    return 10;
 
   }
 
+
+  /*
+    Pregame:
+    short 5-second transition.
+  */
+
+  if(
+    section ===
+    'pregame'
+  ){
+
+    return 5;
+
+  }
+
+
+  /*
+    Mobility, Strength, Explosiveness
+    and those sections inside Full Session
+    use the selector.
+  */
 
   return (
     Number(
@@ -2636,16 +3062,24 @@ function currentRestSeconds(){
 }
 
 
+/* ==================================================
+   TOTAL STEPS
+   ================================================== */
+
 function totalSteps(
   list = routine()
 ){
 
   return list.reduce(
 
-    (sum,x) =>
-      sum +
+    (sum,exercise) =>
+
+      sum
+
+      +
+
       (
-        x.sides === 2
+        exercise.sides === 2
         ?
         2
         :
@@ -2658,6 +3092,10 @@ function totalSteps(
 
 }
 
+
+/* ==================================================
+   CURRENT STEP
+   ================================================== */
 
 function currentStep(){
 
@@ -2685,6 +3123,7 @@ function currentStep(){
   ){
 
     step +=
+
       list[i].sides === 2
       ?
       2
@@ -2695,6 +3134,7 @@ function currentStep(){
 
 
   step +=
+
     side === 2
     ?
     2
@@ -2708,7 +3148,7 @@ function currentStep(){
 
 
 /* ==================================================
-   CLOCK HELPERS
+   CLOCK
    ================================================== */
 
 function clock(sec){
@@ -2793,6 +3233,10 @@ function shortClock(sec){
 }
 
 
+/* ==================================================
+   TIMER STOP
+   ================================================== */
+
 function stopClock(){
 
   if(interval){
@@ -2811,7 +3255,7 @@ function stopClock(){
 
 
 /* ==================================================
-   AUDIO
+   AUDIO CONTEXT
    ================================================== */
 
 function getAudio(){
@@ -2823,13 +3267,18 @@ function getAudio(){
   }
 
 
-  const C =
+  const AudioConstructor =
+
     window.AudioContext
+
     ||
+
     window.webkitAudioContext;
 
 
-  if(!C){
+  if(
+    !AudioConstructor
+  ){
 
     return null;
 
@@ -2839,10 +3288,10 @@ function getAudio(){
   try{
 
     audioCtx =
-      new C();
+      new AudioConstructor();
 
   }
-  catch(e){
+  catch(error){
 
     audioCtx =
       null;
@@ -2854,6 +3303,10 @@ function getAudio(){
 
 }
 
+
+/* ==================================================
+   VOLUME
+   ================================================== */
 
 function currentVolume(){
 
@@ -2872,6 +3325,10 @@ function currentVolume(){
 }
 
 
+/* ==================================================
+   COUNTDOWN BEEP
+   ================================================== */
+
 function countdownBeep(){
 
   if(
@@ -2887,7 +3344,9 @@ function countdownBeep(){
     getAudio();
 
 
-  if(!ctx){
+  if(
+    !ctx
+  ){
 
     return;
 
@@ -2912,7 +3371,8 @@ function countdownBeep(){
 
 
   if(
-    volume <= 0
+    volume <=
+    0
   ){
 
     return;
@@ -2989,6 +3449,10 @@ function countdownBeep(){
 }
 
 
+/* ==================================================
+   ARENA HORN
+   ================================================== */
+
 function arenaHorn(){
 
   if(
@@ -3004,7 +3468,9 @@ function arenaHorn(){
     getAudio();
 
 
-  if(!ctx){
+  if(
+    !ctx
+  ){
 
     return;
 
@@ -3029,7 +3495,8 @@ function arenaHorn(){
 
 
   if(
-    volume <= 0
+    volume <=
+    0
   ){
 
     return;
@@ -3212,7 +3679,7 @@ function arenaHorn(){
 
 
 /* ==================================================
-   NEXT UP
+   NEXT INFO
    ================================================== */
 
 function nextInfo(){
@@ -3297,7 +3764,7 @@ function nextInfo(){
 
 
 /* ==================================================
-   CATEGORY UI
+   CATEGORY BUTTONS
    ================================================== */
 
 function updateCategoryButtons(){
@@ -3307,14 +3774,14 @@ function updateCategoryButtons(){
       '[data-routine]'
     )
     .forEach(
-      btn => {
+      button => {
 
-        btn.classList
+        button.classList
           .toggle(
 
             'active',
 
-            btn.dataset.routine
+            button.dataset.routine
             ===
             routineKey
 
@@ -3322,6 +3789,59 @@ function updateCategoryButtons(){
 
       }
     );
+
+}
+
+
+/* ==================================================
+   REST NOTE
+   ================================================== */
+
+function updateRestDisplay(){
+
+  restNumber.textContent =
+    clock(
+      currentRestSeconds()
+    );
+
+
+  const section =
+    currentSection();
+
+
+  if(
+    section ===
+    'dynamic'
+  ){
+
+    restNote.textContent =
+      'Dynamic Warm-Up runs continuously with no rest between exercises.';
+
+  }
+  else if(
+    section ===
+    'coordination'
+  ){
+
+    restNote.textContent =
+      'Coordination uses a fixed 10-second transition between drills.';
+
+  }
+  else if(
+    section ===
+    'pregame'
+  ){
+
+    restNote.textContent =
+      'Pregame uses short 5-second transitions to keep the routine near 8 minutes.';
+
+  }
+  else{
+
+    restNote.textContent =
+      'This setting controls the rest between Mobility, Strength and Explosiveness exercises, including those sections inside Full Session.';
+
+  }
 
 }
 
@@ -3389,6 +3909,7 @@ function renderRoutineList(){
 
 
       const sides =
+
         exercise.sides === 2
         ?
         [1,2]
@@ -3433,10 +3954,9 @@ function renderRoutineList(){
             isCurrent
           ){
 
-            row.classList
-              .add(
-                'active'
-              );
+            row.classList.add(
+              'active'
+            );
 
           }
 
@@ -3445,10 +3965,9 @@ function renderRoutineList(){
             isDone
           ){
 
-            row.classList
-              .add(
-                'done'
-              );
+            row.classList.add(
+              'done'
+            );
 
           }
 
@@ -3521,6 +4040,7 @@ function renderRoutineList(){
 
 
           sidesText.textContent =
+
             exercise.sides === 2
             ?
             '2 sides'
@@ -3542,10 +4062,9 @@ function renderRoutineList(){
             isCurrent
           ){
 
-            status.classList
-              .add(
-                'current'
-              );
+            status.classList.add(
+              'current'
+            );
 
           }
 
@@ -3554,16 +4073,14 @@ function renderRoutineList(){
             isDone
           ){
 
-            status.classList
-              .remove(
-                'current'
-              );
+            status.classList.remove(
+              'current'
+            );
 
 
-            status.classList
-              .add(
-                'done'
-              );
+            status.classList.add(
+              'done'
+            );
 
           }
 
@@ -3592,7 +4109,7 @@ function renderRoutineList(){
 
 
 /* ==================================================
-   EMPTY RENDER
+   EMPTY DISPLAY
    ================================================== */
 
 function renderEmpty(){
@@ -3679,6 +4196,9 @@ function renderEmpty(){
 
   skipBtn.disabled =
     true;
+
+
+  updateRestDisplay();
 
 
   renderRoutineList();
@@ -3787,6 +4307,7 @@ function render(){
 
 
     sideLabelEl.textContent =
+
       exercise.sides === 2
       ?
       'Side '
@@ -3819,22 +4340,26 @@ function render(){
     'Horn'
     :
 
-    phase === 'work'
+    phase ===
+    'work'
     ?
     'Work'
     :
 
-    phase === 'transition'
+    phase ===
+    'transition'
     ?
     'Rest'
     :
 
-    phase === 'countdown'
+    phase ===
+    'countdown'
     ?
     'Get Ready'
     :
 
-    phase === 'done'
+    phase ===
+    'done'
     ?
     'Complete'
     :
@@ -3935,12 +4460,6 @@ function render(){
     next.side;
 
 
-  restNumber.textContent =
-    clock(
-      currentRestSeconds()
-    );
-
-
   sessionNumber.textContent =
 
     completed
@@ -3958,15 +4477,20 @@ function render(){
 
     (
       total > 0
+
       ?
+
       (
         completed
         /
         total
       )
+
       *
       100
+
       :
+
       0
     )
 
@@ -3992,20 +4516,27 @@ function render(){
     'Resume'
     :
 
-    phase === 'work'
+    phase ===
+    'work'
     ||
-    phase === 'transition'
+    phase ===
+    'transition'
     ||
-    phase === 'countdown'
+    phase ===
+    'countdown'
     ?
     'Pause'
     :
 
-    phase === 'done'
+    phase ===
+    'done'
     ?
     'Restart'
     :
     'Start';
+
+
+  updateRestDisplay();
 
 
   renderRoutineList();
@@ -4014,7 +4545,7 @@ function render(){
 
 
 /* ==================================================
-   RESET
+   RESET SESSION
    ================================================== */
 
 function resetSession(){
@@ -4059,6 +4590,7 @@ function resetSession(){
 
 
   remaining =
+
     list.length
     ?
     list[0].seconds
@@ -4076,7 +4608,7 @@ function resetSession(){
 
 
 /* ==================================================
-   START / WORK / REST
+   INITIAL 5-SECOND COUNTDOWN
    ================================================== */
 
 function beginCountdown(){
@@ -4123,6 +4655,10 @@ function beginCountdown(){
 
 }
 
+
+/* ==================================================
+   BEGIN WORK
+   ================================================== */
 
 function beginWork(){
 
@@ -4172,6 +4708,10 @@ function beginWork(){
 }
 
 
+/* ==================================================
+   BEGIN REST
+   ================================================== */
+
 function beginRest(){
 
   const exercise =
@@ -4197,12 +4737,19 @@ function beginRest(){
 
 
   transitionTarget =
+
     exercise.sides === 2
+
     &&
+
     side === 1
+
     ?
+
     'side2'
+
     :
+
     'next';
 
 
@@ -4215,7 +4762,8 @@ function beginRest(){
   */
 
   if(
-    restSeconds <= 0
+    restSeconds <=
+    0
   ){
 
     completeRest();
@@ -4244,6 +4792,10 @@ function beginRest(){
 
 }
 
+
+/* ==================================================
+   COMPLETE REST
+   ================================================== */
 
 function completeRest(){
 
@@ -4288,6 +4840,10 @@ function completeRest(){
 }
 
 
+/* ==================================================
+   FINISH
+   ================================================== */
+
 function finishWorkout(){
 
   stopClock();
@@ -4324,16 +4880,15 @@ function finishWorkout(){
     'Nice work in the crease.';
 
 
-  nextCard.classList
-    .add(
-      'hidden'
-    );
+  nextCard.classList.add(
+    'hidden'
+  );
 
 }
 
 
 /* ==================================================
-   TIMER EXPIRATION
+   TIMER REACHES ZERO
    ================================================== */
 
 function timerExpired(){
@@ -4384,6 +4939,8 @@ function timerExpired(){
         beginWork();
 
       }
+
+
       else if(
         finishedPhase ===
         'work'
@@ -4392,6 +4949,8 @@ function timerExpired(){
         beginRest();
 
       }
+
+
       else if(
         finishedPhase ===
         'transition'
@@ -4407,6 +4966,10 @@ function timerExpired(){
 
 }
 
+
+/* ==================================================
+   TIMER TICK
+   ================================================== */
 
 function tick(){
 
@@ -4439,7 +5002,8 @@ function tick(){
 
 
   if(
-    remaining <= 0
+    remaining <=
+    0
   ){
 
     remaining =
@@ -4461,6 +5025,10 @@ function tick(){
 
 }
 
+
+/* ==================================================
+   START INTERVAL
+   ================================================== */
 
 function startClock(){
 
@@ -4485,7 +5053,7 @@ function startClock(){
 
 
 /* ==================================================
-   PAUSE / START
+   START / PAUSE
    ================================================== */
 
 function startPause(){
@@ -4557,7 +5125,7 @@ function startPause(){
 
 
 /* ==================================================
-   SKIP / PREVIOUS
+   SKIP
    ================================================== */
 
 function skipForward(){
@@ -4646,6 +5214,10 @@ function skipForward(){
 }
 
 
+/* ==================================================
+   PREVIOUS
+   ================================================== */
+
 function previousStep(){
 
   if(
@@ -4683,6 +5255,8 @@ function previousStep(){
       1;
 
   }
+
+
   else if(
     index > 0
   ){
@@ -4691,10 +5265,15 @@ function previousStep(){
 
 
     side =
+
       list[index].sides === 2
+
       ?
+
       2
+
       :
+
       1;
 
   }
@@ -4749,7 +5328,7 @@ function chooseRoutine(key){
 
 
 /* ==================================================
-   EDITOR
+   EDITOR OPEN
    ================================================== */
 
 function openEditor(){
@@ -4776,22 +5355,24 @@ function openEditor(){
 
     routineKey ===
     'full'
+
     ?
+
     'mobility'
+
     :
+
     routineKey;
 
 
-  playerView.classList
-    .add(
-      'hidden'
-    );
+  playerView.classList.add(
+    'hidden'
+  );
 
 
-  editor.classList
-    .add(
-      'visible'
-    );
+  editor.classList.add(
+    'visible'
+  );
 
 
   saveMessage.textContent =
@@ -4803,24 +5384,30 @@ function openEditor(){
 }
 
 
+/* ==================================================
+   EDITOR CLOSE
+   ================================================== */
+
 function closeEditor(){
 
-  editor.classList
-    .remove(
-      'visible'
-    );
+  editor.classList.remove(
+    'visible'
+  );
 
 
-  playerView.classList
-    .remove(
-      'hidden'
-    );
+  playerView.classList.remove(
+    'hidden'
+  );
 
 
   resetSession();
 
 }
 
+
+/* ==================================================
+   EDITOR RENDER
+   ================================================== */
 
 function renderEditor(){
 
@@ -4859,10 +5446,9 @@ function renderEditor(){
       `;
 
 
-    editorList
-      .appendChild(
-        empty
-      );
+    editorList.appendChild(
+      empty
+    );
 
   }
 
@@ -4901,6 +5487,7 @@ function renderEditor(){
 
           </div>
 
+
           <div>
 
             <div class="control-label hockey">
@@ -4919,6 +5506,7 @@ function renderEditor(){
 
         </div>
 
+
         <div style="margin-top:10px">
 
           <div class="control-label hockey">
@@ -4930,6 +5518,7 @@ function renderEditor(){
           ></textarea>
 
         </div>
+
 
         <div class="edit-options">
 
@@ -4950,6 +5539,7 @@ function renderEditor(){
             Side 1 + Side 2
 
           </label>
+
 
           <div class="edit-actions">
 
@@ -5005,10 +5595,9 @@ function renderEditor(){
         '';
 
 
-      editorList
-        .appendChild(
-          card
-        );
+      editorList.appendChild(
+        card
+      );
 
     }
   );
@@ -5115,6 +5704,7 @@ function renderEditor(){
                 input.dataset.sides
               )
             ].sides =
+
               input.checked
               ?
               2
@@ -5133,19 +5723,18 @@ function renderEditor(){
       '[data-delete]'
     )
     .forEach(
-      btn => {
+      button => {
 
-        btn.addEventListener(
+        button.addEventListener(
           'click',
           () => {
 
-            draft[key]
-              .splice(
-                Number(
-                  btn.dataset.delete
-                ),
-                1
-              );
+            draft[key].splice(
+              Number(
+                button.dataset.delete
+              ),
+              1
+            );
 
 
             renderEditor();
@@ -5162,20 +5751,21 @@ function renderEditor(){
       '[data-up]'
     )
     .forEach(
-      btn => {
+      button => {
 
-        btn.addEventListener(
+        button.addEventListener(
           'click',
           () => {
 
             const i =
               Number(
-                btn.dataset.up
+                button.dataset.up
               );
 
 
             if(
-              i <= 0
+              i <=
+              0
             ){
 
               return;
@@ -5208,15 +5798,15 @@ function renderEditor(){
       '[data-down]'
     )
     .forEach(
-      btn => {
+      button => {
 
-        btn.addEventListener(
+        button.addEventListener(
           'click',
           () => {
 
             const i =
               Number(
-                btn.dataset.down
+                button.dataset.down
               );
 
 
@@ -5254,6 +5844,10 @@ function renderEditor(){
 }
 
 
+/* ==================================================
+   ADD EXERCISE
+   ================================================== */
+
 function addExercise(){
 
   const key =
@@ -5262,17 +5856,13 @@ function addExercise(){
 
   draft[key].push({
 
-    name:
-      'New Exercise',
+    name:'New Exercise',
 
-    seconds:
-      30,
+    seconds:30,
 
-    sides:
-      1,
+    sides:1,
 
-    cue:
-      ''
+    cue:''
 
   });
 
@@ -5281,6 +5871,10 @@ function addExercise(){
 
 }
 
+
+/* ==================================================
+   SAVE EDITOR
+   ================================================== */
 
 function saveWorkout(){
 
@@ -5296,8 +5890,8 @@ function saveWorkout(){
         draft[key]
 
         .filter(
-          x =>
-            x.name
+          exercise =>
+            exercise.name
               .trim()
               .length
             >
@@ -5305,10 +5899,11 @@ function saveWorkout(){
         )
 
         .map(
-          x => ({
+          exercise => ({
 
             name:
-              x.name.trim(),
+              exercise.name
+                .trim(),
 
             seconds:
               Math.max(
@@ -5316,7 +5911,7 @@ function saveWorkout(){
                 Math.min(
                   600,
                   Number(
-                    x.seconds
+                    exercise.seconds
                   )
                   ||
                   30
@@ -5324,15 +5919,20 @@ function saveWorkout(){
               ),
 
             sides:
-              x.sides === 2
+
+              exercise.sides === 2
+
               ?
+
               2
+
               :
+
               1,
 
             cue:
               (
-                x.cue
+                exercise.cue
                 ||
                 ''
               )
@@ -5365,10 +5965,10 @@ function saveWorkout(){
 
 
     saveMessage.textContent =
-      'Workout saved on this iPhone.';
+      'Workout saved on this device.';
 
   }
-  catch(e){
+  catch(error){
 
     saveMessage.textContent =
       'Workout changed, but could not be saved permanently.';
@@ -5396,7 +5996,7 @@ function saveWorkout(){
 
 
 /* ==================================================
-   VOLUME
+   SYNC VOLUME
    ================================================== */
 
 function syncVolume(value){
@@ -5426,6 +6026,9 @@ function syncVolume(value){
     +
     '%';
 
+
+  saveSettings();
+
 }
 
 
@@ -5438,14 +6041,14 @@ document
     '[data-routine]'
   )
   .forEach(
-    btn => {
+    button => {
 
-      btn.addEventListener(
+      button.addEventListener(
         'click',
         () => {
 
           chooseRoutine(
-            btn.dataset.routine
+            button.dataset.routine
           );
 
         }
@@ -5509,11 +6112,59 @@ editRoutineSelect.addEventListener(
 );
 
 
+/* ==================================================
+   REST SELECTOR — NOW FUNCTIONAL
+   ================================================== */
+
 restSelect.addEventListener(
   'change',
-  render
+  () => {
+
+    saveSettings();
+
+
+    /*
+      If already sitting on a rest timer,
+      immediately apply the new selected time.
+    */
+
+    if(
+      phase ===
+      'transition'
+      &&
+      currentSection() !==
+      'coordination'
+      &&
+      currentSection() !==
+      'pregame'
+      &&
+      currentSection() !==
+      'dynamic'
+    ){
+
+      remaining =
+        Number(
+          restSelect.value
+        )
+        ||
+        10;
+
+
+      phaseTotal =
+        remaining;
+
+    }
+
+
+    render();
+
+  }
 );
 
+
+/* ==================================================
+   VOLUME EVENTS
+   ================================================== */
 
 volumeSlider.addEventListener(
   'input',
@@ -5539,9 +6190,16 @@ topVolume.addEventListener(
 );
 
 
+/* ==================================================
+   SOUND
+   ================================================== */
+
 soundToggle.addEventListener(
   'change',
   () => {
+
+    saveSettings();
+
 
     if(
       soundToggle.checked
@@ -5554,6 +6212,10 @@ soundToggle.addEventListener(
   }
 );
 
+
+/* ==================================================
+   M KEY
+   ================================================== */
 
 document.addEventListener(
   'keydown',
@@ -5590,6 +6252,9 @@ document.addEventListener(
       soundToggle.checked =
         !soundToggle.checked;
 
+
+      saveSettings();
+
     }
 
   }
@@ -5597,11 +6262,30 @@ document.addEventListener(
 
 
 /* ==================================================
-   INITIALIZE
+   INITIALIZE SAVED SETTINGS
    ================================================== */
 
+restSelect.value =
+  String(
+    savedSettings.restSeconds
+    ??
+    10
+  );
+
+
+soundToggle.checked =
+
+  savedSettings.sound
+  !==
+  false;
+
+
 syncVolume(
+
+  savedSettings.volume
+  ??
   70
+
 );
 
 
