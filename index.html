@@ -2185,8 +2185,8 @@ strength:[
 {
   name:'Dead Bug',
   seconds:45,
-  sides:2,
-  cue:'Keep the lower back controlled as you extend the opposite arm and leg.'
+  sides:1,
+  cue:'Keep the lower back controlled as you extend the opposite arm and leg. Alternate sides throughout the interval.'
 }
 
 ],
@@ -2206,8 +2206,8 @@ explosive:[
 {
   name:'Lateral Line Hops',
   seconds:15,
-  sides:1,
-  cue:'Hop quickly side to side with soft knees and light feet.'
+  sides:2,
+  cue:'Hop quickly side to side with soft knees and light feet. Complete the full interval emphasizing one side, then switch sides after the transition.'
 },
 
 {
@@ -2442,6 +2442,52 @@ function patchWorkoutData(data){
       clone(
         DEFAULTS.pregame
       );
+
+  }
+
+
+  /* ----------------------------------------------
+     REQUIRED SIDE FIXES
+     ---------------------------------------------- */
+
+  const deadBug =
+    data.strength.find(
+      exercise =>
+        exercise.name
+        &&
+        exercise.name
+          .toLowerCase()
+          .includes(
+            'dead bug'
+          )
+    );
+
+
+  if(deadBug){
+
+    deadBug.sides =
+      1;
+
+  }
+
+
+  const lateralLineHops =
+    data.explosive.find(
+      exercise =>
+        exercise.name
+        &&
+        exercise.name
+          .toLowerCase()
+          .includes(
+            'lateral line hop'
+          )
+    );
+
+
+  if(lateralLineHops){
+
+    lateralLineHops.sides =
+      2;
 
   }
 
@@ -3679,10 +3725,22 @@ function arenaHorn(){
 
 
 /* ==================================================
-   NEXT INFO
+   NEXT EXERCISE HELPERS
    ================================================== */
 
-function nextInfo(){
+/*
+  Returns what the athlete should prepare for NEXT.
+
+  Important:
+  - During the rest after Side 1, next is Side 2
+    of the same exercise.
+  - While actually performing Side 2, next is the
+    FOLLOWING exercise.
+  - This fixes the old problem where Side 2 still
+    showed the current exercise as "Next Up."
+*/
+
+function nextTarget(){
 
   const list =
     routine();
@@ -3696,28 +3754,29 @@ function nextInfo(){
     !current
   ){
 
-    return {
-
-      name:'—',
-      side:''
-
-    };
+    return null;
 
   }
 
 
   if(
+    phase ===
+    'transition'
+    &&
     transitionTarget ===
     'side2'
   ){
 
     return {
 
-      name:
-        current.name,
+      exercise:
+        current,
 
       side:
-        'Side 2 of 2'
+        'Side 2 of 2',
+
+      index:
+        index
 
     };
 
@@ -3734,12 +3793,53 @@ function nextInfo(){
     !next
   ){
 
+    return null;
+
+  }
+
+
+  return {
+
+    exercise:
+      next,
+
+    side:
+      next.sides === 2
+      ?
+      'Side 1 of 2'
+      :
+      '',
+
+    index:
+      index + 1
+
+  };
+
+}
+
+
+/* ==================================================
+   NEXT INFO
+   ================================================== */
+
+function nextInfo(){
+
+  const target =
+    nextTarget();
+
+
+  if(
+    !target
+  ){
+
     return {
 
       name:
         'Session Complete',
 
-      side:''
+      side:'',
+
+      cue:''
 
     };
 
@@ -3749,13 +3849,14 @@ function nextInfo(){
   return {
 
     name:
-      next.name,
+      target.exercise.name,
 
     side:
-      next.sides === 2
-      ?
-      'Side 1 of 2'
-      :
+      target.side,
+
+    cue:
+      target.exercise.cue
+      ||
       ''
 
   };
@@ -4265,25 +4366,56 @@ function render(){
     );
 
 
+  const next =
+    nextInfo();
+
+
   if(
     phase ===
     'transition'
   ){
 
-    exerciseNameEl.textContent =
-      'Rest';
+    /*
+      REST SCREEN:
+      Show exactly what is coming next,
+      plus its exercise description.
+    */
+
+    if(
+      next.name ===
+      'Session Complete'
+    ){
+
+      exerciseNameEl.textContent =
+        'Session Complete';
 
 
-    sideLabelEl.textContent =
-      '';
+      sideLabelEl.textContent =
+        '';
 
 
-    exerciseCueEl.textContent =
-      'Get into position for the next movement.';
+      exerciseCueEl.textContent =
+        'Finish the rest period, then you are done.';
+
+    }
+    else{
+
+      exerciseNameEl.textContent =
+        'Get Ready For '
+        +
+        next.name;
 
 
-    const next =
-      nextInfo();
+      sideLabelEl.textContent =
+        next.side;
+
+
+      exerciseCueEl.textContent =
+        next.cue
+        ||
+        'Get into position for the next exercise.';
+
+    }
 
 
     nextName.textContent =
@@ -4446,10 +4578,6 @@ function render(){
     +
 
     ' elapsed';
-
-
-  const next =
-    nextInfo();
 
 
   sidebarNextName.textContent =
@@ -4681,6 +4809,18 @@ function beginWork(){
     false;
 
 
+  /*
+    Clear the old transition target now that
+    the athlete is actually performing the exercise.
+
+    This is what prevents Side 2 from continuing to
+    report itself as the next exercise.
+  */
+
+  transitionTarget =
+    'next';
+
+
   phase =
     'work';
 
@@ -4851,6 +4991,10 @@ function finishWorkout(){
 
   transitionLocked =
     false;
+
+
+  transitionTarget =
+    'next';
 
 
   phase =
@@ -5193,6 +5337,10 @@ function skipForward(){
   }
 
 
+  transitionTarget =
+    'next';
+
+
   phase =
     'ready';
 
@@ -5277,6 +5425,10 @@ function previousStep(){
       1;
 
   }
+
+
+  transitionTarget =
+    'next';
 
 
   phase =
@@ -6113,7 +6265,7 @@ editRoutineSelect.addEventListener(
 
 
 /* ==================================================
-   REST SELECTOR — NOW FUNCTIONAL
+   REST SELECTOR
    ================================================== */
 
 restSelect.addEventListener(
@@ -6122,11 +6274,6 @@ restSelect.addEventListener(
 
     saveSettings();
 
-
-    /*
-      If already sitting on a rest timer,
-      immediately apply the new selected time.
-    */
 
     if(
       phase ===
@@ -6329,4 +6476,3 @@ if(
 
 </body>
 </html>
-
